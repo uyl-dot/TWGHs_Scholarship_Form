@@ -279,7 +279,7 @@
             <!-- 分頁 5: 曾獲獎項與證明文件 -->
             <div id="awards" class="tab-content">
                 <div class="card">
-                    <div class="card-title" style="color: var(--primary-color);">🏆 曾獲取之獎學金與校內外重要獎項紀錄</div>
+                    <div class="card-title" style="color: var(--primary-color);">🏆 曾獲取之獎學金與校內外重要獎項紀錄 (精準對齊 V6 核心)</div>
                     <table id="awardsTable">
                         <thead>
                             <tr>
@@ -314,8 +314,7 @@
     </div>
 
     <script>
-        // 🚨 老師注意！請把下面引號裡的文字換成您的 Apps Script 網址！
-        const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbz44pr5ZgQa0AcpfG3nYnYWH8X4iLEk7aIILcVZB62AkHdCfe-0fw71rupZq2RNWDsb/exec"; 
+        const SCRIPT_URL = "https://script.google.com/macros/s/YOUR_APPS_SCRIPT_URL_HERE/exec"; 
         
         let ignoreWarningsOnce = false;
         let uploadedFileUrls = { fileS4: "", fileS5: "", fileS6: "", fileDse: "", fileHkid: "", fileAdmission: "" };
@@ -416,7 +415,8 @@
             fetch(SCRIPT_URL, {
                 method: 'POST', headers: { 'Content-Type': 'text/plain;charset=utf-8' },
                 body: JSON.stringify({ action: "submitFormTextAndLinks", appId: document.getElementById('currentAppId').value, basic: getBasicData(missingList.length > 0), family: getTableRowsData('#familyTable tbody', ['.fam-name', '.fam-rel', '.fam-age', '.fam-edu', '.fam-occ', '.fam-income']), education: getTableRowsData('#educationTable tbody', ['.edu-school', '.edu-from', '.edu-to', '.edu-level']), activities: getTableRowsData('#activitiesTable tbody', ['.act-org', '.act-name', '.act-pos', '.act-year']), awards: getTableRowsData('#awardsTable tbody', ['.aw-org', '.aw-name', '.aw-year', '.aw-level']), fileUrls: uploadedFileUrls })
-            }).then(res => res.json()).then(result => { if (result.status === 'success') { localStorage.removeItem('twghs_scholarship_v13_backup'); alert(`🎉 【提交成功！】\n申請編號：${result.id}`); btn.innerText = "✅ 已成功提交"; } })
+            }).then(res => res.json()).then(result => { if (result.status === 'success') { localStorage.removeItem('twghs_scholarship_v13_backup'); alert(`🎉 【提交成功！】
+申請編號：${result.id}`); btn.innerText = "✅ 已成功提交"; } })
             .catch(err => { alert('❌ 提交超時。'); btn.disabled = false; });
         }
 
@@ -438,6 +438,7 @@
             const table = document.getElementById('awardsTable').getElementsByTagName('tbody')[0]; const row = table.insertRow();
             row.innerHTML = `<td><input type="text" class="aw-org" placeholder="如：校方" value="${data.val1||''}"></td><td><input type="text" class="aw-name" placeholder="如：校內傑出獎學金" value="${data.val2||''}"></td><td><input type="text" class="aw-year" placeholder="如：2025" value="${data.val3||''}"></td><td><input type="text" class="aw-level" placeholder="如：校級" value="${data.val4||''}"></td><td><button type="button" class="btn btn-danger" onclick="deleteRow(this)">刪除</button></td>`;
         }
+        document.getElementById('awardsTable').getElementsByTagName('tbody')[0];
         function deleteRow(btn) { btn.closest('tr').remove(); }
         function toggleCSSAAmount() { document.getElementById('cssaAmountGroup').style.display = document.getElementById('cssa').value === '是' ? 'flex' : 'none'; }
         function updateElectiveDropdowns() {}
