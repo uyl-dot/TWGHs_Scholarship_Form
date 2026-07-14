@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>東華三院大學獎學金 — 線上填報系統 V13.7</title>
+    <title>東華三院大學獎學金 — 線上填報系統 V13.9</title>
     <style>
         :root {
             --primary-color: #1f4e78;
@@ -62,8 +62,8 @@
 <body>
 
     <div class="header">
-        <h1>東華三院大學獎學金 — 申請資料線上填報系統 (V13.7 首字自動大寫與存檔修正版)</h1>
-        <p>TWGHs University Scholarships Portal - Central Database & Title Case Auto-Correction</p>
+        <h1>東華三院大學獎學金 — 申請資料線上填報系統 (V13.9 取錄結果更新版)</h1>
+        <p>TWGHs University Scholarships Portal - Central Database & Sub-Sheet Auto-Distribution</p>
     </div>
 
     <div class="container">
@@ -198,9 +198,9 @@
                     </div>
                 </div>
 
-                <!-- 大學意向選單 -->
+                <!-- 🧠 已經完全更名為：院校取錄結果：大學修讀科目 (University Choices) -->
                 <div class="card" style="border-top: 4px solid var(--accent-color);">
-                    <div class="card-title" style="color: var(--accent-color);">院校意向：大學修讀結果 (University Intentions)</div>
+                    <div class="card-title" style="color: var(--accent-color);">院校取錄結果：大學修讀科目 (University Choices)</div>
                     <div class="form-grid">
                         <div class="form-group">
                             <label for="uniName">就讀大學名稱 (University Name)</label>
@@ -228,7 +228,7 @@
                             <input type="text" id="jupasCode" placeholder="JS6729" style="text-transform: uppercase;">
                         </div>
                         <div class="form-group">
-                            <label for="duration">課程修讀年期 (Duration) <span class="req-eng">※ 請以數字填寫</span></label>
+                            <label for="duration">課程修讀年期 (Duration) <span class="req-eng">※ 請以英文填寫</span></label>
                             <input type="text" id="duration" placeholder="4 Years" onblur="autoTitleCase(this)">
                         </div>
                     </div>
@@ -300,6 +300,7 @@
                         <thead><tr><th>學校名稱 School Name (In English)</th><th>開始年份</th><th>結束年份</th><th>最高就讀班級 (In English)</th><th>操作</th></tr></thead>
                         <tbody>
                             <tr>
+                                <!-- 🧠 核心母校名稱已經修改為 TWGHs Sun Hoi Directors' College -->
                                 <td><input type="text" class="edu-school" value="TWGHs Sun Hoi Directors' College" readonly style="background:#f8fafc; font-weight:bold;"></td>
                                 <td><input type="number" class="edu-from" placeholder="2020"></td>
                                 <td><input type="number" class="edu-to" placeholder="2026"></td>
@@ -362,7 +363,7 @@
     </div>
 
     <script>
-        // 🎯 已經為您完美封裝綁定您的正式 Apps Script 執行網址！
+        // 🎯 已經完美綁定您的正式 Apps Script 執行網址！
         const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbz44pr5ZgQa0AcpfG3nYnYWH8X4iLEk7aIILcVZB62AkHdCfe-0fw71rupZq2RNWDsb/exec"; 
         
         let ignoreWarningsOnce = false;
@@ -441,9 +442,9 @@
                     document.getElementById('rankS6').value = data.rankS6;
                     toggleCSSAAmount();
                     
-                    // 重新加載子表格
+                    // 重新清除並重置子表格，歷史存檔直接讀取並拆分展示
                     document.querySelector('#familyTable tbody').innerHTML = "";
-                    document.querySelector('#educationTable tbody').innerHTML = "<tr><td><input type='text' class='edu-school' value='TWGHs Yan Chai Kan Secondary School' readonly style='background:#f8fafc; font-weight:bold;'></td><td><input type='number' class='edu-from' placeholder='2020'></td><td><input type='number' class='edu-to' placeholder='2026'></td><td><input type='text' class='edu-level' value='Form 6' readonly style='background:#f8fafc; text-align:center;'></td><td><span style='font-size:11px; color:var(--text-muted);'>核心母校</span></td></tr>";
+                    document.querySelector('#educationTable tbody').innerHTML = "<tr><td><input type='text' class='edu-school' value='TWGHs Sun Hoi Directors\' College' readonly style='background:#f8fafc; font-weight:bold;'></td><td><input type='number' class='edu-from' placeholder='2020'></td><td><input type='number' class='edu-to' placeholder='2026'></td><td><input type='text' class='edu-level' value='Form 6' readonly style='background:#f8fafc; text-align:center;'></td><td><span style='font-size:11px; color:var(--text-muted);'>核心母校</span></td></tr>";
                     document.querySelector('#activitiesTable tbody').innerHTML = "";
                     document.querySelector('#awardsTable tbody').innerHTML = "";
                     
@@ -535,7 +536,17 @@
             const btn = document.getElementById('submitBtn'); btn.innerText = "🚀 正在存入中央數據庫..."; btn.disabled = true;
             fetch(SCRIPT_URL, {
                 method: 'POST', headers: { 'Content-Type': 'text/plain;charset=utf-8' },
-                body: JSON.stringify({ action: "submitFormTextAndLinks", appId: document.getElementById('currentAppId').value, basic: getBasicData(missingList.length > 0), family: getTableRowsData('#familyTable tbody', ['.fam-name', '.fam-rel', '.fam-age', '.fam-edu', '.fam-occ', '.fam-income']), education: getTableRowsData('#educationTable tbody', ['.edu-school', '.edu-from', '.edu-to', '.edu-level']), activities: getTableRowsData('#activitiesTable tbody', ['.act-org', '.act-name', '.act-pos', '.act-year']), awards: getTableRowsData('#awardsTable tbody', ['.aw-org', '.aw-name', '.aw-year', '.aw-level']), fileUrls: uploadedFileUrls })
+                body: JSON.stringify({ 
+                    action: "submitFormTextAndLinks", 
+                    appId: document.getElementById('currentAppId').value, 
+                    numInput: document.getElementById('numInput').value, 
+                    basic: getBasicData(missingList.length > 0), 
+                    family: getTableRowsData('#familyTable tbody', ['.fam-name', '.fam-rel', '.fam-age', '.fam-edu', '.fam-occ', '.fam-income']), 
+                    education: getTableRowsData('#educationTable tbody', ['.edu-school', '.edu-from', '.edu-to', '.edu-level']), 
+                    activities: getTableRowsData('#activitiesTable tbody', ['.act-org', '.act-name', '.act-pos', '.act-year']), 
+                    awards: getTableRowsData('#awardsTable tbody', ['.aw-org', '.aw-name', '.aw-year', '.aw-level']), 
+                    fileUrls: uploadedFileUrls 
+                })
             }).then(res => res.json()).then(result => { if (result.status === 'success') { localStorage.removeItem('twghs_scholarship_v13_backup'); alert(`🎉 【提交成功！】\n申請編號：${result.id}`); btn.innerText = "✅ 已成功提交"; } })
             .catch(err => { alert('❌ 提交失敗，請確保後台 Apps Script 部署版本已選取「新版本」並成功發佈！'); btn.disabled = false; btn.innerText = "🚀 最終確認：提交完整申報檔案"; });
         }
