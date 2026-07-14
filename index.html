@@ -62,7 +62,7 @@
 <body>
 
     <div class="header">
-        <h1>東華三院大學獎學金 — 申請資料線上填報系統 (V13.7 首字自動大寫規範版)</h1>
+        <h1>東華三院大學獎學金 — 申請資料線上填報系統 (V13.7 首字自動大寫與存檔修正版)</h1>
         <p>TWGHs University Scholarships Portal - Central Database & Title Case Auto-Correction</p>
     </div>
 
@@ -198,9 +198,9 @@
                     </div>
                 </div>
 
-                <!-- 大學意向下拉選單 -->
+                <!-- 大學意向選單 -->
                 <div class="card" style="border-top: 4px solid var(--accent-color);">
-                    <div class="card-title" style="color: var(--accent-color);">升學前程：大學取錄結果 (University Admission Results)</div>
+                    <div class="card-title" style="color: var(--accent-color);">院校意向：大學修讀結果 (University Intentions)</div>
                     <div class="form-grid">
                         <div class="form-group">
                             <label for="uniName">就讀大學名稱 (University Name)</label>
@@ -228,7 +228,7 @@
                             <input type="text" id="jupasCode" placeholder="JS6729" style="text-transform: uppercase;">
                         </div>
                         <div class="form-group">
-                            <label for="duration">課程修讀年期 (Duration) <span class="req-eng">※ 請以英文填寫</span></label>
+                            <label for="duration">課程修讀年期 (Duration) <span class="req-eng">※ 請以數字填寫</span></label>
                             <input type="text" id="duration" placeholder="4 Years" onblur="autoTitleCase(this)">
                         </div>
                     </div>
@@ -274,7 +274,7 @@
             <div id="family" class="tab-content">
                 <div class="card">
                     <div class="card-title">同住家庭成員經濟與學歷背景 (Household Members)</div>
-                    <div class="card-description" style="color:var(--accent-color); font-weight:bold;">※ 規範：除關係與學歷選單外，英文姓名、現職請以【英文】輸入（首字母會自動修正為大寫）。</div>
+                    <div class="card-description" style="color:var(--accent-color); font-weight:bold;">※ 規範：除關係與學歷選單外，其餘英文姓名、現職均請以【英文】輸入（首字母會自動修正為大寫）。</div>
                     <table id="familyTable">
                         <thead><tr><th>英文姓名 (In English)</th><th>關係</th><th>年齡</th><th>最高學歷</th><th>現職 Occupation (In English)</th><th>每月平均收入</th><th>操作</th></tr></thead>
                         <tbody></tbody>
@@ -300,7 +300,7 @@
                         <thead><tr><th>學校名稱 School Name (In English)</th><th>開始年份</th><th>結束年份</th><th>最高就讀班級 (In English)</th><th>操作</th></tr></thead>
                         <tbody>
                             <tr>
-                                <td><input type="text" class="edu-school" value="Twghs Sun Hoi Directors' College" readonly style="background:#f8fafc; font-weight:bold;"></td>
+                                <td><input type="text" class="edu-school" value="TWGHs Sun Hoi Directors' College" readonly style="background:#f8fafc; font-weight:bold;"></td>
                                 <td><input type="number" class="edu-from" placeholder="2020"></td>
                                 <td><input type="number" class="edu-to" placeholder="2026"></td>
                                 <td><input type="text" class="edu-level" value="Form 6" readonly style="background:#f8fafc; text-align:center;"></td>
@@ -352,7 +352,7 @@
                         <div class="form-group"><label>2. 中五全年校內成績單 *</label><div class="upload-box" onclick="document.getElementById('fileS5').click()"><span id="labelS5">📁 點擊選取中五成績單</span><input type="file" id="fileS5" onchange="ajaxUploadSingleFile(this, 'labelS5', 'statusS5')"><div class="file-status" id="statusS5"></div></div></div>
                         <div class="form-group"><label>3. 中六模擬考試 (Mock) 成績單 *</label><div class="upload-box" onclick="document.getElementById('fileS6').click()"><span id="labelS6">📁 點擊選取中六成績單</span><input type="file" id="fileS6" onchange="ajaxUploadSingleFile(this, 'labelS6', 'statusS6')"><div class="file-status" id="statusS6"></div></div></div>
                         <div class="form-group"><label>4. 香港中學文憑試 (HKDSE) 成績通知書 *</label><div class="upload-box" onclick="document.getElementById('fileDse').click()"><span id="labelDse">📁 點擊選取 DSE 成績表</span><input type="file" id="fileDse" onchange="ajaxUploadSingleFile(this, 'labelDse', 'statusDse')"><div class="file-status" id="statusDse"></div></div></div>
-                        <div class="form-group"><label>5. 香港身份證 (HKID) *</label><div class="upload-box" onclick="document.getElementById('fileHkid').click()"><span id="labelHkid">📁 點擊選取香港身份證</span><input type="file" id="fileHkid" onchange="ajaxUploadSingleFile(this, 'labelHkid', 'statusHkid')"><div class="file-status" id="statusHkid"></div></div></div>
+                        <div class="form-group"><label>5. 香港身份證 (HKID) *</label><div class="upload-box" onclick="document.getElementById('fileHkid').click()"><span id="labelHkid">📁 點擊選取香港身份證</span><input type="file" id="fileHkid" onchange="ajaxUploadSingleFile(this, 'fileHkid', 'statusHkid')"><div class="file-status" id="statusHkid"></div></div></div>
                         <div class="form-group"><label>6. 大專院校取錄通知書 / 學生證 (如有)</label><div class="upload-box" onclick="document.getElementById('fileAdmission').click()"><span id="labelAdmission">📁 點擊選取取錄信 / 學生證</span><input type="file" id="fileAdmission" onchange="ajaxUploadSingleFile(this, 'labelAdmission', 'statusAdmission')"><div class="file-status" id="statusAdmission"></div></div></div>
                     </div>
                 </div>
@@ -362,7 +362,7 @@
     </div>
 
     <script>
-        // 🎯 已經為您完美封裝綁定您的執行網址，不需再手動更改！
+        // 🎯 已經為您完美封裝綁定您的正式 Apps Script 執行網址！
         const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbz44pr5ZgQa0AcpfG3nYnYWH8X4iLEk7aIILcVZB62AkHdCfe-0fw71rupZq2RNWDsb/exec"; 
         
         let ignoreWarningsOnce = false;
@@ -394,6 +394,73 @@
                     selectEl.selectedIndex = i; return;
                 }
             }
+        }
+
+        // 🧠 查詢並載入雲端歷史檔案數據
+        function loadOldData() {
+            const appId = document.getElementById('searchAppId').value.trim();
+            const nameCh = document.getElementById('searchNameCh').value.trim();
+            const hkidVerify = document.getElementById('searchHkid4').value.trim();
+            if (!appId && (!nameCh || !hkidVerify)) { alert("⚠️ 請提供【申請編號】或【中文姓名+身份證前四位】！"); return; }
+            const btn = document.getElementById('loadBtn'); btn.innerText = "讀取中..."; btn.disabled = true;
+            fetch(`${SCRIPT_URL}?action=loadOldData&appId=${encodeURIComponent(appId)}&nameCh=${encodeURIComponent(nameCh)}&hkidVerify=${encodeURIComponent(hkidVerify)}`)
+            .then(res => res.json()).then(data => {
+                btn.innerText = "🔍 讀取雲端歷史檔案"; btn.disabled = false;
+                if (data.status === "success") {
+                    document.getElementById('currentAppId').value = data.appId;
+                    document.getElementById('schoolYear').value = data.schoolYear;
+                    document.getElementById('studentClass').value = data.studentClass;
+                    document.getElementById('nameEn').value = data.nameEn;
+                    document.getElementById('nameCh').value = data.nameCh;
+                    document.getElementById('hkid').value = data.hkid;
+                    document.getElementById('dob').value = data.dob;
+                    document.getElementById('placeOfBirth').value = data.placeOfBirth;
+                    document.getElementById('mobile').value = data.mobile;
+                    document.getElementById('email').value = data.email;
+                    document.getElementById('wechat').value = data.wechat;
+                    document.getElementById('address').value = data.address;
+                    document.getElementById('housingType').value = data.housingType;
+                    document.getElementById('guardianName').value = data.guardianName;
+                    document.getElementById('guardianMobile').value = data.guardianMobile;
+                    setSelectValue('uniName', data.uniName);
+                    document.getElementById('progName').value = data.progName;
+                    document.getElementById('jupasCode').value = data.jupasCode;
+                    document.getElementById('duration').value = data.duration;
+                    document.getElementById('dseChi').value = data.dseChi;
+                    document.getElementById('dseEng').value = data.dseEng;
+                    document.getElementById('dseMath').value = data.dseMath;
+                    document.getElementById('dseCs').value = data.dseCs;
+                    if (data.dseE1) { const parts = data.dseE1.split('('); setSelectValue('elecSubject1', parts[0]); if(parts[1]) document.getElementById('elecScore1').value = parts[1].replace(')', ''); }
+                    if (data.dseE2) { const parts = data.dseE2.split('('); setSelectValue('elecSubject2', parts[0]); if(parts[1]) document.getElementById('elecScore2').value = parts[1].replace(')', ''); }
+                    if (data.dseE3) { const parts = data.dseE3.split('('); setSelectValue('elecSubject3', parts[0]); if(parts[1]) document.getElementById('elecScore3').value = parts[1].replace(')', ''); }
+                    document.getElementById('cssa').value = data.cssa;
+                    document.getElementById('cssaAmount').value = data.cssaAmount;
+                    document.getElementById('schFinance').value = data.schFinance;
+                    document.getElementById('rankS4').value = data.rankS4;
+                    document.getElementById('rankS5').value = data.rankS5;
+                    document.getElementById('rankS6').value = data.rankS6;
+                    toggleCSSAAmount();
+                    
+                    // 重新加載子表格
+                    document.querySelector('#familyTable tbody').innerHTML = "";
+                    document.querySelector('#educationTable tbody').innerHTML = "<tr><td><input type='text' class='edu-school' value='TWGHs Yan Chai Kan Secondary School' readonly style='background:#f8fafc; font-weight:bold;'></td><td><input type='number' class='edu-from' placeholder='2020'></td><td><input type='number' class='edu-to' placeholder='2026'></td><td><input type='text' class='edu-level' value='Form 6' readonly style='background:#f8fafc; text-align:center;'></td><td><span style='font-size:11px; color:var(--text-muted);'>核心母校</span></td></tr>";
+                    document.querySelector('#activitiesTable tbody').innerHTML = "";
+                    document.querySelector('#awardsTable tbody').innerHTML = "";
+                    
+                    try { const fam = JSON.parse(data.family); fam.forEach(f => addFamilyRow(f)); } catch(e){}
+                    try { const edu = JSON.parse(data.education); edu.slice(1).forEach(ed => addEducationRow(ed)); } catch(e){}
+                    try { const act = JSON.parse(data.activities); act.forEach(a => addActivityRow(a)); } catch(e){}
+                    try { const aw = JSON.parse(data.awards); aw.forEach(w => addAwardRow(w)); } catch(e){}
+                    
+                    if (data.fileUrls) {
+                        uploadedFileUrls = data.fileUrls;
+                        Object.keys(uploadedFileUrls).forEach(id => {
+                            if (uploadedFileUrls[id]) { document.getElementById(id.replace('file', 'label')).innerText = "✓ 已於雲端就緒"; }
+                        });
+                    }
+                    alert(`🎉 成功讀取申請檔案！(編號: ${data.appId})`);
+                } else { alert("❌ 找不到匹配的申請檔案！請檢查輸入是否有誤。"); }
+            }).catch(err => { btn.innerText = "🔍 讀取雲端歷史檔案"; btn.disabled = false; });
         }
 
         function manualSaveProgress() {
@@ -456,7 +523,6 @@
                 if (data.status === "success") {
                     document.getElementById('studentClass').value = classVal; document.getElementById('nameEn').value = data.nameEn || ""; document.getElementById('nameCh').value = data.nameCh || ""; document.getElementById('hkid').value = (data.hkid || "").toUpperCase(); document.getElementById('dob').value = data.dob || ""; document.getElementById('mobile').value = data.mobile || ""; document.getElementById('address').value = data.address || "";
                     if (data.elec1) setSelectValue('elecSubject1', data.elec1); if (data.elec2) setSelectValue('elecSubject2', data.elec2); if (data.elec3) setSelectValue('elecSubject3', data.elec3);
-                    // 執行一次首字母大寫清洗
                     autoTitleCase(document.getElementById('nameEn')); autoTitleCase(document.getElementById('address'));
                     alert("🎉 驗證成功！已自動同步學籍與選修科。");
                 } else { alert(`❌ 驗證失敗！`); }
@@ -471,7 +537,7 @@
                 method: 'POST', headers: { 'Content-Type': 'text/plain;charset=utf-8' },
                 body: JSON.stringify({ action: "submitFormTextAndLinks", appId: document.getElementById('currentAppId').value, basic: getBasicData(missingList.length > 0), family: getTableRowsData('#familyTable tbody', ['.fam-name', '.fam-rel', '.fam-age', '.fam-edu', '.fam-occ', '.fam-income']), education: getTableRowsData('#educationTable tbody', ['.edu-school', '.edu-from', '.edu-to', '.edu-level']), activities: getTableRowsData('#activitiesTable tbody', ['.act-org', '.act-name', '.act-pos', '.act-year']), awards: getTableRowsData('#awardsTable tbody', ['.aw-org', '.aw-name', '.aw-year', '.aw-level']), fileUrls: uploadedFileUrls })
             }).then(res => res.json()).then(result => { if (result.status === 'success') { localStorage.removeItem('twghs_scholarship_v13_backup'); alert(`🎉 【提交成功！】\n申請編號：${result.id}`); btn.innerText = "✅ 已成功提交"; } })
-            .catch(err => { alert('❌ 提交超時。'); btn.disabled = false; });
+            .catch(err => { alert('❌ 提交失敗，請確保後台 Apps Script 部署版本已選取「新版本」並成功發佈！'); btn.disabled = false; btn.innerText = "🚀 最終確認：提交完整申報檔案"; });
         }
 
         function switchTab(tabId) { document.querySelectorAll('.tab-content').forEach(content => content.classList.remove('active')); document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active')); document.getElementById(tabId).classList.add('active'); document.getElementById('tab_' + tabId).classList.add('active'); }
