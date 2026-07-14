@@ -66,7 +66,6 @@
     </div>
 
     <div class="container">
-        <!-- 🏫 S6 info 快速安全自動帶入 -->
         <div class="card" style="border-top: 4px solid #3182ce; background-color: #f0f9ff;">
             <div class="card-title" style="color: #2b6cb0; border-bottom-color: #bee3f8;">🏫 學生快速安全填報 (S6 info 三重安全校驗鎖)</div>
             <div class="card-description">為確保個人私隱安全，系統採用實名比對。請輸入您的班別、學號，以及<b>身份證首 4 位字元（含大寫字母，例如虛構範例：W123 或 Z999）</b>解鎖讀取：</div>
@@ -99,7 +98,6 @@
             </div>
         </div>
 
-        <!-- 歷史紀錄查詢與文件補交 -->
         <div class="card" style="border-top: 4px solid var(--accent-color); background-color: #fffdf5;">
             <div class="card-title" style="color: #b7791f; border-bottom-color: #fef3c7;">✏️ 歷史紀錄查詢、增補與文件補交 (Verify & Amend Application)</div>
             <div class="card-description">如果您之前已經提交過資料，想進行<b>證明文件補交</b>，請使用以下安全解鎖：</div>
@@ -124,7 +122,6 @@
             </div>
         </div>
 
-        <!-- 頁面切換選單（解鎖隨時自由切換，100%不卡死阻擋） -->
         <div class="tab-menu">
             <button class="tab-btn active" id="tab_basic" onclick="switchTab('basic')">1. 基本個人、DSE與就讀資料</button>
             <button class="tab-btn" id="tab_family" onclick="switchTab('family')">2. 同住家庭成員</button>
@@ -136,7 +133,6 @@
         <form id="scholarshipForm">
             <input type="hidden" id="currentAppId" value="">
 
-            <!-- TAB 1: BASIC, DSE & SCHOOL PROFILE -->
             <div id="basic" class="tab-content active">
                 <div class="card">
                     <div class="card-title">第一部分：中學就讀基本資料</div>
@@ -173,7 +169,7 @@
                             <label for="nameCh">中文姓名 Name in Chinese</label>
                             <input type="text" id="nameCh" data-label="中文姓名" placeholder="e.g., 陳大文" oninput="saveToLocalStorage()">
                         </div>
-                        <div class="form-group">
+                        <div class="date-group form-group">
                             <label for="dob">出生日期 Date of Birth</label>
                             <input type="date" id="dob" data-label="出生日期" onchange="saveToLocalStorage()">
                         </div>
@@ -242,7 +238,6 @@
                     </div>
                 </div>
 
-                <!-- DSE 分數 -->
                 <div class="card" style="border-top: 4px solid #4a5568;">
                     <div class="card-title" style="color: #2d3748;">📊 第四部分：香港中學文憑試 (HKDSE) 原始成績分數</div>
                     <div class="card-description">請填寫原始數字分數。選修科目名稱會由資料庫自動填入（可手動變更）。</div>
@@ -369,7 +364,7 @@
                         <div class="form-group">
                             <label for="schFinance">中六時是否領取「學校書簿津貼計劃」？</label>
                             <select id="schFinance" data-label="中六書簿津貼狀況" onchange="saveToLocalStorage()">
-                                <option value="沒有">沒有 (No)</option>
+                                <option value="檔案清空">沒有 (No)</option>
                                 <option value="有 (全額津貼)">有 - 全額資助 (Full Grant)</option>
                                 <option value="有 (半額津貼)">有 - 半額資助 (Half Grant)</option>
                             </select>
@@ -378,7 +373,6 @@
                 </div>
             </div>
 
-            <!-- TAB 2: FAMILY MEMBERS -->
             <div id="family" class="tab-content">
                 <div class="card">
                     <div class="card-title">同住家庭成員經濟與學歷背景</div>
@@ -420,7 +414,6 @@
                 </div>
             </div>
 
-            <!-- TAB 3: EDUCATION (COMPLETE RESTORED) -->
             <div id="education" class="tab-content">
                 <div class="card">
                     <div class="card-title">校內學術表現：最近 3 年全級排名</div>
@@ -468,7 +461,6 @@
                 </div>
             </div>
 
-            <!-- TAB 4: TALENTS & EXTRA-CURRICULAR (COMPLETE RESTORED) -->
             <div id="activities" class="tab-content">
                 <div class="card">
                     <div class="card-title">申請人個人專長特長與獲發資格</div>
@@ -512,7 +504,6 @@
                 </div>
             </div>
 
-            <!-- TAB 5: FILES (6-FILE SPLIT DRIVER UPLOAD) -->
             <div id="awards" class="tab-content">
                 <div class="card" style="border-top: 4px solid var(--success-color);">
                     <div class="card-title" style="color: var(--success-color);">📂 證明文件直接上載 (6 大必備文件精密分類歸檔)</div>
@@ -586,9 +577,19 @@
         const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbz44pr5ZgQa0AcpfG3nYnYWH8X4iLEk7aIILcVZB62AkHdCfe-0fw71rupZq2RNWDsb/exec"; 
         
         let ignoreWarningsOnce = false;
-        let uploadedFilesBase64 = []; // 存放二進位物件陣列
+        let uploadedFilesBase64 = []; 
 
-        // 🧠 LocalStorage 自動加密斷電防護網
+        function logToConsole(message, type = "info") {
+            const consoleBox = document.getElementById('consoleLog');
+            if (!consoleBox) return;
+            const time = new Date().toLocaleTimeString();
+            let color = "#00ff00";
+            if (type === "error") color = "#ff3333";
+            if (type === "warn") color = "#ffaa00";
+            consoleBox.innerHTML += `<div style="color: ${color};">[${time}] ${message}</div>`;
+            consoleBox.scrollTop = consoleBox.scrollHeight;
+        }
+
         window.onload = function() {
             loadFromLocalStorage();
         };
@@ -699,7 +700,7 @@
                     const tbody = document.querySelector('#activitiesTable tbody'); tbody.innerHTML = '';
                     data.activities.forEach(act => addActivityRow(act));
                 }
-                logToConsole("👋 系統已成功啟用 11.5+ 本地記憶快取防線：已為您還原上次填寫進度！", "info");
+                logToConsole("👋 系統已成功啟用本地記憶快取防線：已為您還原上次填寫進度！", "info");
             } catch(e) { console.log("還原進度失敗", e); }
         }
 
@@ -746,7 +747,6 @@
             reader.readAsDataURL(file);
         }
 
-        // 🏫 三重交叉鎖實名解鎖機制
         function autoFillStudentData() {
             const classVal = document.getElementById('classInput').value;
             const numVal = document.getElementById('numInput').value;
@@ -863,7 +863,6 @@
                 if (!el || !el.value.trim()) missingFields.push(field.label);
             });
             
-            // 檢查 6 大附件上傳完整度
             const filesCheck = [
                 { id: 'fileS4', label: '中四成績單' }, { id: 'fileS5', label: '中五成績單' },
                 { id: 'fileS6', label: '中六成績單' }, { id: 'fileDse', label: 'DSE成績通知書' },
@@ -883,7 +882,7 @@
             if (missingList.length > 0 && !ignoreWarningsOnce) {
                 let warnMsg = "⚠️ 【提醒：您有未填寫或未上載分類附件的項目】\n\n系統偵測到以下核心欄位尚留空：\n" + 
                               missingList.map((m, i) => `${i+1}. ${m}`).join('\n') + 
-                              "\n\n如果您目前暫時不知道部分答案或缺少文件，可以點擊『確定』。當您再次點擊本提交按鈕時，系統將啟動中央相容通防線，允許您【強行提交】，並會在中央大數據庫中自動標註為『⚠️有缺漏待跟進』提醒老師協助。";
+                              "\n\n如果您目前暫時不知道部分答案或缺少文件，可以點擊『確定』。當您再次點擊本提交按鈕時，系統將允許您【強行提交】，並會在中央大數據庫中自動標註為『⚠️有缺漏待跟進』提醒老師協助。";
                 alert(warnMsg);
                 ignoreWarningsOnce = true;
                 return;
