@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>東華三院大學獎學金 — 線上填報系統 V15.0</title>
+    <title>東華三院大學獎學金 — 線上填報系統 V15.2</title>
     <style>
         :root {
             --primary-color: #1f4e78;
@@ -334,7 +334,7 @@
                 </div>
             </div>
 
-            <!-- 分頁 2 -->
+            <!-- 分頁 2 (父母項目預留 + 現職留空) -->
             <div id="family" class="tab-content">
                 <div class="card">
                     <div class="card-title">同住家庭成員經濟與學歷背景 / Household Members Particulars</div>
@@ -353,7 +353,7 @@
                         </thead>
                         <tbody></tbody>
                     </table>
-                    <div class="add-row-container"><button type="button" class="btn btn-outline" onclick="addFamilyRow()">＋ 新增成員 / Add Household Member</button></div>
+                    <div class="add-row-container"><button type="button" class="btn btn-outline" onclick="addFamilyRow()">＋ 新增其他成員 / Add Household Member</button></div>
                 </div>
             </div>
 
@@ -393,7 +393,6 @@
                         <thead><tr><th>主辦機構 / 學校<br>Institution / School</th><th>活動經歷名稱<br>Activity / Service Name</th><th>擔任職位<br>Position Held</th><th>參與年份<br>Year</th><th>操作 / Action</th></tr></thead>
                         <tbody></tbody>
                     </table>
-                    <!-- 🎯 點擊新增時會自動帶入母校英文名，可供刪除或修改 -->
                     <div class="add-row-container"><button type="button" class="btn btn-outline" onclick="addActivityRow({}, true)">＋ 新增經歷 / Add Experience</button></div>
                 </div>
             </div>
@@ -414,7 +413,6 @@
                         </thead>
                         <tbody></tbody>
                     </table>
-                    <!-- 🎯 點擊新增時會自動帶入母校英文名，可供刪除或修改 -->
                     <div class="add-row-container"><button type="button" class="btn btn-outline" onclick="addAwardRow({}, true)">＋ 新增獎項紀錄 / Add Award</button></div>
                 </div>
 
@@ -426,7 +424,7 @@
                         <div class="form-group"><label>3. 中六模擬考試成績單 * / S6 Mock Examination Transcript *</label><div class="upload-box" onclick="document.getElementById('fileS6').click()"><span id="labelS6">📁 點擊選取中六成績單 / Upload S6 Mock</span><input type="file" id="fileS6" onchange="ajaxUploadSingleFile(this, 'labelS6', 'statusS6')"><div class="file-status" id="statusS6"></div></div></div>
                         <div class="form-group"><label>4. 香港中學文憑試成績通知書 * / HKDSE Result Notice *</label><div class="upload-box" onclick="document.getElementById('fileDse').click()"><span id="labelDse">📁 點擊選取 DSE 成績表 / Upload HKDSE</span><input type="file" id="fileDse" onchange="ajaxUploadSingleFile(this, 'labelDse', 'statusDse')"><div class="file-status" id="statusDse"></div></div></div>
                         <div class="form-group"><label>5. 香港身份證 * / Hong Kong ID Card (HKID) *</label><div class="upload-box" onclick="document.getElementById('fileHkid').click()"><span id="labelHkid">📁 點擊選取香港身份證 / Upload HKID</span><input type="file" id="fileHkid" onchange="ajaxUploadSingleFile(this, 'fileHkid', 'statusHkid')"><div class="file-status" id="statusHkid"></div></div></div>
-                        <div class="form-group"><label>6. 大專院校取錄通知書 (如有) / University Admission Offer Letter (Optional)</label><div class="upload-box" onclick="document.getElementById('fileAdmission').click()"><span id="labelAdmission">📁 點擊選取取錄信 / Upload Offer Letter</span><input type="file" id="fileAdmission" onchange="ajaxUploadSingleFile(this, 'fileAdmission', 'statusAdmission')"><div class="file-status" id="statusAdmission"></div></div></div>
+                        <div class="form-group"><label>6. 大專院校取錄通知書 (如有) / University Admission Offer Letter (Optional)</label><div class="upload-box" onclick="document.getElementById('fileAdmission').click()"><span id="labelAdmission">📁 點擊選取取錄信 / Upload Offer Letter</span><input type="file" id="fileAdmission" onchange="ajaxUploadSingleFile(this, 'labelAdmission', 'statusAdmission')"><div class="file-status" id="statusAdmission"></div></div></div>
                     </div>
                 </div>
                 <div class="action-bar"><button type="button" class="btn btn-primary" id="submitBtn" onclick="submitToServer()" style="font-size: 16px; padding: 15px 50px;">🚀 最終確認並提交檔案 / Confirm & Submit Application</button></div>
@@ -440,6 +438,12 @@
         let uploadedFileUrls = { fileS4: "", fileS5: "", fileS6: "", fileDse: "", fileHkid: "", fileAdmission: "" };
 
         const SCHOOL_DEFAULT_NAME = "TWGHs Sun Hoi Directors' College";
+
+        // 🎯 核心更動：一載入網頁，自動初始預留「父親」與「母親」，現職完全保持留空，不填寫母校名稱。
+        window.onload = function() {
+            addFamilyRow({ val2: "父親", val7: "男", val5: "" }); // val5 (Occupation) 留空
+            addFamilyRow({ val2: "母親", val7: "女", val5: "" }); // val5 (Occupation) 留空
+        };
 
         function autoTitleCase(el) {
             if (!el || !el.value) return;
@@ -511,7 +515,7 @@
                 family: getFamilyTableData(), education: getTableRowsData('#educationTable tbody', ['.edu-school', '.edu-from', '.edu-to', '.edu-level']), activities: getTableRowsData('#activitiesTable tbody', ['.act-org', '.act-name', '.act-pos', '.act-year']),
                 awards: getTableRowsData('#awardsTable tbody', ['.aw-org', '.aw-name', '.aw-year', '.aw-level']), uploadedFileUrls: uploadedFileUrls
             };
-            localStorage.setItem('twghs_scholarship_v13_backup', JSON.stringify(formData)); alert("💾 進度暫存成功！ / Progress saved locally!");
+            localStorage.setItem('twghs_scholarship_v13_backup', JSON.stringify(formData)); alert("💾 進度暫存成功！");
         }
 
         function ajaxUploadSingleFile(inputEl, labelId, statusId) {
@@ -582,7 +586,7 @@
                 if (relVal === "其他") { const customInput = row.querySelector('.fam-rel-custom'); if (customInput && customInput.value.trim()) relVal = customInput.value.trim(); }
                 const genderVal = row.querySelector('.fam-gender').value; const ageVal = row.querySelector('.fam-age').value.trim();
                 const eduVal = row.querySelector('.fam-edu').value; const occVal = row.querySelector('.fam-occ').value.trim(); const incomeVal = row.querySelector('.fam-income').value.trim();
-                if (nameVal || occVal) { rowsData.push({ val1: nameVal, val2: relVal, val3: ageVal, val4: eduVal, val5: occVal, val6: incomeVal, val7: genderVal }); }
+                if (nameVal || occVal || ["父親", "母親"].indexOf(relVal) !== -1) { rowsData.push({ val1: nameVal, val2: relVal, val3: ageVal, val4: eduVal, val5: occVal, val6: incomeVal, val7: genderVal }); }
             });
             return rowsData;
         }
@@ -636,7 +640,7 @@
                         <option value="大專/大學" ${(!data.val4 || data.val4==='大專/大學')?'selected':''}>大專/大學 / Tertiary</option>
                     </select>
                 </td>
-                <td><input type="text" class="fam-occ" placeholder="Clerk" onblur="autoTitleCase(this)" value="${data.val5||''}"></td>
+                <td><input type="text" class="fam-occ" placeholder="e.g. Clerk" onblur="autoTitleCase(this)" value="${data.val5||''}"></td>
                 <td><input type="number" class="fam-income" value="${data.val6||''}" style="text-align:right;" placeholder="HKD"></td>
                 <td><button type="button" class="btn btn-danger" onclick="deleteRow(this)">刪除 / X</button></td>
             `;
