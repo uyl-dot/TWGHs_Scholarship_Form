@@ -6,32 +6,57 @@
     <title>東華三院大學獎學金 — 線上填報系統</title>
     <style>
         :root {
-            --primary-color: #1f4e78; --primary-light: #ebf8ff; --accent-color: #d69e2e; --bg-color: #f7fafc; --card-bg: #ffffff; --text-dark: #2d3748; --text-muted: #718096; --border-color: #e2e8f0; --success-color: #38a169; --danger-color: #e53e3e;
+            --primary-color: #1f4e78;
+            --primary-light: #ebf8ff;
+            --accent-color: #d69e2e;
+            --bg-color: #f7fafc;
+            --card-bg: #ffffff;
+            --text-dark: #2d3748;
+            --text-muted: #718096;
+            --border-color: #e2e8f0;
+            --success-color: #38a169;
+            --danger-color: #e53e3e;
         }
         * { box-sizing: border-box; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; }
         body { background-color: var(--bg-color); color: var(--text-dark); margin: 0; padding: 0; line-height: 1.6; }
-        .header { background: linear-gradient(rgba(15, 41, 62, 0.65), rgba(15, 41, 62, 0.65)), url('Virtual_Background.jpg') no-repeat center center; background-size: cover; color: white; text-align: center; padding: 55px 20px; border-bottom: 5px solid var(--accent-color); }
+        .header { 
+            background: linear-gradient(rgba(15, 41, 62, 0.65), rgba(15, 41, 62, 0.65)), url('Virtual_Background.jpg') no-repeat center center; 
+            background-size: cover; color: white; text-align: center; padding: 55px 20px; border-bottom: 5px solid var(--accent-color); 
+        }
         .header h1 { margin: 0; font-size: 26px; letter-spacing: 1.5px; text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.8); }
         .header p { margin: 12px 0 0 0; font-size: 15px; opacity: 0.95; font-weight: 500; text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.8); }
         .container { max-width: 1200px; margin: 30px auto; padding: 0 20px; }
         .card { background: var(--card-bg); border-radius: 8px; box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1); padding: 30px; margin-bottom: 30px; border-top: 4px solid var(--primary-color); }
         .card-title { color: var(--primary-color); font-size: 18px; font-weight: bold; margin-top: 0; margin-bottom: 15px; border-bottom: 2px solid var(--border-color); padding-bottom: 10px; display: flex; justify-content: space-between; align-items: center; }
         .card-description { font-size: 14px; color: var(--text-muted); margin-bottom: 20px; }
+        
         .form-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 20px; margin-bottom: 15px; }
         .form-group { display: flex; flex-direction: column; position: relative; }
         label { font-weight: 600; font-size: 14px; margin-bottom: 6px; color: var(--text-dark); }
         .req-eng { color: var(--accent-color); font-size: 11px; font-weight: bold; margin-top: 2px; }
-        input[type="text"], input[type="number"], input[type="date"], select, textarea { padding: 11px 14px; border: 1px solid var(--border-color); border-radius: 6px; font-size: 14px; width: 100%; }
+        
+        input[type="text"], input[type="number"], input[type="date"], select, textarea { 
+            padding: 11px 14px; border: 1px solid var(--border-color); border-radius: 6px; font-size: 14px; width: 100%; 
+        }
+        
         table { width: 100%; border-collapse: collapse; margin-bottom: 20px; font-size: 14px; table-layout: fixed; }
         th { background-color: var(--primary-color); color: white; text-align: left; padding: 12px; font-weight: bold; }
         td { padding: 10px; border-bottom: 1px solid var(--border-color); position: relative; }
+        
         th.col-wide, td.col-wide { width: 33% !important; }
         th.col-mid, td.col-mid { width: 22% !important; }
-        .diagnose-box { background-color: #1a202c; color: #48bb78; font-family: "Courier New", Courier, monospace; padding: 15px; border-radius: 6px; margin-top: 10px; font-size: 13px; min-height: 45px; line-height: 1.5; border-left: 4px solid #38a169; word-break: break-all; }
+        
+        .diagnose-box { 
+            background-color: #1a202c; color: #48bb78; font-family: "Courier New", Courier, monospace; 
+            padding: 15px; border-radius: 6px; margin-top: 10px; font-size: 13px; min-height: 45px; 
+            line-height: 1.5; border-left: 4px solid #38a169; word-break: break-all;
+        }
+        
         .upload-box { background: #f8fafc; border: 2px dashed #cbd5e1; padding: 18px; border-radius: 6px; text-align: center; cursor: pointer; transition: all 0.2s; min-height: 90px; display: flex; flex-direction: column; align-items: center; justify-content: center; position: relative; }
         .upload-box:hover { background: var(--primary-light); border-color: var(--primary-color); }
         .upload-box input[type="file"] { display: none; }
         .file-status { font-size: 12px; margin-top: 4px; font-weight: bold; }
+        
         .btn { padding: 10px 20px; border-radius: 6px; font-size: 14px; font-weight: 600; cursor: pointer; transition: all 0.2s; border: none; display: inline-flex; align-items: center; justify-content: center; }
         .btn-primary { background-color: var(--primary-color); color: white; }
         .btn-outline { background-color: transparent; border: 1px solid var(--primary-color); color: var(--primary-color); }
@@ -39,7 +64,7 @@
         .btn-danger { background-color: var(--danger-color); color: white; padding: 6px 12px; font-size: 12px; }
         .action-bar { display: flex; gap: 15px; justify-content: center; margin-top: 40px; margin-bottom: 60px; }
         .tab-menu { display: flex; border-bottom: 2px solid var(--border-color); margin-bottom: 25px; gap: 5px; overflow-x: auto; }
-        .tab-btn { padding: 12px 20px; background: transparent; border: pointer; font-size: 15px; font-weight: 600; color: var(--text-muted); border-bottom: 3px solid transparent; white-space: nowrap; }
+        .tab-btn { padding: 12px 20px; background: transparent; border: none; cursor: pointer; font-size: 15px; font-weight: 600; color: var(--text-muted); border-bottom: 3px solid transparent; white-space: nowrap; }
         .tab-btn.active { color: var(--primary-color); border-bottom-color: var(--primary-color); }
         .tab-content { display: none; }
         .tab-content.active { display: block; }
@@ -73,6 +98,22 @@
         <option value="微軟香港有限公司 (Microsoft Hong Kong Limited)">
         <option value="騰訊控股有限公司 (Tencent Holdings Limited)">
         <option value="香港電腦教育學會 (The Hong Kong Association for Computer Education)">
+    </datalist>
+
+    <datalist id="activityNameSuggestions">
+        <option value="學界田徑比賽 (Inter-School Athletics Competition)">
+        <option value="學界籃球比賽 (Inter-School Basketball Competition)">
+        <option value="學界足球比賽 (Inter-School Football Competition)">
+        <option value="香港學校音樂節 (Hong Kong Schools Music Festival)">
+        <option value="香港學校朗誦節 (Hong Kong Schools Speech Festival)">
+    </datalist>
+
+    <datalist id="positionSuggestions">
+        <option value="主席 (Chairman)"><option value="Vice-chairman (副主席)"><option value="Committee Member (幹事)"><option value="Volunteer (義工人員)"><option value="Prefect / School Leader (領袖生)"><option value="Team Captain (隊長)"><option value="Participant (參與者)">
+    </datalist>
+
+    <datalist id="rankSuggestions">
+        <option value="第一名 / 冠軍 (1st Place / Champion)"><option value="第二名 / 亞軍 (2nd Place / 1st Runner-up)"><option value="第三名 / 季軍 (3rd Place / 2nd Runner-up)"><option value="團體冠軍 (Champion - Team)"><option value="個人冠軍 (Champion - Individual)"><option value="香港代表隊資格 (Hong Kong Team Representative)">
     </datalist>
 
     <div class="header">
@@ -123,22 +164,133 @@
 
         <form id="scholarshipForm">
             <input type="hidden" id="currentAppId" value="">
+
             <div id="basic" class="tab-content active">
-                <div class="card"><div class="card-title">基本資料與文憑試主選修科目成績原始分數</div><div class="form-grid"><div class="form-group"><label>英文全名</label><input type="text" id="nameEn" onblur="autoTitleCase(this)"></div><div class="form-group"><label>中文姓名</label><input type="text" id="nameCh"></div><div class="form-group"><label>出生日期</label><input type="date" id="dob"></div><div class="form-group"><label>出生地點</label><select id="placeOfBirth"><option value="香港">香港</option></select></div></div><div class="form-grid"><div class="form-group"><label>香港身份證號碼</label><input type="text" id="hkid" style="text-transform: uppercase;"></div><div class="form-group"><label>手提電話</label><input type="text" id="mobile"></div><div class="form-group"><label>電郵地址</label><input type="text" id="email"></div><div class="form-group"><label>微信號</label><input type="text" id="wechat"></div></div><div class="form-grid"><div class="form-group" style="grid-column: span 2;"><label>詳細住宅地址</label><input type="text" id="address" onblur="autoTitleCase(this)"></div><div class="form-group"><label>住宅類型</label><select id="housingType"><option value="公屋">公屋</option></select></div></div></div>
-                <div class="card"><div class="card-title">監護人聯絡資料</div><div class="form-grid"><div class="form-group"><label>監護人英文姓名</label><input type="text" id="guardianName" onblur="autoTitleCase(this)"></div><div class="form-group"><label>監護人電話</label><input type="text" id="guardianMobile"></div></div></div>
-                <div class="card" style="border-top:4px solid var(--accent-color);"><div class="card-title">大學取錄結果 (豁免選填區)</div><div class="form-grid"><div class="form-group"><label>就讀大學名稱</label><select id="uniName"><option value="">選填...</option></select></div><div class="form-group"><label>學位課程全名</label><input type="text" id="progName"></div><div class="form-group"><label>JUPAS課程編號</label><input type="text" id="jupasCode"></div><div class="form-group"><label>課程修讀年期</label><input type="text" id="duration"></div></div></div>
-                <div class="card"><div class="card-title">DSE原始分數</div><div class="form-grid"><div class="form-group"><label>中文</label><input type="number" id="dseChi"></div><div class="form-group"><label>英文</label><input type="number" id="dseEng"></div><div class="form-group"><label>數學</label><input type="number" id="dseMath"></div><div class="form-group"><label>公民科</label><select id="dseCs"><option value="A">達標</option></select></div></div><div class="form-grid"><div class="form-group"><select id="elecSubject1"><option value="">選修一</option></select><input type="number" id="elecScore1" style="margin-top:5px;"></div><div class="form-group"><select id="elecSubject2"><option value="">選修二</option></select><input type="number" id="elecScore2" style="margin-top:5px;"></div><div class="form-group"><select id="elecSubject3"><option value="">選修三</option></select><input type="number" id="elecScore3" style="margin-top:5px;"></div></div></div>
-                <div class="card"><div class="card-title">家庭綜援與書簿津貼狀況</div><div class="form-grid"><div class="form-group"><label>綜援</label><select id="cssa" onchange="toggleCSSAAmount()"><option value="否">否</option></select></div><div class="form-group" id="cssaAmountGroup" style="display:none;"><label>金額</label><input type="number" id="cssaAmount"></div><div class="form-group"><label>津貼</label><select id="schFinance"><option value="沒有">沒有</option></select></div></div></div>
+                <div class="card">
+                    <div class="card-title">第一部分：中學就讀基本資料 / Section 1: School Info</div>
+                    <div class="form-grid">
+                        <div class="form-group"><label>中六就讀年度 / Academic Year</label><select id="schoolYear"><option value="2025至2026" selected>2025至2026</option></select></div>
+                        <div class="form-group"><label>中六就讀班別 / Current Class</label><select id="studentClass"><option value="">請選擇...</option><option value="6A">6A</option><option value="6B">6B</option><option value="6C">6C</option><option value="6D">6D</option></select></div>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-title">第二部分：申請人基本個人資料 / Section 2: Personal Particulars</div>
+                    <div class="form-grid">
+                        <div class="form-group"><label>英文全名 / Full Name in English <span class="req-eng">※ 請以英文填寫</span></label><input type="text" id="nameEn" placeholder="Chan Tai Man" onblur="autoTitleCase(this)"></div>
+                        <div class="form-group"><label>中文姓名 / Name in Chinese</label><input type="text" id="nameCh" placeholder="陳大文"></div>
+                        <div class="form-group"><label>出生日期 / Date of Birth</label><input type="date" id="dob"></div>
+                        <div class="form-group"><label>出生地點 / Place of Birth</label><select id="placeOfBirth"><option value="香港" selected>香港 / Hong Kong</option><option value="中國內地">中國內地 / Mainland China</option><option value="澳門">澳門 / Macau</option><option value="其他境外地區">其他境外地區 / Other Regions</option></select></div>
+                    </div>
+                    <div class="form-grid">
+                        <div class="form-group"><label>香港身份證號碼 / HKID No. <span class="req-eng">※ 英文需大寫</span></label><input type="text" id="hkid" placeholder="A123456(7)" style="text-transform: uppercase;"></div>
+                        <div class="form-group"><label>學生手提電話 / Mobile No.</label><input type="text" id="mobile" placeholder="91234567"></div>
+                        <div class="form-group"><label>電郵地址 / Email Address <span class="req-eng">※ 請以英文填寫</span></label><input type="text" id="email" placeholder="student@example.com"></div>
+                        <div class="form-group"><label>微信號 / WeChat ID <span class="req-eng">※ 請以英文填寫</span></label><input type="text" id="wechat" placeholder="ChanWechat123"></div>
+                    </div>
+                    <div class="form-grid">
+                        <div class="form-group" style="grid-column: span 2;"><label>詳細住宅地址 / Residential Address <span class="req-eng">※ 請以英文填寫</span></label><input type="text" id="address" placeholder="Flat A, 10/F, Block 1, Wanchai" onblur="autoTitleCase(this)"></div>
+                        <div class="form-group"><label>住宅類型 / Housing Type</label><select id="housingType"><option value="">請選擇...</option><option value="公屋">公共屋邨 / Public Housing</option><option value="居屋">資助居屋 / HOS Flat</option><option value="租住私人房屋">租住私人房屋 / Private Rented Flat</option><option value="自置物業">自置私人物業 / Self-owned Property</option></select></div>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-title">第三部分：父母 / 監護人聯絡資料 / Section 3: Guardian Info</div>
+                    <div class="form-grid">
+                        <div class="form-group"><label>監護人英文姓名 / Guardian Full Name <span class="req-eng">※ 請以英文填寫</span></label><input type="text" id="guardianName" placeholder="Chan Tai Chi" onblur="autoTitleCase(this)"></div>
+                        <div class="form-group"><label>監護人聯絡電話 / Guardian Mobile No.</label><input type="text" id="guardianMobile" placeholder="93079097"></div>
+                    </div>
+                </div>
+
+                <div class="card" style="border-top: 4px solid var(--accent-color);">
+                    <div class="card-title" style="color: var(--accent-color);">院校取錄結果：大學修讀科目 / Section 4: University Result</div>
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label>就讀大學名稱 / University Name</label>
+                            <select id="uniName">
+                                <option value="">請選擇就讀大學 / Select University...</option>
+                                <option value="香港大學 (HKU)">香港大學 (HKU) / The University of Hong Kong</option><option value="香港中文大學 (CUHK)">香港中文大學 (CUHK) / The Chinese University of Hong Kong</option><option value="香港科技大學 (HKUST)">香港科技大學 (HKUST) / HKUST</option><option value="香港理工大學 (PolyU)">香港理工大學 (PolyU) / PolyU</option><option value="香港城市大學 (CityU)">香港城市大學 (CityU) / CityU</option><option value="香港浸會大學 (HKBU)">香港浸會大學 (HKBU) / HKBU</option><option value="嶺南大學 (LNU)">嶺南大學 (LNU) / Lingnan U</option><option value="香港教育大學 (EdUHK)">香港教育大學 (EdUHK) / EdUHK</option><option value="香港都會大學 (HKMU)">香港都會大學 (HKMU) / HKMU</option><option value="香港樹仁大學 (HKSYU)">香港樹仁大學 (HKSYU) / HKSYU</option>
+                            </select>
+                        </div>
+                        <div class="form-group"><label>學位課程全名 / Full Programme Name <span class="req-eng">※ 請以英文填寫</span></label><input type="text" id="progName" placeholder="Bachelor of Business Administration" onblur="autoTitleCase(this)"></div>
+                        <div class="form-group"><label>JUPAS 課程編號 / JUPAS Code</label><input type="text" id="jupasCode" placeholder="JS6729" style="text-transform: uppercase;"></div>
+                        <div class="form-group"><label>課程修讀年期 / Study Duration <span class="req-eng">※ 請以英文填寫</span></label><input type="text" id="duration" placeholder="4 Years" onblur="autoTitleCase(this)"></div>
+                    </div>
+                </div>
+
+                <div class="card" style="border-top: 4px solid #4a5568;">
+                    <div class="card-title">📊 第四部分：香港中學文憑試 (HKDSE) 成績原始分數 / Section 5: DSE Results</div>
+                    <h4 style="color: var(--primary-color); margin: 0 0 10px 0;">核心主科原始分數 / Core Subjects</h4>
+                    <div class="form-grid" style="margin-bottom: 20px;">
+                        <div class="form-group"><label>中國語文 / Chinese</label><input type="number" id="dseChi" min="1" max="7"></div>
+                        <div class="form-group"><label>英國語文 / English</label><input type="number" id="dseEng" min="1" max="7"></div>
+                        <div class="form-group"><label>數學必修部分 / Mathematics</label><input type="number" id="dseMath" min="1" max="7"></div>
+                        <div class="form-group"><label>公民與社會發展科 / Citizenships & Social Dev.</label><select id="dseCs"><option value="">請選擇...</option><option value="A">達標 (Attained)</option><option value="U">未達標 / Unattained</option></select></div>
+                    </div>
+                    <h4 style="color: var(--primary-color); margin: 0 0 10px 0;">選修科目與原始等級 / Electives</h4>
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <select id="elecSubject1">
+                                <option value="">選修科一 / Elective 1...</option><option value="PHY">PHY / 物理</option><option value="BIO">BIO / 生物</option><option value="CHEM">CHEM / 化學</option><option value="ECON">ECON / 經濟</option><option value="BAFS">BAFS / 企會財</option>
+                            </select>
+                            <input type="number" id="elecScore1" min="1" max="7" placeholder="分數 / Level" style="margin-top:5px;">
+                        </div>
+                        <div class="form-group">
+                            <select id="elecSubject2">
+                                <option value="">選修科二 / Elective 2...</option><option value="PHY">PHY / 物理</option><option value="BIO">BIO / 生物</option><option value="CHEM">CHEM /化學</option><option value="ECON">ECON / 經濟</option><option value="BAFS">BAFS / 企會財</option>
+                            </select>
+                            <input type="number" id="elecScore2" min="1" max="7" placeholder="分數 / Level" style="margin-top:5px;">
+                        </div>
+                        <div class="form-group">
+                            <select id="elecSubject3">
+                                <option value="">選修科三 (選填) / Elective 3...</option><option value="PHY">PHY / 物理</option><option value="BIO">BIO / 生物</option><option value="CHEM">CHEM / 化學</option><option value="ECON">ECON / 經濟</option><option value="BAFS">BAFS / 企會財</option>
+                            </select>
+                            <input type="number" id="elecScore3" min="1" max="7" placeholder="分數 / Level" style="margin-top:5px;">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-title">第五部分：家庭經濟狀況及津貼 / Section 6: Financial Status</div>
+                    <div class="form-grid">
+                        <div class="form-group"><label>是否領取綜援？ / CSSA Allowance?</label><select id="cssa" onchange="toggleCSSAAmount()"><option value="否">否 / No</option><option value="是">是 / Yes</option></select></div>
+                        <div class="form-group" id="cssaAmountGroup" style="display:none;"><label>每月綜援金額 (HKD) / Monthly Amount</label><input type="number" id="cssaAmount" placeholder="金額 / Amount"></div>
+                        <div class="form-group"><label>書簿津貼狀況 / Textbook Assistance</label><select id="schFinance"><option value="沒有">沒有 / None</option><option value="有 (全額津貼)">有 - 全額資助 / Full Grant</option><option value="有 (半額津貼)">有 - 半額資助 / Half Grant</option></select></div>
+                    </div>
+                </div>
             </div>
-            <div id="family" class="tab-content"><div class="card"><div class="card-title">家庭成員</div><table id="familyTable"><thead><tr><th>姓名</th><th>關係</th><th>性別</th><th>年齡</th><th>學歷</th><th>現職</th><th>月收</th><th>操作</th></tr></thead><tbody></tbody></table><button type="button" class="btn btn-outline" onclick="addFamilyRow()">＋ 新增家屬</button></div></div>
-            <div id="education" class="tab-content"><div class="card"><div class="card-title">全級排名</div><div class="form-grid"><div class="form-group"><label>中四</label><input type="text" id="rankS4"></div><div class="form-group"><label>中五</label><input type="text" id="rankS5"></div><div class="form-group"><label>中六</label><input type="text" id="rankS6"></div></div></div><div class="card"><div class="card-title">以往學歷</div><table id="educationTable"><thead><tr><th>學校名稱</th><th>開始</th><th>結束</th><th>班級</th><th>操作</th></tr></thead><tbody><tr><td><input type="text" class="edu-school" value="TWGHs Sun Hoi Directors' College" readonly></td><td><input type="number" class="edu-from"></td><td><input type="number" class="edu-to"></td><td><input type="text" class="edu-level" value="Form 6" readonly></td><td>-</td></tr></tbody></table><button type="button" class="btn btn-outline" onclick="addEducationRow()">＋ 新增學歷</button></div></div>
-            <div id="activities" class="tab-content"><div class="card"><div class="card-title">過往活動服務</div><table id="activitiesTable"><thead><tr><th class="col-wide">主辦機構</th><th class="col-wide">活動名稱</th><th class="col-mid">職位</th><th class="col-mid">年度</th><th>操作</th></tr></thead><tbody></tbody></table><button type="button" class="btn btn-outline" onclick="addActivityRow({}, true)">＋ 新增經歷</button></div></div>
-            <div id="awards" class="tab-content"><div class="card"><div class="card-title">重要獎項與證明文件背景上載</div><table id="awardsTable"><thead><tr><th class="col-wide">頒發機構</th><th class="col-wide">獎項全名</th><th class="col-mid">年度</th><th class="col-mid">名次</th><th>操作</th></tr></thead><tbody></tbody></table><button type="button" class="btn btn-outline" onclick="addAwardRow({}, true)">＋ 新增獎項</button></div><div class="card" style="border-top:4px solid var(--success-color);"><div class="card-title">📂 證明文件即時背景上載</div><div class="form-grid" style="grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));"><div class="form-group"><label>中四成績單 *</label><div class="upload-box" onclick="document.getElementById('fileS4').click()"><span id="labelS4">📁 上載</span><input type="file" id="fileS4" onchange="ajaxUploadSingleFile(this, 'labelS4', 'statusS4')"><div class="file-status" id="statusS4"></div></div></div><div class="form-group"><label>中五成績單 *</label><div class="upload-box" onclick="document.getElementById('fileS5').click()"><span id="labelS5">📁 上載</span><input type="file" id="fileS5" onchange="ajaxUploadSingleFile(this, 'labelS5', 'statusS5')"><div class="file-status" id="statusS5"></div></div></div><div class="form-group"><label>中六成績單 *</label><div class="upload-box" onclick="document.getElementById('fileS6').click()"><span id="labelS6">📁 上載</span><input type="file" id="fileS6" onchange="ajaxUploadSingleFile(this, 'labelS6', 'statusS6')"><div class="file-status" id="statusS6"></div></div></div><div class="form-group"><label>DSE成績表 *</label><div class="upload-box" onclick="document.getElementById('fileDse').click()"><span id="labelDse">📁 上載</span><input type="file" id="fileDse" onchange="ajaxUploadSingleFile(this, 'labelDse', 'statusDse')"><div class="file-status" id="statusDse"></div></div></div><div class="form-group"><label>香港身份證 *</label><div class="upload-box" onclick="document.getElementById('fileHkid').click()"><span id="labelHkid">📁 上載</span><input type="file" id="fileHkid" onchange="ajaxUploadSingleFile(this, 'fileHkid', 'statusHkid')"><div class="file-status" id="statusHkid"></div></div></div><div class="form-group"><label>大專取錄信</label><div class="upload-box" onclick="document.getElementById('fileAdmission').click()"><span id="labelAdmission">📁 選填</span><input type="file" id="fileAdmission" onchange="ajaxUploadSingleFile(this, 'labelAdmission', 'statusAdmission')"><div class="file-status" id="statusAdmission"></div></div></div></div></div><div class="action-bar"><button type="button" class="btn btn-primary" id="submitBtn" onclick="submitToServer()" style="font-size:16px; padding:15px 50px;">🚀 最終確認並提交檔案</button></div></div>
+
+            <div id="family" class="tab-content"><div class="card"><div class="card-title">同住家庭成員經濟與學歷背景 / Household Members Particulars</div><table id="familyTable"><thead><tr><th>英文姓名<br>Full Name</th><th>關係<br>Relationship</th><th>性別<br>Gender</th><th>年齡<br>Age</th><th>最高學歷<br>Education</th><th>現職<br>Occupation (Eng)</th><th>平均月收<br>Monthly Income</th><th>操作</th></tr></thead><tbody></tbody></table><div class="add-row-container"><button type="button" class="btn btn-outline" onclick="addFamilyRow()">＋ 新增其他成員 / Add Household Member</button></div></div></div>
+            <div id="education" class="tab-content"><div class="card"><div class="card-title">最近 3 年全級排名 / Rank Performance</div><div class="form-grid"><div class="form-group"><label>中四全級排名 / S4 Rank</label><input type="text" id="rankS4" placeholder="Ranked 3rd"></div><div class="form-group"><label>中五全級排名 / S5 Rank</label><input type="text" id="rankS5" placeholder="Ranked 2nd"></div><div class="form-group"><label>中六模擬試排名 / S6 Rank</label><input type="text" id="rankS6" placeholder="Ranked 12th"></div></div></div><div class="card"><div class="card-title">以往學歷背景 / Section 7: Educational Background</div><table id="educationTable"><thead><tr><th class="col-wide">學校名稱 School Name (In English)</th><th>開始年份<br>From (Year)</th><th>結束年份<br>To (Year)</th><th>最高就讀班級<br>Highest Form</th><th>操作</th></tr></thead><tbody><tr><td><input type="text" class="edu-school" value="TWGHs Sun Hoi Directors' College" readonly style="background:#f8fafc; font-weight:bold;"></td><td><input type="number" class="edu-from" placeholder="2020"></td><td><input type="number" class="edu-to" placeholder="2026"></td><td><input type="text" class="edu-level" value="Form 6" readonly style="background:#f8fafc; text-align:center;"></td><td><span style="font-size:11px; color:var(--text-muted);">核心母校</span></td></tr></tbody></table><div class="add-row-container"><button type="button" class="btn btn-outline" onclick="addEducationRow()">＋ 新增以往就讀學校 / Add Previous School</button></div></div></div>
+            
+            <div id="activities" class="tab-content"><div class="card"><div class="card-title">過往校內外活動、服務經歷 / Section 8: Activities & Services</div><table id="activitiesTable"><thead><tr><th class="col-wide">主辦機構 / 學校<br>Institution / School</th><th class="col-wide">活動經歷名稱<br>Activity / Service Name</th><th class="col-mid">擔任職位<br>Position Held</th><th class="col-mid">參與年度<br>Academic Year</th><th style="width:10%">操作</th></tr></thead><tbody></tbody></table><div class="add-row-container"><button type="button" class="btn btn-outline" onclick="addActivityRow({}, true)">＋ 新增經歷 / Add Experience</button></div></div></div>
+            
+            <div id="awards" class="tab-content">
+                <div class="card">
+                    <div class="card-title">曾獲取之獎學金與校內外重要獎項紀錄 / Section 9: Awards Received</div>
+                    <table id="awardsTable">
+                        <thead><tr><th class="col-wide">頒發機構<br>Issuer (In English)</th><th class="col-wide">獎項全名<br>Name of Award (In English)</th><th class="col-mid">獲獎年度<br>Academic Year</th><th class="col-mid">獎項名次 / 級別<br>Award Rank / Level</th><th style="width:10%">操作</th></tr></thead><tbody></tbody></table>
+                    <div class="add-row-container"><button type="button" class="btn btn-outline" onclick="addAwardRow({}, true)">＋ 新增獎項紀錄 / Add Award</button></div>
+                </div>
+
+                <div class="card" style="border-top: 4px solid var(--success-color);">
+                    <div class="card-title" style="color: var(--success-color);">📂 證明文件即時背景上載 / Section 10: Supporting Documents</div>
+                    <div class="form-grid" style="grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));">
+                        <div class="form-group"><label>1. 中四全年校內成績單 * / S4 Transcript *</label><div class="upload-box" onclick="document.getElementById('fileS4').click()"><span id="labelS4">📁 選取中四成績單 / Upload S4</span><input type="file" id="fileS4" onchange="ajaxUploadSingleFile(this, 'labelS4', 'statusS4')"><div class="file-status" id="statusS4"></div></div></div>
+                        <div class="form-group"><label>2. 中五全年校內成績單 * / S5 Transcript *</label><div class="upload-box" onclick="document.getElementById('fileS5').click()"><span id="labelS5">📁 選取中五成績單 / Upload S5</span><input type="file" id="fileS5" onchange="ajaxUploadSingleFile(this, 'labelS5', 'statusS5')"><div class="file-status" id="statusS5"></div></div></div>
+                        <div class="form-group"><label>3. 中六模擬試成績單 * / S6 Mock *</label><div class="upload-box" onclick="document.getElementById('fileS6').click()"><span id="labelS6">📁 選取中六成績單 / Upload S6 Mock</span><input type="file" id="fileS6" onchange="ajaxUploadSingleFile(this, 'labelS6', 'statusS6')"><div class="file-status" id="statusS6"></div></div></div>
+                        <div class="form-group"><label>4. DSE 成績通知書 * / HKDSE Notice *</label><div class="upload-box" onclick="document.getElementById('fileDse').click()"><span id="labelDse">📁 選取 DSE 成績表 / Upload DSE</span><input type="file" id="fileDse" onchange="ajaxUploadSingleFile(this, 'labelDse', 'statusDse')"><div class="file-status" id="statusDse"></div></div></div>
+                        <div class="form-group"><label>5. 香港身份證 * / HKID Copy *</label><div class="upload-box" onclick="document.getElementById('fileHkid').click()"><span id="labelHkid">📁 選取香港身份證 / Upload HKID</span><input type="file" id="fileHkid" onchange="ajaxUploadSingleFile(this, 'fileHkid', 'statusHkid')"><div class="file-status" id="statusHkid"></div></div></div>
+                        <div class="form-group"><label>6. 取錄通知書 或 大專學生證 / Offer Letter or College ID</label><div class="upload-box" onclick="document.getElementById('fileAdmission').click()"><span id="labelAdmission">📁 選取取錄信/學生證 / Offer or ID</span><input type="file" id="fileAdmission" onchange="ajaxUploadSingleFile(this, 'labelAdmission', 'statusAdmission')"><div class="file-status" id="statusAdmission"></div></div></div>
+                    </div>
+                </div>
+                <div class="action-bar"><button type="button" class="btn btn-primary" id="submitBtn" onclick="submitToServer()" style="font-size: 16px; padding: 15px 50px;">🚀 最終確認並提交檔案 / Confirm & Submit</button></div>
+            </div>
         </form>
     </div>
 
     <script>
-        // 🎯 完美綁定：已將您剛剛成功生成的 100% 成功跨越 Google 防火牆的新部署 URL 直接寫入！
+        // 🎯 核心鎖定：對齊您目前在 Google Apps Script 上 100% 開通、200 OK 狀態的真格大腦網址
         const BASE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbyfL8dOPafwacC0jC2-ciBhvZw6CYjWG7tpyw7WGIRUXsUbzb4yKqgVkr2W_s7plEdu/exec"; 
         function getFreshScriptUrl() { return BASE_SCRIPT_URL + "?_cb=" + new Date().getTime() + "_" + Math.floor(Math.random()*9999); }
         
@@ -161,7 +313,7 @@
             const nameCh = document.getElementById('secureName').value.trim(); const hkidVerify = document.getElementById('secureHkid').value.trim().toUpperCase(); const classNo = document.getElementById('secureNo').value.trim(); const appLast3 = document.getElementById('secureAppLast3').value.trim();
             if (!nameCh || hkidVerify.length < 4 || !classNo || appLast3.length < 3) { alert("⚠️ 請完整填寫四重安全要素！"); return; }
             logToConsole("▶ 正在向大腦驗證密鑰解鎖中...");
-            fetch(getFreshScriptUrl() + "&action=secureLoadOldData&nameCh=" + encodeURIComponent(nameCh) + "&hkidVerify=" + encodeURIComponent(hkidVerify) + "&classNo=" + classNo + "&appLast3=$" + appLast3)
+            fetch(getFreshScriptUrl() + "&action=secureLoadOldData&nameCh=" + encodeURIComponent(nameCh) + "&hkidVerify=" + encodeURIComponent(hkidVerify) + "&classNo=" + classNo + "&appLast3=" + appLast3)
             .then(res => res.json()).then(data => {
                 if (data.status === "success") {
                     logToConsole("▶ [✓ SUCCESS] 檔案已成功解鎖並完整載入。");
