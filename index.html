@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>東華三院大學獎學金 — 線上填報系統 V18.1 寬版對照聯想版</title>
+    <title>東華三院大學獎學金 — 線上填報系統</title>
     <style>
         :root {
             --primary-color: #1f4e78;
@@ -19,20 +19,17 @@
         }
         * { box-sizing: border-box; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; }
         body { background-color: var(--bg-color); color: var(--text-dark); margin: 0; padding: 0; line-height: 1.6; }
-        
         .header { 
             background: linear-gradient(rgba(15, 41, 62, 0.65), rgba(15, 41, 62, 0.65)), url('Virtual_Background.jpg') no-repeat center center; 
             background-size: cover; color: white; text-align: center; padding: 55px 20px; border-bottom: 5px solid var(--accent-color); 
         }
         .header h1 { margin: 0; font-size: 26px; letter-spacing: 1.5px; text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.8); }
         .header p { margin: 12px 0 0 0; font-size: 15px; opacity: 0.95; font-weight: 500; text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.8); }
-        
         .container { max-width: 1200px; margin: 30px auto; padding: 0 20px; }
         .card { background: var(--card-bg); border-radius: 8px; box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1); padding: 30px; margin-bottom: 30px; border-top: 4px solid var(--primary-color); }
         .card-title { color: var(--primary-color); font-size: 18px; font-weight: bold; margin-top: 0; margin-bottom: 15px; border-bottom: 2px solid var(--border-color); padding-bottom: 10px; display: flex; justify-content: space-between; align-items: center; }
         .card-description { font-size: 14px; color: var(--text-muted); margin-bottom: 20px; }
         
-        /* 🎯 核心修正：大幅擴展表格內輸入格與選單的拉伸寬度，確保長單字不被遮擋 */
         .form-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 20px; margin-bottom: 15px; }
         .form-group { display: flex; flex-direction: column; position: relative; }
         label { font-weight: 600; font-size: 14px; margin-bottom: 6px; color: var(--text-dark); }
@@ -47,7 +44,6 @@
         th { background-color: var(--primary-color); color: white; text-align: left; padding: 12px; font-weight: bold; }
         td { padding: 10px; border-bottom: 1px solid var(--border-color); position: relative; }
         
-        /* 🎯 核心修正：將活動與獎項的機構、名稱欄位強制大幅拓寬，杜絕遮擋 */
         th.col-wide, td.col-wide { width: 33% !important; }
         th.col-mid, td.col-mid { width: 22% !important; }
         
@@ -67,25 +63,24 @@
         .tab-btn.active { color: var(--primary-color); border-bottom-color: var(--primary-color); }
         .tab-content { display: none; }
         .tab-content.active { display: block; }
-        @media (max-width: 768px) { .form-grid { grid-template-columns: 1fr; } table { display: block; overflow-x: auto; } }
     </style>
 </head>
 <body>
 
-    <!-- 🏫 詞庫 A：小學分頁（看時中英對照，選後自動提取純英） -->
+    <!-- 🏫 詞庫 A：小學分頁 -->
     <datalist id="primarySchoolSuggestions">
         <option value="順德聯誼總會何日東小學 (SHTTGA Ho Yat Tung Primary School)">
         <option value="順德聯誼總會胡少渠紀念小學 (SHTTGA Wu Siu Kui Primary School)">
         <option value="順德聯誼總會李金小學 (SHTTGA Lee Kam Primary School)">
         <option value="保良局方王錦全小學 (Po Leung Kuk Fong Wong Kam Chuen Primary School)">
-        <option value="保良局Castle Peak小學 (Po Leung Kuk Castle Peak Primary School)">
+        <option value="保良局志豪小學 (Po Leung Kuk Castle Peak Primary School)">
         <option value="保良局香港道教聯合會圓玄小學 (Po Leung Kuk Hong Kong Taoist Association Yuen Yuen Primary School)">
         <option value="屯門官立小學 (Tuen Mun Government Primary School)">
         <option value="仁愛堂田家炳小學 (Yan Oi Tong Tin Ka Ping Primary School)">
         <option value="仁濟醫院何式南小學 (YCH Ho Shi Chu Primary School)">
     </datalist>
 
-    <!-- 🏆 詞庫 B：主辦機構分頁（看時中英對照，選後自動提取純英） -->
+    <!-- 🏆 詞庫 B：主辦機構分頁 -->
     <datalist id="activitySuggestions">
         <option value="香港學界體育聯會 (The Hong Kong Schools Sports Federation)">
         <option value="香港學界體育聯會屯門區中學分會 (HKSSF Tuen Mun Secondary Schools Area Committee)">
@@ -102,7 +97,7 @@
         <option value="香港電腦教育學會 (The Hong Kong Association for Computer Education)">
     </datalist>
 
-    <!-- 📝 詞庫 C：比賽經歷名稱（看時中英對照，選後自動提取純英） -->
+    <!-- 📝 詞庫 C：比賽經歷名稱 -->
     <datalist id="activityNameSuggestions">
         <option value="學界田徑比賽 (Inter-School Athletics Competition)">
         <option value="學界籃球比賽 (Inter-School Basketball Competition)">
@@ -111,10 +106,9 @@
         <option value="學界排球比賽 (Inter-School Volleyball Competition)">
         <option value="香港學校音樂節 (Hong Kong Schools Music Festival)">
         <option value="香港學校朗誦節 (Hong Kong Schools Speech Festival)">
-        <option value="東華三院全港賣旗日社會服務 (TWGHs Flag Day Charity Volunteer Service)">
     </datalist>
 
-    <!-- 👔 詞庫 D：擔任職位（看時中英對照，選後自動提取純英） -->
+    <!-- 👔 詞庫 D：擔任職位 -->
     <datalist id="positionSuggestions">
         <option value="主席 (Chairman)">
         <option value="副主席 (Vice-chairman)">
@@ -125,7 +119,7 @@
         <option value="參與者 (Participant)">
     </datalist>
 
-    <!-- 🥇 詞庫 E：獎項名次（看時中英對照，選後自動提取純英） -->
+    <!-- 🥇 詞庫 E：獎項名次 -->
     <datalist id="rankSuggestions">
         <option value="第一名 / 冠軍 (1st Place / Champion)">
         <option value="第二名 / 亞軍 (2nd Place / 1st Runner-up)">
@@ -141,20 +135,20 @@
     </div>
 
     <div class="container">
-        <!-- 首次申請入口 -->
+        <!-- 首次申請入口（已完全隔離免受轉換器干擾） -->
         <div class="card" style="border-top: 4px solid #3182ce; background-color: #f0f9ff;">
             <div class="card-title" style="color: #2b6cb0;">🆕 首次申請填報入口 / First-time Application Entry</div>
-            <div class="card-description" style="color: var(--danger-color); font-weight: bold;">⚠️ 注意 / Notice：本區僅供【從未提交過】的同學首次填寫。更新資料請利用下方四重鎖！</div>
+            <div class="card-description" style="color: var(--danger-color); font-weight: bold;">⚠️ 注意 / Notice：本區僅供【從未提交過】的同學首次填寫。更新資料請一律利用下方四重鎖！</div>
             <div style="display: flex; gap: 15px; flex-wrap: wrap; align-items: flex-end;">
-                <div style="flex: 1; min-width: 140px;"><label>中六班別 / Class</label><select id="classInput" onfocus="warnDuplicateStudent()"><option value="">請選擇...</option><option value="6A">6A</option><option value="6B">6B</option><option value="6C">6C</option><option value="6D">6D</option></select></div>
-                <div style="flex: 1; min-width: 120px;"><label>學號 / Class No.</label><input type="number" id="numInput" placeholder="例: 5" onfocus="warnDuplicateStudent()"></div>
+                <div style="width: 140px;"><label>中六班別 / Class</label><select id="classInput" onfocus="warnDuplicateStudent()"><option value="">請選擇...</option><option value="6A">6A</option><option value="6B">6B</option><option value="6C">6C</option><option value="6D">6D</option></select></div>
+                <div style="width: 120px;"><label>學號 / Class No.</label><input type="number" id="numInput" placeholder="例: 5" onfocus="warnDuplicateStudent()"></div>
                 <div style="flex: 1.5; min-width: 220px;"><label style="color: var(--danger-color);">身份證首 4 字元 / First 4 of HKID</label><input type="text" id="hkidVerifyInput" placeholder="例: W123" style="text-transform: uppercase;" maxlength="4" onfocus="warnDuplicateStudent()"></div>
                 <button type="button" class="btn" id="autofillBtn" onclick="autoFillStudentData()" style="background-color: #3182ce; color: white; height: 45px;">⚡ 首次實名驗證載入 / Verify & Entry</button>
             </div>
             <div id="diagnoseArea" style="margin-top: 20px;"><div style="display: flex; justify-content: space-between; align-items: center;"><label style="color: #2b6cb0; font-weight: bold;">🚨 實名連線控制台 / Live Status Console</label><button type="button" class="btn btn-success" onclick="manualSaveProgress()" style="padding: 4px 12px; font-size: 12px; height: auto;">💾 暫存目前填寫進度 / Save Progress</button></div><div id="consoleLog">▶ 雲端雙向對齊機制就緒 / Cloud synchronization ready.</div></div>
         </div>
 
-        <!-- 四重防禦聯鎖解鎖修改區 -->
+        <!-- 四重防禦聯鎖解鎖修改區（已完全隔離免受轉換器干擾） -->
         <div class="card" style="border-top: 4px solid var(--accent-color); background-color: #fffdf5;">
             <div class="card-title" style="color: #b7791f;">🔒 歷史紀錄查詢、資料增補與文件補交 (四重安全聯鎖防禦系統)</div>
             <div class="form-grid" style="grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));">
@@ -193,15 +187,15 @@
                 <div class="card">
                     <div class="card-title">第二部分：申請人基本個人資料 / Section 2: Personal Particulars</div>
                     <div class="form-grid">
-                        <div class="form-group"><label>英文全名 / Full Name in English <span class="req-eng">※ 請以英文填寫 / In English</span></label><input type="text" id="nameEn" placeholder="Chan Tai Man" onblur="autoTitleCase(this)"></div>
+                        <div class="form-group"><label>英文全名 / Full Name in English <span class="req-eng">※ 請以英文填寫</span></label><input type="text" id="nameEn" placeholder="Chan Tai Man" onblur="autoTitleCase(this)"></div>
                         <div class="form-group"><label>中文姓名 / Name in Chinese</label><input type="text" id="nameCh" placeholder="陳大文"></div>
                         <div class="form-group"><label>出生日期 / Date of Birth</label><input type="date" id="dob"></div>
                         <div class="form-group"><label>出生地點 / Place of Birth</label><select id="placeOfBirth"><option value="香港" selected>香港 / Hong Kong</option><option value="中國內地">中國內地 / Mainland China</option><option value="澳門">澳門 / Macau</option><option value="其他境外地區">其他境外地區 / Other Regions</option></select></div>
                     </div>
                     <div class="form-grid">
-                        <div class="form-group"><label>香港身份證號碼 / HKID No. <span class="req-eng">※ 英文需大寫 / Capital Letters</span></label><input type="text" id="hkid" placeholder="A123456(7)" style="text-transform: uppercase;"></div>
+                        <div class="form-group"><label>香港身份證號碼 / HKID No. <span class="req-eng">※ 英文需大寫</span></label><input type="text" id="hkid" placeholder="A123456(7)" style="text-transform: uppercase;"></div>
                         <div class="form-group"><label>學生手提電話 / Mobile No.</label><input type="text" id="mobile" placeholder="91234567"></div>
-                        <div class="form-group"><label>電郵地址 / Email Address <span class="req-eng">※ 請以英文填寫</span></label><input type="text" id="email" placeholder="student@example.com"></div>
+                        <div class="form-group"><label>電郵地址 / Email Address <span class="req-eng">※ 請以英文填寫</span></label><input type="text" id="email" placeholder="chantaiman@example.com"></div>
                         <div class="form-group"><label>微信號 / WeChat ID <span class="req-eng">※ 請以英文填寫</span></label><input type="text" id="wechat" placeholder="ChanWechat123"></div>
                     </div>
                     <div class="form-grid">
@@ -241,7 +235,7 @@
                         <div class="form-group"><label>中國語文 / Chinese</label><input type="number" id="dseChi" min="1" max="7"></div>
                         <div class="form-group"><label>英國語文 / English</label><input type="number" id="dseEng" min="1" max="7"></div>
                         <div class="form-group"><label>數學必修部分 / Mathematics</label><input type="number" id="dseMath" min="1" max="7"></div>
-                        <div class="form-group"><label>公民與社會發展科 / Citizenships & Social Dev.</label><select id="dseCs"><option value="">請選擇...</option><option value="A">達標 (Attained)</option><option value="U">未達標 / Unattained</option></select></div>
+                        <div class="form-group"><label>公民與社會發展科 / Citizenships & Social Dev.</label><select id="dseCs"><option value="">請選擇...</option><option value="A">達標 (Attained)</option><option value="U">未達標</option></select></div>
                     </div>
                     <h4 style="color: var(--primary-color); margin: 0 0 10px 0;">選修科目與原始等級 / Electives</h4>
                     <div class="form-grid">
@@ -276,13 +270,11 @@
                 </div>
             </div>
 
-            <div id="family" class="tab-content"><div class="card"><div class="card-title">同住家庭成員經濟與學歷背景 / Household Members Particulars</div><table id="familyTable"><thead><tr><th>英文姓名<br>Full Name</th><th>關係<br>Relationship</th><th>性別<br>Gender</th><th>年齡<br>Age</th><th>最高學歷<br>Education</th><th>現職<br>Occupation (Eng)</th><th>平均月收<br>Monthly Income</th><th>操作</th></tr></thead><tbody></tbody></table><div class="add-row-container"><button type="button" class="btn btn-outline" onclick="addFamilyRow()">＋ 新增其他成員 / Add Household Member</button></div></div></div>
+            <div id="family" class="tab-content"><div class="card"><div class="card-title">同住家庭成員經濟與學歷背景 / Household Particulars</div><table id="familyTable"><thead><tr><th>英文姓名<br>Full Name</th><th>關係<br>Relationship</th><th>性別<br>Gender</th><th>年齡<br>Age</th><th>最高學歷<br>Education</th><th>現職<br>Occupation (Eng)</th><th>平均月收<br>Monthly Income</th><th>操作</th></tr></thead><tbody></tbody></table><div class="add-row-container"><button type="button" class="btn btn-outline" onclick="addFamilyRow()">＋ 新增其他成員 / Add Household Member</button></div></div></div>
             <div id="education" class="tab-content"><div class="card"><div class="card-title">最近 3 年全級排名 / Rank Performance</div><div class="form-grid"><div class="form-group"><label>中四全級排名 / S4 Rank</label><input type="text" id="rankS4" placeholder="Ranked 3rd"></div><div class="form-group"><label>中五全級排名 / S5 Rank</label><input type="text" id="rankS5" placeholder="Ranked 2nd"></div><div class="form-group"><label>中六模擬試排名 / S6 Rank</label><input type="text" id="rankS6" placeholder="Ranked 12th"></div></div></div><div class="card"><div class="card-title">以往學歷背景 / Section 7: Educational Background</div><table id="educationTable"><thead><tr><th class="col-wide">學校名稱 School Name (In English)</th><th>開始年份<br>From (Year)</th><th>結束年份<br>To (Year)</th><th>最高就讀班級<br>Highest Form</th><th>操作</th></tr></thead><tbody><tr><td><input type="text" class="edu-school" value="TWGHs Sun Hoi Directors' College" readonly style="background:#f8fafc; font-weight:bold;"></td><td><input type="number" class="edu-from" placeholder="2020"></td><td><input type="number" class="edu-to" placeholder="2026"></td><td><input type="text" class="edu-level" value="Form 6" readonly style="background:#f8fafc; text-align:center;"></td><td><span style="font-size:11px; color:var(--text-muted);">核心母校</span></td></tr></tbody></table><div class="add-row-container"><button type="button" class="btn btn-outline" onclick="addEducationRow()">＋ 新增以往就讀學校 / Add Previous School</button></div></div></div>
             
-            <!-- 🎯 拓寬版活動服務經歷分頁 -->
             <div id="activities" class="tab-content"><div class="card"><div class="card-title">過往校內外活動、服務經歷 / Section 8: Activities & Services</div><table id="activitiesTable"><thead><tr><th class="col-wide">主辦機構 / 學校<br>Institution / School</th><th class="col-wide">活動經歷名稱<br>Activity / Service Name</th><th class="col-mid">擔任職位<br>Position Held</th><th class="col-mid">參與年度<br>Academic Year</th><th style="width:10%">操作</th></tr></thead><tbody></tbody></table><div class="add-row-container"><button type="button" class="btn btn-outline" onclick="addActivityRow({}, true)">＋ 新增經歷 / Add Experience</button></div></div></div>
             
-            <!-- 🎯 拓寬版曾獲獎項分頁 -->
             <div id="awards" class="tab-content">
                 <div class="card">
                     <div class="card-title">曾獲取之獎學金與校內外重要獎項紀錄 / Section 9: Awards Received</div>
@@ -324,15 +316,13 @@
             }
         }
         
-        // 🎯 核心升級：當學生選取帶有括號的中英對照選項時，瞬間把前面的中文字和括號吞掉，只留括號內的官方純英文存入後台
+        // 🎯 終極修復連鎖：只對特定表格欄位綁定括號智能提取，100% 絕不污染登入入口的 input 欄位！
         function bindSuggestionToInput(inputEl, listId) { 
             inputEl.setAttribute("list", listId); 
             inputEl.addEventListener("change", function() {
                 if (this.value.includes(" (") && this.value.includes(")")) {
                     let matches = this.value.match(/\(([^)]+)\)/);
-                    if (matches && matches[1]) {
-                        this.value = matches[1].trim(); // 完美提取括號內的純英文
-                    }
+                    if (matches && matches[1]) { this.value = matches[1].trim(); }
                 }
             });
         }
