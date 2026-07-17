@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>東華三院大學獎學金 — 線上填報系統 V14.7</title>
+    <title>東華三院大學獎學金 — 線上填報系統 V15.0</title>
     <style>
         :root {
             --primary-color: #1f4e78;
@@ -69,7 +69,7 @@
     <div class="container">
         <!-- 三重安全校驗鎖 -->
         <div class="card" style="border-top: 4px solid #3182ce; background-color: #f0f9ff;">
-            <div class="card-title" style="color: #2b6cb0; border-bottom-color: #bee3f8;">🏫 學生快速安全填報 / Student Verification</div>
+            <div class="card-title" style="color: #2b6cb0; border-bottom-color: #bee3f8;">🏫 學生快速安全填報 / Student Verification (S6 三重安全校驗鎖)</div>
             <div class="card-description">請輸入您的班別、學號，以及身份證首 4 位字元解鎖學籍庫資料 / Please verify your identity:</div>
             
             <div style="display: flex; gap: 15px; flex-wrap: wrap; align-items: flex-end;">
@@ -269,56 +269,55 @@
                         </div>
                     </div>
                     <h4 style="color: var(--primary-color); margin: 0 0 10px 0;">選修科目與分數 / Elective Subjects</h4>
-                    <!-- 🎯 終極對齊：Value 欄位完全對齊主表 15 門科目大寫英文字元，絕無差錯 -->
                     <div class="form-grid">
                         <div class="form-group">
                             <select id="elecSubject1">
                                 <option value="">選修科一 / Elective 1...</option>
-                                <option value="PHY">PHY</option>
-                                <option value="BIO">BIO</option>
-                                <option value="HIS">HIS</option>
-                                <option value="BAFS">BAFS</option>
-                                <option value="CHEM">CHEM</option>
-                                <option value="ECON">ECON</option>
-                                <option value="GEOG">GEOG</option>
-                                <option value="CHIS">CHIS</option>
-                                <option value="VA">VA</option>
-                                <option value="ICT">ICT</option>
-                                <option value="M2">M2</option>
+                                <option value="PHY">PHY / 物理</option>
+                                <option value="BIO">BIO / 生物</option>
+                                <option value="HIS">HIS / 歷史</option>
+                                <option value="BAFS">BAFS / 企會財</option>
+                                <option value="CHEM">CHEM / 化學</option>
+                                <option value="ECON">ECON / 經濟</option>
+                                <option value="GEOG">GEOG / 地理</option>
+                                <option value="CHIS">CHIS / 中史</option>
+                                <option value="VA">VA / 視藝</option>
+                                <option value="ICT">ICT / 資訊科技</option>
+                                <option value="M2">M2 / 數學延伸二</option>
                             </select>
                             <input type="number" id="elecScore1" min="1" max="7" placeholder="分數 / Level" style="margin-top:5px;">
                         </div>
                         <div class="form-group">
                             <select id="elecSubject2">
                                 <option value="">選修科二 / Elective 2...</option>
-                                <option value="PHY">PHY</option>
-                                <option value="BIO">BIO</option>
-                                <option value="HIS">HIS</option>
-                                <option value="BAFS">BAFS</option>
-                                <option value="CHEM">CHEM</option>
-                                <option value="ECON">ECON</option>
-                                <option value="GEOG">GEOG</option>
-                                <option value="CHIS">CHIS</option>
-                                <option value="VA">VA</option>
-                                <option value="ICT">ICT</option>
-                                <option value="M2">M2</option>
+                                <option value="PHY">PHY / 物理</option>
+                                <option value="BIO">BIO / 生物</option>
+                                <option value="HIS">HIS / 歷史</option>
+                                <option value="BAFS">BAFS / 企會財</option>
+                                <option value="CHEM">CHEM / 化學</option>
+                                <option value="ECON">ECON / 經濟</option>
+                                <option value="GEOG">GEOG / 地理</option>
+                                <option value="CHIS">CHIS / 中史</option>
+                                <option value="VA">VA / 視藝</option>
+                                <option value="ICT">ICT / 資訊科技</option>
+                                <option value="M2">M2 / 數學延伸二</option>
                             </select>
                             <input type="number" id="elecScore2" min="1" max="7" placeholder="分數 / Level" style="margin-top:5px;">
                         </div>
                         <div class="form-group">
                             <select id="elecSubject3">
                                 <option value="">選修科三 (選填) / Elective 3...</option>
-                                <option value="PHY">PHY</option>
-                                <option value="BIO">BIO</option>
-                                <option value="HIS">HIS</option>
-                                <option value="BAFS">BAFS</option>
-                                <option value="CHEM">CHEM</option>
-                                <option value="ECON">ECON</option>
-                                <option value="GEOG">GEOG</option>
-                                <option value="CHIS">CHIS</option>
-                                <option value="VA">VA</option>
-                                <option value="ICT">ICT</option>
-                                <option value="M2">M2</option>
+                                <option value="PHY">PHY / 物理</option>
+                                <option value="BIO">BIO / 生物</option>
+                                <option value="HIS">HIS / 歷史</option>
+                                <option value="BAFS">BAFS / 企會財</option>
+                                <option value="CHEM">CHEM / 化學</option>
+                                <option value="ECON">ECON / 經濟</option>
+                                <option value="GEOG">GEOG / 地理</option>
+                                <option value="CHIS">CHIS / 中史</option>
+                                <option value="VA">VA / 視藝</option>
+                                <option value="ICT">ICT / 資訊科技</option>
+                                <option value="M2">M2 / 數學延伸二</option>
                             </select>
                             <input type="number" id="elecScore3" min="1" max="7" placeholder="分數 / Level" style="margin-top:5px;">
                         </div>
@@ -394,7 +393,8 @@
                         <thead><tr><th>主辦機構 / 學校<br>Institution / School</th><th>活動經歷名稱<br>Activity / Service Name</th><th>擔任職位<br>Position Held</th><th>參與年份<br>Year</th><th>操作 / Action</th></tr></thead>
                         <tbody></tbody>
                     </table>
-                    <div class="add-row-container"><button type="button" class="btn btn-outline" onclick="addActivityRow()">＋ 新增經歷 / Add Experience</button></div>
+                    <!-- 🎯 點擊新增時會自動帶入母校英文名，可供刪除或修改 -->
+                    <div class="add-row-container"><button type="button" class="btn btn-outline" onclick="addActivityRow({}, true)">＋ 新增經歷 / Add Experience</button></div>
                 </div>
             </div>
 
@@ -414,7 +414,8 @@
                         </thead>
                         <tbody></tbody>
                     </table>
-                    <div class="add-row-container"><button type="button" class="btn btn-outline" onclick="addAwardRow()">＋ 新增獎項紀錄 / Add Award</button></div>
+                    <!-- 🎯 點擊新增時會自動帶入母校英文名，可供刪除或修改 -->
+                    <div class="add-row-container"><button type="button" class="btn btn-outline" onclick="addAwardRow({}, true)">＋ 新增獎項紀錄 / Add Award</button></div>
                 </div>
 
                 <div class="card" style="border-top: 4px solid var(--success-color);">
@@ -425,7 +426,7 @@
                         <div class="form-group"><label>3. 中六模擬考試成績單 * / S6 Mock Examination Transcript *</label><div class="upload-box" onclick="document.getElementById('fileS6').click()"><span id="labelS6">📁 點擊選取中六成績單 / Upload S6 Mock</span><input type="file" id="fileS6" onchange="ajaxUploadSingleFile(this, 'labelS6', 'statusS6')"><div class="file-status" id="statusS6"></div></div></div>
                         <div class="form-group"><label>4. 香港中學文憑試成績通知書 * / HKDSE Result Notice *</label><div class="upload-box" onclick="document.getElementById('fileDse').click()"><span id="labelDse">📁 點擊選取 DSE 成績表 / Upload HKDSE</span><input type="file" id="fileDse" onchange="ajaxUploadSingleFile(this, 'labelDse', 'statusDse')"><div class="file-status" id="statusDse"></div></div></div>
                         <div class="form-group"><label>5. 香港身份證 * / Hong Kong ID Card (HKID) *</label><div class="upload-box" onclick="document.getElementById('fileHkid').click()"><span id="labelHkid">📁 點擊選取香港身份證 / Upload HKID</span><input type="file" id="fileHkid" onchange="ajaxUploadSingleFile(this, 'fileHkid', 'statusHkid')"><div class="file-status" id="statusHkid"></div></div></div>
-                        <div class="form-group"><label>6. 大專院校取錄通知書 (如有) / University Admission Offer Letter (Optional)</label><div class="upload-box" onclick="document.getElementById('fileAdmission').click()"><span id="labelAdmission">📁 點擊選取取錄信 / Upload Offer Letter</span><input type="file" id="fileAdmission" onchange="ajaxUploadSingleFile(this, 'labelAdmission', 'statusAdmission')"><div class="file-status" id="statusAdmission"></div></div></div>
+                        <div class="form-group"><label>6. 大專院校取錄通知書 (如有) / University Admission Offer Letter (Optional)</label><div class="upload-box" onclick="document.getElementById('fileAdmission').click()"><span id="labelAdmission">📁 點擊選取取錄信 / Upload Offer Letter</span><input type="file" id="fileAdmission" onchange="ajaxUploadSingleFile(this, 'fileAdmission', 'statusAdmission')"><div class="file-status" id="statusAdmission"></div></div></div>
                     </div>
                 </div>
                 <div class="action-bar"><button type="button" class="btn btn-primary" id="submitBtn" onclick="submitToServer()" style="font-size: 16px; padding: 15px 50px;">🚀 最終確認並提交檔案 / Confirm & Submit Application</button></div>
@@ -437,6 +438,8 @@
         const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbz44pr5ZgQa0AcpfG3nYnYWH8X4iLEk7aIILcVZB62AkHdCfe-0fw71rupZq2RNWDsb/exec"; 
         let ignoreWarningsOnce = false;
         let uploadedFileUrls = { fileS4: "", fileS5: "", fileS6: "", fileDse: "", fileHkid: "", fileAdmission: "" };
+
+        const SCHOOL_DEFAULT_NAME = "TWGHs Sun Hoi Directors' College";
 
         function autoTitleCase(el) {
             if (!el || !el.value) return;
@@ -484,9 +487,9 @@
                     document.querySelector('#activitiesTable tbody').innerHTML = ""; document.querySelector('#awardsTable tbody').innerHTML = "";
                     
                     try { const fam = JSON.parse(data.family); fam.forEach(f => addFamilyRow(f)); } catch(e){}
-                    try { const edu = JSON.parse(data.education); edu.slice(1).forEach(ed => addEducationRow(ed)); } catch(e){}
-                    try { const act = JSON.parse(data.activities); act.forEach(a => addActivityRow(a)); } catch(e){}
-                    try { const aw = JSON.parse(data.awards); aw.forEach(w => addAwardRow(w)); } catch(e){}
+                    try { const edu = JSON.parse(data.education); edu.slice(1).forEach(ed => addEducationRow(ed, false)); } catch(e){}
+                    try { const act = JSON.parse(data.activities); act.forEach(a => addActivityRow(a, false)); } catch(e){}
+                    try { const aw = JSON.parse(data.awards); aw.forEach(w => addAwardRow(w, false)); } catch(e){}
                     
                     if (data.fileUrls) { uploadedFileUrls = data.fileUrls; Object.keys(uploadedFileUrls).forEach(id => { if (uploadedFileUrls[id]) { document.getElementById(id.replace('file', 'label')).innerText = "✓ 已於雲端就緒 / Verified"; } }); }
                     alert(`🎉 成功讀取申請檔案！ (ID: ${data.appId})`);
@@ -647,17 +650,20 @@
             if (["母親", "外婆", "祖母(岅)"].indexOf(selectEl.value) !== -1) genderSelect.value = "女";
         }
 
-        function addEducationRow(data={}) { 
+        function addEducationRow(data={}, autoFillSchool=true) { 
             const table = document.getElementById('educationTable').getElementsByTagName('tbody')[0]; const row = table.insertRow(); 
-            row.innerHTML = `<td><input type="text" class="edu-school" placeholder="e.g. TWGHs Sun Hoi Directors' College" onblur="autoTitleCase(this)" value="${data.val1||''}"></td><td><input type="number" class="edu-from" value="${data.val2||''}" placeholder="2015"></td><td><input type="number" class="edu-to" value="${data.val3||''}" placeholder="2021"></td><td><input type="text" class="edu-level" placeholder="e.g. Primary 6" onblur="autoTitleCase(this)" value="${data.val4||''}"></td><td><button type="button" class="btn btn-danger" onclick="deleteRow(this)">刪除 / X</button></td>`; 
+            const defaultSchool = autoFillSchool ? SCHOOL_DEFAULT_NAME : (data.val1 || "");
+            row.innerHTML = `<td><input type="text" class="edu-school" placeholder="e.g. TWGHs Sun Hoi Directors' College" onblur="autoTitleCase(this)" value="${defaultSchool}"></td><td><input type="number" class="edu-from" value="${data.val2||''}" placeholder="2015"></td><td><input type="number" class="edu-to" value="${data.val3||''}" placeholder="2021"></td><td><input type="text" class="edu-level" placeholder="e.g. Primary 6" onblur="autoTitleCase(this)" value="${data.val4||''}"></td><td><button type="button" class="btn btn-danger" onclick="deleteRow(this)">刪除 / X</button></td>`; 
         }
-        function addActivityRow(data={}) { 
+        function addActivityRow(data={}, autoFillSchool=true) { 
             const table = document.getElementById('activitiesTable').getElementsByTagName('tbody')[0]; const row = table.insertRow(); 
-            row.innerHTML = `<td><input type="text" class="act-org" placeholder="例：校方 / Hong Kong Red Cross" value="${data.val1||''}"></td><td><input type="text" class="act-name" placeholder="例：紅十字會校隊 / Volunteer Service" value="${data.val2||''}"></td><td><input type="text" class="act-pos" placeholder="例：隊長 / Team Leader" value="${data.val3||''}"></td><td><input type="text" class="act-year" placeholder="2024-2025" value="${data.val4||''}"></td><td><button type="button" class="btn btn-danger" onclick="deleteRow(this)">刪除 / X</button></td>`; 
+            const defaultOrg = autoFillSchool ? SCHOOL_DEFAULT_NAME : (data.val1 || "");
+            row.innerHTML = `<td><input type="text" class="act-org" placeholder="例：校方 / Hong Kong Red Cross" value="${defaultOrg}"></td><td><input type="text" class="act-name" placeholder="例：紅十字會校隊 / Volunteer Service" value="${data.val2||''}"></td><td><input type="text" class="act-pos" placeholder="例：隊長 / Team Leader" value="${data.val3||''}"></td><td><input type="text" class="act-year" placeholder="2024-2025" value="${data.val4||''}"></td><td><button type="button" class="btn btn-danger" onclick="deleteRow(this)">刪除 / X</button></td>`; 
         }
-        function addAwardRow(data={}) { 
+        function addAwardRow(data={}, autoFillSchool=true) { 
             const table = document.getElementById('awardsTable').getElementsByTagName('tbody')[0]; const row = table.insertRow(); 
-            row.innerHTML = `<td><input type="text" class="aw-org" placeholder="e.g. Hong Kong Mathematical Society" onblur="autoTitleCase(this)" value="${data.val1||''}"></td><td><input type="text" class="aw-name" placeholder="e.g. Mathematics Olympiad Gold Award" onblur="autoTitleCase(this)" value="${data.val2||''}"></td><td><input type="text" class="aw-year" placeholder="2025" value="${data.val3||''}"></td><td><input type="text" class="aw-level" placeholder="e.g. Territory-wide" onblur="autoTitleCase(this)" value="${data.val4||''}"></td><td><button type="button" class="btn btn-danger" onclick="deleteRow(this)">刪除 / X</button></td>`; 
+            const defaultIssuer = autoFillSchool ? SCHOOL_DEFAULT_NAME : (data.val1 || "");
+            row.innerHTML = `<td><input type="text" class="aw-org" placeholder="e.g. Hong Kong Mathematical Society" onblur="autoTitleCase(this)" value="${defaultIssuer}"></td><td><input type="text" class="aw-name" placeholder="e.g. Mathematics Olympiad Gold Award" onblur="autoTitleCase(this)" value="${data.val2||''}"></td><td><input type="text" class="aw-year" placeholder="2025" value="${data.val3||''}"></td><td><input type="text" class="aw-level" placeholder="e.g. Territory-wide" onblur="autoTitleCase(this)" value="${data.val4||''}"></td><td><button type="button" class="btn btn-danger" onclick="deleteRow(this)">刪除 / X</button></td>`; 
         }
         function deleteRow(btn) { btn.closest('tr').remove(); }
         function toggleCSSAAmount() { document.getElementById('cssaAmountGroup').style.display = document.getElementById('cssa').value === '是' ? 'flex' : 'none'; }
