@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>東華三院大學獎學金 — 線上填報系統 V18.9</title>
+    <title>東華三院大學獎學金 — 線上填報系統 V19.0 旗艦完備版</title>
     <style>
         :root {
             --primary-color: #1f4e78;
@@ -46,19 +46,10 @@
         th.col-wide, td.col-wide { width: 33% !important; }
         th.col-mid, td.col-mid { width: 22% !important; }
         
-        /* 🎯 核心補回：深黑色連線控制台專屬 Terminal 背景樣式 */
         .diagnose-box { 
-            background-color: #1a202c; 
-            color: #48bb78; 
-            font-family: "Courier New", Courier, monospace; 
-            padding: 15px; 
-            border-radius: 6px; 
-            margin-top: 10px; 
-            font-size: 13px; 
-            min-height: 45px; 
-            line-height: 1.5;
-            border-left: 4px solid #38a169;
-            word-break: break-all;
+            background-color: #1a202c; color: #48bb78; font-family: "Courier New", Courier, monospace; 
+            padding: 15px; border-radius: 6px; margin-top: 10px; font-size: 13px; min-height: 45px; 
+            line-height: 1.5; border-left: 4px solid #38a169; word-break: break-all;
         }
         
         .upload-box { background: #f8fafc; border: 2px dashed #cbd5e1; padding: 18px; border-radius: 6px; text-align: center; cursor: pointer; transition: all 0.2s; min-height: 90px; display: flex; flex-direction: column; align-items: center; justify-content: center; position: relative; }
@@ -141,9 +132,8 @@
                 <div style="flex: 1.5; min-width: 220px;"><label style="color: var(--danger-color);">身份證首 4 字元 / First 4 of HKID</label><input type="text" id="hkidVerifyInput" placeholder="例: W123" style="text-transform: uppercase;" maxlength="4" onfocus="warnDuplicateStudent()"></div>
                 <button type="button" class="btn" id="autofillBtn" onclick="autoFillStudentData()" style="background-color: #3182ce; color: white; height: 45px;">⚡ 首次實名驗證載入 / Verify & Entry</button>
             </div>
-            <!-- 🎯 完美修復復位：帶有深藍/深黑色黑框背景的專業 Live 偵錯控制台 -->
             <div id="diagnoseArea" style="margin-top: 20px;">
-                <div style="display: flex; justify-content: space-between; align-items: center;"><label style="color: #2b6cb0; font-weight: bold;">🚨 實名連線控制台 / Live Status Console</label><button type="button" class="btn btn-success" onclick="manualSaveProgress()" style="padding: 4px 12px; font-size: 12px; height: auto;">💾 暫存目前填寫進度 / Save Progress</button></div>
+                <div style="display: flex; justify-content: space-between; align-items: center;"><label style="color: #2b6cb0; font-weight: bold;">🚨 實名連線控制台 / Live Status Console</label></div>
                 <div class="diagnose-box" id="consoleLog">▶ 雲端雙向對齊機制就緒 / Cloud synchronization ready.</div>
             </div>
         </div>
@@ -213,6 +203,7 @@
                 </div>
 
                 <div class="card" style="border-top: 4px solid var(--accent-color);">
+                    <!-- 🎯 語法修正：徹底清除殘留的標籤屬性錯誤 -->
                     <div class="card-title" style="color: var(--accent-color);">院校取錄結果：大學修讀科目 / Section 4: University Result</div>
                     <div class="form-grid">
                         <div class="form-group">
@@ -271,7 +262,7 @@
             </div>
 
             <div id="family" class="tab-content"><div class="card"><div class="card-title">同住家庭成員經濟與學歷背景 / Household Members Particulars</div><table id="familyTable"><thead><tr><th>英文姓名<br>Full Name</th><th>關係<br>Relationship</th><th>性別<br>Gender</th><th>年齡<br>Age</th><th>最高學歷<br>Education</th><th>現職<br>Occupation (Eng)</th><th>平均月收<br>Monthly Income</th><th>操作</th></tr></thead><tbody></tbody></table><div class="add-row-container"><button type="button" class="btn btn-outline" onclick="addFamilyRow()">＋ 新增其他成員 / Add Household Member</button></div></div></div>
-            <div id="education" class="tab-content"><div class="card"><div class="card-title">最近 3 年全級排名 / Rank Performance</div><div class="form-grid"><div class="form-group"><label>中四全級排名 / S4 Rank</label><input type="text" id="rankS4" placeholder="Ranked 3rd"></div><div class="form-group"><label>中五全級排名 / S5 Rank</label><input type="text" id="rankS5" placeholder="Ranked 2nd"></div><div class="form-group"><label>中六模擬試排名 / S6 Rank</label><input type="text" id="rankS6" placeholder="Ranked 12th"></div></div></div><div class="card"><div class="card-title">以往學歷背景 / Section 7: Educational Background</div><table id="educationTable"><thead><tr><th class="col-wide">學校名稱 School Name (In English)</th><th>開始年份<br>From (Year)</th><th>結束年份<br>To (Year)</th><th>最高就職班級<br>Highest Form</th><th>操作</th></tr></thead><tbody><tr><td><input type="text" class="edu-school" value="TWGHs Sun Hoi Directors' College" readonly style="background:#f8fafc; font-weight:bold;"></td><td><input type="number" class="edu-from" placeholder="2020"></td><td><input type="number" class="edu-to" placeholder="2026"></td><td><input type="text" class="edu-level" value="Form 6" readonly style="background:#f8fafc; text-align:center;"></td><td><span style="font-size:11px; color:var(--text-muted);">核心母校</span></td></tr></tbody></table><div class="add-row-container"><button type="button" class="btn btn-outline" onclick="addEducationRow()">＋ 新增以往就讀學校 / Add Previous School</button></div></div></div>
+            <div id="education" class="tab-content"><div class="card"><div class="card-title">最近 3 年全級排名 / Rank Performance</div><div class="form-grid"><div class="form-group"><label>中四全級排名 / S4 Rank</label><input type="text" id="rankS4" placeholder="Ranked 3rd"></div><div class="form-group"><label>中五全級排名 / S5 Rank</label><input type="text" id="rankS5" placeholder="Ranked 2nd"></div><div class="form-group"><label>中六模擬試排名 / S6 Rank</label><input type="text" id="rankS6" placeholder="Ranked 12th"></div></div></div><div class="card"><div class="card-title">以往學歷背景 / Section 7: Educational Background</div><table id="educationTable"><thead><tr><th class="col-wide">學校名稱 School Name (In English)</th><th>開始年份<br>From (Year)</th><th>結束年份<br>To (Year)</th><th>最高就讀班級<br>Highest Form</th><th>操作</th></tr></thead><tbody><tr><td><input type="text" class="edu-school" value="TWGHs Sun Hoi Directors' College" readonly style="background:#f8fafc; font-weight:bold;"></td><td><input type="number" class="edu-from" placeholder="2020"></td><td><input type="number" class="edu-to" placeholder="2026"></td><td><input type="text" class="edu-level" value="Form 6" readonly style="background:#f8fafc; text-align:center;"></td><td><span style="font-size:11px; color:var(--text-muted);">核心母校</span></td></tr></tbody></table><div class="add-row-container"><button type="button" class="btn btn-outline" onclick="addEducationRow()">＋ 新增以往就讀學校 / Add Previous School</button></div></div></div>
             
             <div id="activities" class="tab-content"><div class="card"><div class="card-title">過往校內外活動、服務經歷 / Section 8: Activities & Services</div><table id="activitiesTable"><thead><tr><th class="col-wide">主辦機構 / 學校<br>Institution / School</th><th class="col-wide">活動經歷名稱<br>Activity / Service Name</th><th class="col-mid">擔任職位<br>Position Held</th><th class="col-mid">參與年度<br>Academic Year</th><th style="width:10%">操作</th></tr></thead><tbody></tbody></table><div class="add-row-container"><button type="button" class="btn btn-outline" onclick="addActivityRow({}, true)">＋ 新增經歷 / Add Experience</button></div></div></div>
             
@@ -291,7 +282,7 @@
                         <div class="form-group"><label>3. 中六模擬試成績單 * / S6 Mock *</label><div class="upload-box" onclick="document.getElementById('fileS6').click()"><span id="labelS6">📁 選取中六成績單 / Upload S6 Mock</span><input type="file" id="fileS6" onchange="ajaxUploadSingleFile(this, 'labelS6', 'statusS6')"><div class="file-status" id="statusS6"></div></div></div>
                         <div class="form-group"><label>4. DSE 成績通知書 * / HKDSE Notice *</label><div class="upload-box" onclick="document.getElementById('fileDse').click()"><span id="labelDse">📁 選取 DSE 成績表 / Upload DSE</span><input type="file" id="fileDse" onchange="ajaxUploadSingleFile(this, 'labelDse', 'statusDse')"><div class="file-status" id="statusDse"></div></div></div>
                         <div class="form-group"><label>5. 香港身份證 * / HKID Copy *</label><div class="upload-box" onclick="document.getElementById('fileHkid').click()"><span id="labelHkid">📁 選取香港身份證 / Upload HKID</span><input type="file" id="fileHkid" onchange="ajaxUploadSingleFile(this, 'fileHkid', 'statusHkid')"><div class="file-status" id="statusHkid"></div></div></div>
-                        <div class="form-group"><label>6. 取錄通知書 或 大專學生證 / Offer Letter or College ID</label><div class="upload-box" onclick="document.getElementById('fileAdmission').click()"><span id="labelAdmission">📁 選取取錄信/學生證 / Offer or ID</span><input type="file" id="fileAdmission" onchange="ajaxUploadSingleFile(this, 'fileAdmission', 'statusAdmission')"><div class="file-status" id="statusAdmission"></div></div></div>
+                        <div class="form-group"><label>6. 取錄通知書 或 大專學生證 / Offer Letter or College ID</label><div class="upload-box" onclick="document.getElementById('fileAdmission').click()"><span id="labelAdmission">📁 選取取錄信/學生證 / Offer or ID</span><input type="file" id="fileAdmission" onchange="ajaxUploadSingleFile(this, 'labelAdmission', 'statusAdmission')"><div class="file-status" id="statusAdmission"></div></div></div>
                     </div>
                 </div>
                 <div class="action-bar"><button type="button" class="btn btn-primary" id="submitBtn" onclick="submitToServer()" style="font-size: 16px; padding: 15px 50px;">🚀 最終確認並提交檔案 / Confirm & Submit</button></div>
@@ -317,7 +308,7 @@
             }
         }
         
-        // 🎯 終極修復：明確限制只有在活動與獎項分頁的 input 格子才會呼叫此處的括號智能去中文提取，入口跟解鎖格「全面免疫」
+        // 🎯 隔離機制優化：確保智能提取純英全寫機制只對 1C/1D 的格子生效
         function bindSuggestionToInput(inputEl, listId) { 
             inputEl.setAttribute("list", listId); 
             inputEl.addEventListener("change", function() {
