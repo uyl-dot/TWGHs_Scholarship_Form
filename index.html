@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>東華三院大學獎學金 — 線上填報系統</title>
+    <title>東華三院大學獎學金 — 線上填報系統 V18.8</title>
     <style>
         :root {
             --primary-color: #1f4e78;
@@ -38,7 +38,6 @@
         input[type="text"], input[type="number"], input[type="date"], select, textarea { 
             padding: 11px 14px; border: 1px solid var(--border-color); border-radius: 6px; font-size: 14px; width: 100%; 
         }
-        input:invalid { border-color: var(--danger-color); background-color: #fff5f5; }
         
         table { width: 100%; border-collapse: collapse; margin-bottom: 20px; font-size: 14px; table-layout: fixed; }
         th { background-color: var(--primary-color); color: white; text-align: left; padding: 12px; font-weight: bold; }
@@ -67,7 +66,6 @@
 </head>
 <body>
 
-    <!-- 🏫 詞庫 A：小學分頁 -->
     <datalist id="primarySchoolSuggestions">
         <option value="順德聯誼總會何日東小學 (SHTTGA Ho Yat Tung Primary School)">
         <option value="順德聯誼總會胡少渠紀念小學 (SHTTGA Wu Siu Kui Primary School)">
@@ -80,7 +78,6 @@
         <option value="仁濟醫院何式南小學 (YCH Ho Shi Chu Primary School)">
     </datalist>
 
-    <!-- 🏆 詞庫 B：主辦機構分頁 -->
     <datalist id="activitySuggestions">
         <option value="香港學界體育聯會 (The Hong Kong Schools Sports Federation)">
         <option value="香港學界體育聯會屯門區中學分會 (HKSSF Tuen Mun Secondary Schools Area Committee)">
@@ -97,36 +94,20 @@
         <option value="香港電腦教育學會 (The Hong Kong Association for Computer Education)">
     </datalist>
 
-    <!-- 📝 詞庫 C：比賽經歷名稱 -->
     <datalist id="activityNameSuggestions">
         <option value="學界田徑比賽 (Inter-School Athletics Competition)">
         <option value="學界籃球比賽 (Inter-School Basketball Competition)">
         <option value="學界足球比賽 (Inter-School Football Competition)">
-        <option value="學界游泳比賽 (Inter-School Swimming Competition)">
-        <option value="學界排球比賽 (Inter-School Volleyball Competition)">
         <option value="香港學校音樂節 (Hong Kong Schools Music Festival)">
         <option value="香港學校朗誦節 (Hong Kong Schools Speech Festival)">
     </datalist>
 
-    <!-- 👔 詞庫 D：擔任職位 -->
     <datalist id="positionSuggestions">
-        <option value="主席 (Chairman)">
-        <option value="副主席 (Vice-chairman)">
-        <option value="幹事 (Committee Member)">
-        <option value="義工人員 (Volunteer)">
-        <option value="領袖生 (Prefect / School Leader)">
-        <option value="隊長 (Team Captain)">
-        <option value="參與者 (Participant)">
+        <option value="主席 (Chairman)"><option value="副主席 (Vice-chairman)"><option value="幹事 (Committee Member)"><option value="義工人員 (Volunteer)"><option value="領袖生 (Prefect / School Leader)"><option value="隊長 (Team Captain)"><option value="參與者 (Participant)">
     </datalist>
 
-    <!-- 🥇 詞庫 E：獎項名次 -->
     <datalist id="rankSuggestions">
-        <option value="第一名 / 冠軍 (1st Place / Champion)">
-        <option value="第二名 / 亞軍 (2nd Place / 1st Runner-up)">
-        <option value="第三名 / 季軍 (3rd Place / 2nd Runner-up)">
-        <option value="團體冠軍 (Champion - Team)">
-        <option value="個人冠軍 (Champion - Individual)">
-        <option value="香港代表隊資格 (Hong Kong Team Representative)">
+        <option value="第一名 / 冠軍 (1st Place / Champion)"><option value="第二名 / 亞軍 (2nd Place / 1st Runner-up)"><option value="第三名 / 季軍 (3rd Place / 2nd Runner-up)"><option value="團體冠軍 (Champion - Team)"><option value="個人冠軍 (Champion - Individual)"><option value="香港代表隊資格 (Hong Kong Team Representative)">
     </datalist>
 
     <div class="header">
@@ -135,7 +116,7 @@
     </div>
 
     <div class="container">
-        <!-- 首次申請入口（已完全隔離免受轉換器干擾） -->
+        <!-- 首次填寫安全對齊 -->
         <div class="card" style="border-top: 4px solid #3182ce; background-color: #f0f9ff;">
             <div class="card-title" style="color: #2b6cb0;">🆕 首次申請填報入口 / First-time Application Entry</div>
             <div class="card-description" style="color: var(--danger-color); font-weight: bold;">⚠️ 注意 / Notice：本區僅供【從未提交過】的同學首次填寫。更新資料請一律利用下方四重鎖！</div>
@@ -148,7 +129,7 @@
             <div id="diagnoseArea" style="margin-top: 20px;"><div style="display: flex; justify-content: space-between; align-items: center;"><label style="color: #2b6cb0; font-weight: bold;">🚨 實名連線控制台 / Live Status Console</label><button type="button" class="btn btn-success" onclick="manualSaveProgress()" style="padding: 4px 12px; font-size: 12px; height: auto;">💾 暫存目前填寫進度 / Save Progress</button></div><div id="consoleLog">▶ 雲端雙向對齊機制就緒 / Cloud synchronization ready.</div></div>
         </div>
 
-        <!-- 四重防禦聯鎖解鎖修改區（已完全隔離免受轉換器干擾） -->
+        <!-- 四重防禦聯鎖解鎖修改區 -->
         <div class="card" style="border-top: 4px solid var(--accent-color); background-color: #fffdf5;">
             <div class="card-title" style="color: #b7791f;">🔒 歷史紀錄查詢、資料增補與文件補交 (四重安全聯鎖防禦系統)</div>
             <div class="form-grid" style="grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));">
@@ -195,7 +176,7 @@
                     <div class="form-grid">
                         <div class="form-group"><label>香港身份證號碼 / HKID No. <span class="req-eng">※ 英文需大寫</span></label><input type="text" id="hkid" placeholder="A123456(7)" style="text-transform: uppercase;"></div>
                         <div class="form-group"><label>學生手提電話 / Mobile No.</label><input type="text" id="mobile" placeholder="91234567"></div>
-                        <div class="form-group"><label>電郵地址 / Email Address <span class="req-eng">※ 請以英文填寫</span></label><input type="text" id="email" placeholder="chantaiman@example.com"></div>
+                        <div class="form-group"><label>電郵地址 / Email Address <span class="req-eng">※ 請以英文填寫</span></label><input type="text" id="email" placeholder="student@example.com"></div>
                         <div class="form-group"><label>微信號 / WeChat ID <span class="req-eng">※ 請以英文填寫</span></label><input type="text" id="wechat" placeholder="ChanWechat123"></div>
                     </div>
                     <div class="form-grid">
@@ -222,9 +203,9 @@
                                 <option value="香港大學 (HKU)">香港大學 (HKU) / The University of Hong Kong</option><option value="香港中文大學 (CUHK)">香港中文大學 (CUHK) / The Chinese University of Hong Kong</option><option value="香港科技大學 (HKUST)">香港科技大學 (HKUST) / HKUST</option><option value="香港理工大學 (PolyU)">香港理工大學 (PolyU) / PolyU</option><option value="香港城市大學 (CityU)">香港城市大學 (CityU) / CityU</option><option value="香港浸會大學 (HKBU)">香港浸會大學 (HKBU) / HKBU</option><option value="嶺南大學 (LNU)">嶺南大學 (LNU) / Lingnan U</option><option value="香港教育大學 (EdUHK)">香港教育大學 (EdUHK) / EdUHK</option><option value="香港都會大學 (HKMU)">香港都會大學 (HKMU) / HKMU</option><option value="香港樹仁大學 (HKSYU)">香港樹仁大學 (HKSYU) / HKSYU</option>
                             </select>
                         </div>
-                        <div class="form-group"><label>學位課程全名 / Full Programme Name <span class="req-eng">※ 請以英文填寫</span></label><input type="text" id="progName" placeholder="Bachelor of Business Administration" onblur="autoTitleCase(this)"></div>
+                        <div class="form-group"><label>學位課程全名 / Full Programme Name</label><input type="text" id="progName" placeholder="Bachelor of Business Administration" onblur="autoTitleCase(this)"></div>
                         <div class="form-group"><label>JUPAS 課程編號 / JUPAS Code</label><input type="text" id="jupasCode" placeholder="JS6729" style="text-transform: uppercase;"></div>
-                        <div class="form-group"><label>課程修讀年期 / Study Duration <span class="req-eng">※ 請以英文填寫</span></label><input type="text" id="duration" placeholder="4 Years" onblur="autoTitleCase(this)"></div>
+                        <div class="form-group"><label>課程修讀年期 / Study Duration</label><input type="text" id="duration" placeholder="4 Years" onblur="autoTitleCase(this)"></div>
                     </div>
                 </div>
 
@@ -265,12 +246,12 @@
                     <div class="form-grid">
                         <div class="form-group"><label>是否領取綜援？ / CSSA Allowance?</label><select id="cssa" onchange="toggleCSSAAmount()"><option value="否">否 / No</option><option value="是">是 / Yes</option></select></div>
                         <div class="form-group" id="cssaAmountGroup" style="display:none;"><label>每月綜援金額 (HKD) / Monthly Amount</label><input type="number" id="cssaAmount" placeholder="金額 / Amount"></div>
-                        <div class="form-group"><label>書簿津貼狀況 / Textbook Assistance</label><select id="schFinance"><option value="沒有">沒有 / None</option><option value="有 (全額津貼)">有 - 全額資助 / Full Grant</option><option value="有 (半額津貼)">有 - 半額資助 / Half Grant</option></select></div>
+                        <div class="form-group"><label>書簿津貼狀況 / Textbook Assistance</label><select id="schFinance"><option value="沒有">沒有 / None</option><option value=" 有 (全額津貼)">有 - 全額資助 / Full Grant</option><option value="有 (半額津貼)">有 - 半額資助 / Half Grant</option></select></div>
                     </div>
                 </div>
             </div>
 
-            <div id="family" class="tab-content"><div class="card"><div class="card-title">同住家庭成員經濟與學歷背景 / Household Particulars</div><table id="familyTable"><thead><tr><th>英文姓名<br>Full Name</th><th>關係<br>Relationship</th><th>性別<br>Gender</th><th>年齡<br>Age</th><th>最高學歷<br>Education</th><th>現職<br>Occupation (Eng)</th><th>平均月收<br>Monthly Income</th><th>操作</th></tr></thead><tbody></tbody></table><div class="add-row-container"><button type="button" class="btn btn-outline" onclick="addFamilyRow()">＋ 新增其他成員 / Add Household Member</button></div></div></div>
+            <div id="family" class="tab-content"><div class="card"><div class="card-title">同住家庭成員經濟與學歷背景 / Household Members Particulars</div><table id="familyTable"><thead><tr><th>英文姓名<br>Full Name</th><th>關係<br>Relationship</th><th>性別<br>Gender</th><th>年齡<br>Age</th><th>最高學歷<br>Education</th><th>現職<br>Occupation (Eng)</th><th>平均月收<br>Monthly Income</th><th>操作</th></tr></thead><tbody></tbody></table><div class="add-row-container"><button type="button" class="btn btn-outline" onclick="addFamilyRow()">＋ 新增其他成員 / Add Household Member</button></div></div></div>
             <div id="education" class="tab-content"><div class="card"><div class="card-title">最近 3 年全級排名 / Rank Performance</div><div class="form-grid"><div class="form-group"><label>中四全級排名 / S4 Rank</label><input type="text" id="rankS4" placeholder="Ranked 3rd"></div><div class="form-group"><label>中五全級排名 / S5 Rank</label><input type="text" id="rankS5" placeholder="Ranked 2nd"></div><div class="form-group"><label>中六模擬試排名 / S6 Rank</label><input type="text" id="rankS6" placeholder="Ranked 12th"></div></div></div><div class="card"><div class="card-title">以往學歷背景 / Section 7: Educational Background</div><table id="educationTable"><thead><tr><th class="col-wide">學校名稱 School Name (In English)</th><th>開始年份<br>From (Year)</th><th>結束年份<br>To (Year)</th><th>最高就讀班級<br>Highest Form</th><th>操作</th></tr></thead><tbody><tr><td><input type="text" class="edu-school" value="TWGHs Sun Hoi Directors' College" readonly style="background:#f8fafc; font-weight:bold;"></td><td><input type="number" class="edu-from" placeholder="2020"></td><td><input type="number" class="edu-to" placeholder="2026"></td><td><input type="text" class="edu-level" value="Form 6" readonly style="background:#f8fafc; text-align:center;"></td><td><span style="font-size:11px; color:var(--text-muted);">核心母校</span></td></tr></tbody></table><div class="add-row-container"><button type="button" class="btn btn-outline" onclick="addEducationRow()">＋ 新增以往就讀學校 / Add Previous School</button></div></div></div>
             
             <div id="activities" class="tab-content"><div class="card"><div class="card-title">過往校內外活動、服務經歷 / Section 8: Activities & Services</div><table id="activitiesTable"><thead><tr><th class="col-wide">主辦機構 / 學校<br>Institution / School</th><th class="col-wide">活動經歷名稱<br>Activity / Service Name</th><th class="col-mid">擔任職位<br>Position Held</th><th class="col-mid">參與年度<br>Academic Year</th><th style="width:10%">操作</th></tr></thead><tbody></tbody></table><div class="add-row-container"><button type="button" class="btn btn-outline" onclick="addActivityRow({}, true)">＋ 新增經歷 / Add Experience</button></div></div></div>
@@ -305,7 +286,7 @@
         const SCHOOL_DEFAULT_NAME = "TWGHs Sun Hoi Directors' College";
 
         window.onload = function() { addFamilyRow({ val2: "父親", val7: "男" }); addFamilyRow({ val2: "母親", val7: "女" }); };
-        function warnDuplicateStudent() { if(!window.alreadyWarned) { alert("🚨【核心提醒】如果您先前已經進入本系統過，請不要在此處重複首次實名填寫！請利用下方歷史區解鎖。"); window.alreadyWarned = true; } }
+        function warnDuplicateStudent() { if(!window.alreadyWarned) { alert("🚨【核心提醒】如果您先前已經提交過，請不要在此重複填寫！更新請使用下方四重鎖。"); window.alreadyWarned = true; } }
         function autoTitleCase(el) { if (el && el.value) el.value = el.value.toString().toLowerCase().replace(/\b[a-z]/g, function(letter) { return letter.toUpperCase(); }).trim(); }
         
         function setSelectValue(id, val) {
@@ -316,10 +297,11 @@
             }
         }
         
-        // 🎯 終極修復連鎖：只對特定表格欄位綁定括號智能提取，100% 絕不污染登入入口的 input 欄位！
+        // 🎯 核心防線隔離：透過更嚴密的 class 或屬性判斷，確保只在表格內部特定的聯想選單觸發去括號轉換，100% 不污染入口
         function bindSuggestionToInput(inputEl, listId) { 
             inputEl.setAttribute("list", listId); 
             inputEl.addEventListener("change", function() {
+                if (this.classList.contains("secure-lock-field")) return; // 入口隔離
                 if (this.value.includes(" (") && this.value.includes(")")) {
                     let matches = this.value.match(/\(([^)]+)\)/);
                     if (matches && matches[1]) { this.value = matches[1].trim(); }
@@ -394,7 +376,7 @@
         function switchTab(tabId) { document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active')); document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active')); document.getElementById(tabId).classList.add('active'); document.getElementById('tab_' + tabId).classList.add('active'); }
         function getTableRowsData(s, cList) { const arr = []; document.querySelectorAll(`${s} tr`).forEach(r => { const o = {}; cList.forEach((c, idx) => { const el = r.querySelector(c); if(el) o[`val${idx+1}`] = el.value.trim(); }); arr.push(o); }); return arr; }
         function getFamilyTableData() { const arr = []; document.querySelectorAll('#familyTable tbody tr').forEach(r => { const n = r.querySelector('.fam-name').value.trim(); const rel = r.querySelector('.fam-rel').value; if(n || ["父親","母親"].includes(rel)) arr.push({ val1: n, val2: rel, val3: r.querySelector('.fam-age').value.trim(), val4: r.querySelector('.fam-edu').value, val5: r.querySelector('.fam-occ').value.trim(), val6: r.querySelector('.fam-income').value.trim(), val7: r.querySelector('.fam-gender').value }); }); return arr; }
-        function getBasicData() { return { schoolYear: document.getElementById('schoolYear').value, studentClass: document.getElementById('studentClass').value, nameEn: document.getElementById('nameEn').value.trim(), nameCh: document.getElementById('nameCh').value, dob: document.getElementById('dob').value, placeOfBirth: document.getElementById('placeOfBirth').value, hkid: document.getElementById('hkid').value.toUpperCase(), address: document.getElementById('address').value.trim(), housingType: document.getElementById('housingType').value, mobile: document.getElementById('mobile').value, email: document.getElementById('email').value.trim(), wechat: document.getElementById('wechat').value.trim(), guardianName: document.getElementById('guardianName').value.trim(), guardianMobile: document.getElementById('guardianMobile').value, uniName: document.getElementById('uniName').value, progName: document.getElementById('progName').value.trim(), jupasCode: document.getElementById('jupasCode').value.toUpperCase(), duration: document.getElementById('duration').value.trim(), dseChi: document.getElementById('dseChi').value, dseEng: document.getElementById('dseEng').value, dseMath: document.getElementById('dseMath').value, dseCs: document.getElementById('dseCs').value, dseE1: document.getElementById('elecSubject1').value ? `${document.getElementById('elecSubject1').value} (${document.getElementById('elecScore1').value})` : "", dseE2: document.getElementById('elecSubject2').value ? `${document.getElementById('elecSubject2').value} (${document.getElementById('elecScore2').value})` : "", dseE3: document.getElementById('elecSubject3').value ? `${document.getElementById('elecSubject3').value} (${document.getElementById('elecScore3').value})` : "" }; }
+        function getBasicData() { return { schoolYear: document.getElementById('schoolYear').value, studentClass: document.getElementById('studentClass').value, nameEn: document.getElementById('nameEn').value.trim(), nameCh: document.getElementById('nameCh').value, dob: document.getElementById('dob').value, placeOfBirth: document.getElementById('placeOfBirth').value, hkid: document.getElementById('hkid').value.toUpperCase(), address: document.getElementById('address').value.trim(), housingType: document.getElementById('housingType').value, mobile: document.getElementById('mobile').value, email: document.getElementById('email').value.trim(), wechat: document.getElementById('wechat').value.trim(), guardianName: document.getElementById('guardianName').value.trim(), guardianMobile: document.getElementById('guardianMobile').value, uniName: document.getElementById('uniName').value, progName: document.getElementById('progName').value.trim(), jupasCode: document.getElementById('jupasCode').value.toUpperCase(), duration: document.getElementById('duration').value.trim(), dseChi: document.getElementById('dseChi').value, dseEng: document.getElementById('dseEng').value, dseMath: document.getElementById('dseMath').value, dseCs: document.getElementById('dseCs').value, dseE1: document.getElementById('elecSubject1').value ? `${document.getElementById('elecSubject1').value} (${document.getElementById('elecScore1').value})` : "", dseE2: document.getElementById('elecSubject2').value ? `${document.getElementById('elecSubject2').value} (${document.getElementById('elecScore2').value})` : "", dseE3: document.getElementById('elecSubject3').value ? `${document.getElementById('elecScore3').value} (${document.getElementById('elecScore3').value})` : "" }; }
         function toggleCSSAAmount() { document.getElementById('cssaAmountGroup').style.display = document.getElementById('cssa').value === '是' ? 'flex' : 'none'; }
         
         function addFamilyRow(data={}) {
