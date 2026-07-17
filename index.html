@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>東華三院大學獎學金 — 線上填報系統 V15.2</title>
+    <title>東華三院大學獎學金 — 線上填報系統 V15.3</title>
     <style>
         :root {
             --primary-color: #1f4e78;
@@ -334,7 +334,7 @@
                 </div>
             </div>
 
-            <!-- 分頁 2 (父母項目預留 + 現職留空) -->
+            <!-- 分頁 2 -->
             <div id="family" class="tab-content">
                 <div class="card">
                     <div class="card-title">同住家庭成員經濟與學歷背景 / Household Members Particulars</div>
@@ -439,10 +439,9 @@
 
         const SCHOOL_DEFAULT_NAME = "TWGHs Sun Hoi Directors' College";
 
-        // 🎯 核心更動：一載入網頁，自動初始預留「父親」與「母親」，現職完全保持留空，不填寫母校名稱。
         window.onload = function() {
-            addFamilyRow({ val2: "父親", val7: "男", val5: "" }); // val5 (Occupation) 留空
-            addFamilyRow({ val2: "母親", val7: "女", val5: "" }); // val5 (Occupation) 留空
+            addFamilyRow({ val2: "父親", val7: "男", val5: "" }); 
+            addFamilyRow({ val2: "母親", val7: "女", val5: "" }); 
         };
 
         function autoTitleCase(el) {
@@ -450,13 +449,23 @@
             el.value = el.value.toString().toLowerCase().replace(/\b[a-z]/g, function(letter) { return letter.toUpperCase(); }).trim();
         }
 
+        // 🎯【高寬容度前端智慧對譯比對引擎】
         function setSelectValue(id, val) {
             if (!val) return;
             const selectEl = document.getElementById(id); if (!selectEl) return;
+            
+            // 將傳入的值（如 "PHY"）進行極致規範化
             let cleanVal = val.toString().trim().toUpperCase().replace(/[\s\-\_\/]+/g, '');
+            
             for (let i = 0; i < selectEl.options.length; i++) {
                 let optVal = selectEl.options[i].value.toString().trim().toUpperCase().replace(/[\s\-\_\/]+/g, '');
-                if (cleanVal === optVal || optVal.includes(cleanVal) || cleanVal.includes(optVal)) { selectEl.selectedIndex = i; return; }
+                let optText = selectEl.options[i].text.toString().trim().toUpperCase().replace(/[\s\-\_\/]+/g, '');
+                
+                // 💡 核心修正：加入 includes 雙向模糊包含判定，徹底粉碎中英對照 "PHY / 物理" 造成的匹配阻礙
+                if (cleanVal === optVal || optVal.includes(cleanVal) || cleanVal.includes(optVal) || optText.includes(cleanVal)) { 
+                    selectEl.selectedIndex = i; 
+                    return; 
+                }
             }
         }
 
@@ -547,6 +556,7 @@
                     if (data.dseMath) document.getElementById('dseMath').value = data.dseMath;
                     if (data.dseCs) setSelectValue('dseCs', data.dseCs);
 
+                    // 💡 這裡會完美呼叫全新的對譯引擎，選修科目名稱和分數將一併正確填入
                     if (data.elec1) setSelectValue('elecSubject1', data.elec1);
                     if (data.elecScore1) document.getElementById('elecScore1').value = data.elecScore1;
                     if (data.elec2) setSelectValue('elecSubject2', data.elec2);
