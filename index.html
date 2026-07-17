@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>東華三院大學獎學金 — 線上填報系統 V16.5</title>
+    <title>東華三院大學獎學金 — 線上填報系統 V16.9</title>
     <style>
         :root {
             --primary-color: #1f4e78;
@@ -38,6 +38,7 @@
         .status-uploading { color: #3182ce; animation: pulse 1.5s infinite; }
         .status-success { color: var(--success-color); }
         input[type="text"], input[type="number"], input[type="date"], select, textarea { padding: 10px 14px; border: 1px solid var(--border-color); border-radius: 6px; font-size: 14px; width: 100%; }
+        input:invalid { border-color: var(--danger-color); background-color: #fff5f5; }
         table { width: 100%; border-collapse: collapse; margin-bottom: 20px; font-size: 14px; }
         th { background-color: var(--primary-color); color: white; text-align: left; padding: 12px; }
         td { padding: 10px; border-bottom: 1px solid var(--border-color); position: relative; }
@@ -54,50 +55,86 @@
         .tab-btn.active { color: var(--primary-color); border-bottom-color: var(--primary-color); }
         .tab-content { display: none; }
         .tab-content.active { display: block; }
-        
-        /* 🎯 核心新增：自動聯想下拉提示框樣式 */
-        .autocomplete-suggestions {
-            position: absolute;
-            z-index: 9999;
-            background: white;
-            border: 1px solid var(--border-color);
-            border-top: none;
-            border-radius: 0 0 6px 6px;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-            max-height: 180px;
-            overflow-y: auto;
-            width: 95%;
-            margin-top: 1px;
-        }
-        .autocomplete-suggestion {
-            padding: 10px 14px;
-            cursor: pointer;
-            font-size: 13px;
-            text-align: left;
-        }
-        .autocomplete-suggestion:hover {
-            background-color: var(--primary-light);
-            color: var(--primary-color);
-        }
         @keyframes pulse { 0% { opacity: 0.5; } 50% { opacity: 1; } 100% { opacity: 0.5; } }
         @media (max-width: 768px) { .form-grid { grid-template-columns: 1fr; } table { display: block; overflow-x: auto; } }
     </style>
 </head>
 <body>
 
-    <!-- HTML5 原生聯想詞庫 -->
-    <datalist id="orgSuggestions">
-        <option value="The Hong Kong University of Science and Technology (HKUST / 科技大學)">
-        <option value="The University of Hong Kong (HKU / 香港大學)">
-        <option value="The Chinese University of Hong Kong (CUHK / 中文大學)">
-        <option value="The Hong Kong Polytechnic University (PolyU / 理工大學)">
-        <option value="City University of Hong Kong (CityU / 城市大學)">
-        <option value="Hong Kong Baptist University (HKBU / 浸會大學)">
-        <option value="Lingnan University (LU / 嶺南大學)">
-        <option value="The Education University of Hong Kong (EdUHK / 教育大學)">
-        <option value="Hong Kong Metropolitan University (HKMU / 都會大學)">
-        <option value="Hong Kong Shue Yan University (HKSYU / 樹仁大學)">
-        <option value="TWGHs Sun Hoi Directors' College (辛亥年總理中學)">
+    <datalist id="primarySchoolSuggestions">
+        <option value="SHTTGA Ho Yat Tung Primary School (順德聯誼總會何日東小學)">
+        <option value="SHTTGA Wu Siu Kui Primary School (順德聯誼總會胡少渠紀念小學)">
+        <option value="SHTTGA Lee Kam Primary School (順德聯誼總會李金小學)">
+        <option value="Po Leung Kuk Fong Wong Kam Chuen Primary School (保良局方王錦全小學)">
+        <option value="Po Leung Kuk Castle Peak Primary School (保良局志豪小學)">
+        <option value="Po Leung Kuk Hong Kong Taoist Association Primary School (保良局香港道教聯合會圓玄小學)">
+        <option value="Tuen Mun Government Primary School (屯門官立小學)">
+        <option value="Yan Oi Tong Tin Ka Ping Primary School (仁愛堂田家炳小學)">
+        <option value="Yan Oi Tong Lau Wong Fat Primary School (仁愛堂劉皇發夫人小學)">
+        <option value="YCH Ho Shi Chu Primary School (仁濟醫院何式南小學)">
+        <option value="YCH Law Chan Chor Si Primary School (仁濟醫院羅陳楚思小學)">
+        <option value="TWGHs Tang Shiu Kin Primary School (東華三院鄧肇堅小學)">
+        <option value="TWGHs Ko Ho Ning Primary School (東華三院高可寧紀念小學)">
+        <option value="FEDB Wu Siu Kui Primary School (五邑鄒振猷學校)">
+        <option value="LHKMA Sau Ho Yu Primary School (梁周順琴小學)">
+        <option value="C&MA Sun Kei Primary School (屯門宣道小學)">
+    </datalist>
+
+    <datalist id="activitySuggestions">
+        <option value="The Hong Kong Schools Sports Federation (HKSSF / 香港學界體育聯會)">
+        <option value="HKSSF Tuen Mun Secondary Schools Area Committee (香港學界體育聯會屯門區中學分會)">
+        <option value="Hong Kong Schools Music and Speech Association (香港學校音樂及朗誦協會)">
+        <option value="Tung Wah Group of Hospitals (東華三院 - 賣旗日/總部)">
+        <option value="Hong Kong Representative Team / Association (香港代表隊 / 體育總會)">
+        <option value="The Hong Kong Award for Young People (AYP / 香港青年獎勵計劃)">
+        <option value="TWGHs Sun Hoi Directors' College (東華三院辛亥年總理中學)">
+        <option value="Hong Kong Red Cross (香港紅十字會)">
+        <option value="Hong Kong St. John Ambulance (香港聖約翰救傷隊)">
+        <option value="The Scout Association of Hong Kong (香港童軍總會)">
+        <option value="Hong Kong Girl Guides Association (香港女童軍總會)">
+        <option value="Agency for Volunteer Service (AVS / 義務工作發展局)">
+    </datalist>
+
+    <datalist id="activityNameSuggestions">
+        <option value="Inter-School Athletics Competition (學界田徑比賽)">
+        <option value="Inter-School Basketball Competition (學界籃球比賽)">
+        <option value="Inter-School Football Competition (學界足球比賽)">
+        <option value="Inter-School Swimming Competition (學界游泳比賽)">
+        <option value="Inter-School Volleyball Competition (學界排球比賽)">
+        <option value="Hong Kong Schools Music Festival (香港學校音樂節)">
+        <option value="Hong Kong Schools Speech Festival (香港學校朗誦節)">
+        <option value="TWGHs Flag Day Annual Charity Volunteer (東華三院全港賣旗日義工)">
+        <option value="Hong Kong National Youth Representative Team Training (香港青年代表隊訓練)">
+        <option value="Joint School Leadership Training Camp (聯校領袖訓練營)">
+    </datalist>
+
+    <datalist id="positionSuggestions">
+        <option value="Chairman (主席)">
+        <option value="Vice-chairman (副主席)">
+        <option value="Committee Member (幹事)">
+        <option value="Volunteer (義工人員)">
+        <option value="Prefect / School Leader (領袖生)">
+        <option value="Team Captain (隊長)">
+        <option value="Participant (參與者)">
+        <option value="Master of Ceremonies (司儀)">
+        <option value="House Captain (社長)">
+    </datalist>
+
+    <datalist id="rankSuggestions">
+        <option value="1st Place / Champion (第一名 / 冠軍)">
+        <option value="2nd Place / 1st Runner-up (第二名 / 亞軍)">
+        <option value="3rd Place / 2nd Runner-up (第三名 / 季軍)">
+        <option value="Champion - Team (團體冠軍)">
+        <option value="1st Runner-up - Team (團體亞軍)">
+        <option value="2nd Runner-up - Team (團體季軍)">
+        <option value="Champion - Individual (個人冠軍)">
+        <option value="1st Runner-up - Individual (個人亞軍)">
+        <option value="2nd Runner-up - Individual (個人季軍)">
+        <option value="Gold Award (金獎)">
+        <option value="Silver Award (銀獎)">
+        <option value="Bronze Award (銅獎)">
+        <option value="Hong Kong Team Representative (香港代表隊資格)">
+        <option value="Merit / Certificate of Proficiency (優異獎 / 良好證書)">
     </datalist>
 
     <div class="header">
@@ -109,7 +146,7 @@
         <!-- 三重安全校驗鎖 -->
         <div class="card" style="border-top: 4px solid #3182ce; background-color: #f0f9ff;">
             <div class="card-title" style="color: #2b6cb0; border-bottom-color: #bee3f8;">🏫 學生快速安全填報 / Student Verification (S6 三重安全校驗鎖)</div>
-            <div class="card-description">請輸入您的班別、學號，以及身份證首 4 位字元解鎖學籍庫資料 / Please verify your identity:</div>
+            <div class="card-description">請輸入您的班別、學號，以及身份證首 4 位字元解鎖學籍庫資料:</div>
             
             <div style="display: flex; gap: 15px; flex-wrap: wrap; align-items: flex-end;">
                 <div style="flex: 1; min-width: 140px;">
@@ -124,7 +161,7 @@
                     <input type="number" id="numInput" placeholder="例 / e.g. 5" min="1" max="45">
                 </div>
                 <div style="flex: 1.5; min-width: 220px;">
-                    <label for="hkidVerifyInput" style="color: var(--danger-color);">身份證首 4 字元 / First 4 Characters of HKID (如 / e.g. W123)</label>
+                    <label for="hkidVerifyInput" style="color: var(--danger-color);">身份證首 4 字元 / First 4 Characters of HKID</label>
                     <input type="text" id="hkidVerifyInput" placeholder="例 / e.g. W123" style="text-transform: uppercase;" maxlength="4">
                 </div>
                 <button type="button" class="btn" id="autofillBtn" onclick="autoFillStudentData()" style="background-color: #3182ce; color: white; height: 45px;">⚡ 安全驗證並自動填表 / Verify & Autofill</button>
@@ -429,7 +466,7 @@
                 <div class="card">
                     <div class="card-title">過往校內外活動、服務經歷 / Section 8: Activities & Extra-curricular Services</div>
                     <table id="activitiesTable">
-                        <thead><tr><th>主辦機構 / 學校<br>Institution / School</th><th>活動經歷名稱<br>Activity / Service Name</th><th>擔任職位<br>Position Held</th><th>參與年份<br>Year</th><th>操作 / Action</th></tr></thead>
+                        <thead><tr><th>主辦機構 / 學校<br>Institution / School</th><th>活動經歷名稱<br>Activity / Service Name</th><th>擔任職位<br>Position Held</th><th>參與年度<br>Academic Year</th><th>操作 / Action</th></tr></thead>
                         <tbody></tbody>
                     </table>
                     <div class="add-row-container"><button type="button" class="btn btn-outline" onclick="addActivityRow({}, true)">＋ 新增經歷 / Add Experience</button></div>
@@ -445,8 +482,8 @@
                             <tr>
                                 <th style="width: 25%;">頒發機構<br>Issuer (In English)</th>
                                 <th style="width: 35%;">獎學金 / 獎項全名<br>Name of Award (In English)</th>
-                                <th style="width: 15%;">獲獎年份<br>Year</th>
-                                <th style="width: 15%;">級別<br>Level (In English)</th>
+                                <th style="width: 15%;">獲獎年度<br>Academic Year</th>
+                                <th style="width: 15%;">獎項名次 / 級別<br>Award Rank / Level (Eng)</th>
                                 <th style="width: 10%;">操作 / Action</th>
                             </tr>
                         </thead>
@@ -463,7 +500,8 @@
                         <div class="form-group"><label>3. 中六模擬考試成績單 * / S6 Mock Examination Transcript *</label><div class="upload-box" onclick="document.getElementById('fileS6').click()"><span id="labelS6">📁 點擊選取中六成績單 / Upload S6 Mock</span><input type="file" id="fileS6" onchange="ajaxUploadSingleFile(this, 'labelS6', 'statusS6')"><div class="file-status" id="statusS6"></div></div></div>
                         <div class="form-group"><label>4. 香港中學文憑試成績通知書 * / HKDSE Result Notice *</label><div class="upload-box" onclick="document.getElementById('fileDse').click()"><span id="labelDse">📁 點擊選取 DSE 成績表 / Upload HKDSE</span><input type="file" id="fileDse" onchange="ajaxUploadSingleFile(this, 'labelDse', 'statusDse')"><div class="file-status" id="statusDse"></div></div></div>
                         <div class="form-group"><label>5. 香港身份證 * / Hong Kong ID Card (HKID) *</label><div class="upload-box" onclick="document.getElementById('fileHkid').click()"><span id="labelHkid">📁 點擊選取香港身份證 / Upload HKID</span><input type="file" id="fileHkid" onchange="ajaxUploadSingleFile(this, 'fileHkid', 'statusHkid')"><div class="file-status" id="statusHkid"></div></div></div>
-                        <div class="form-group"><label>6. 大專院校取錄通知書 (如有) / University Admission Offer Letter (Optional)</label><div class="upload-box" onclick="document.getElementById('fileAdmission').click()"><span id="labelAdmission">📁 點擊選取取錄信 / Upload Offer Letter</span><input type="file" id="fileAdmission" onchange="ajaxUploadSingleFile(this, 'labelAdmission', 'statusAdmission')"><div class="file-status" id="statusAdmission"></div></div></div>
+                        <!-- 🎯 核心新增：完美將 Offer Letter 與大學學生證整合中英對譯 -->
+                        <div class="form-group"><label>6. 大專院校取錄通知書 或 大學學生證 (如有) / University Offer Letter or Student ID (Optional)</label><div class="upload-box" onclick="document.getElementById('fileAdmission').click()"><span id="labelAdmission">📁 點擊選取取錄信/學生證 / Upload Offer/ID</span><input type="file" id="fileAdmission" onchange="ajaxUploadSingleFile(this, 'labelAdmission', 'statusAdmission')"><div class="file-status" id="statusAdmission"></div></div></div>
                     </div>
                 </div>
                 <div class="action-bar"><button type="button" class="btn btn-primary" id="submitBtn" onclick="submitToServer()" style="font-size: 16px; padding: 15px 50px;">🚀 最終確認並提交檔案 / Confirm & Submit Application</button></div>
@@ -482,7 +520,6 @@
             addFamilyRow({ val2: "父親", val7: "男", val5: "" }); 
             addFamilyRow({ val2: "母親", val7: "女", val5: "" }); 
             
-            // 💡 解析網址參數，支援一鍵直接解鎖載入舊數據
             const urlParams = new URLSearchParams(window.location.search);
             const queryAppId = urlParams.get('appId');
             if (queryAppId) {
@@ -510,14 +547,11 @@
             }
         }
 
-        // 🎯 核心新增：專門幫表格內動態增長的 Input 綁定 DataList 提示提示框的工具
-        function bindSuggestionToInput(inputEl) {
-            inputEl.setAttribute("list", "orgSuggestions");
-            
-            // 監聽輸入事件：如果學生直接選取了帶有括號的全稱，自動幫他截短只留最專業的英文全稱
+        function bindSuggestionToInput(inputEl, listId) {
+            inputEl.setAttribute("list", listId);
             inputEl.addEventListener("input", function() {
                 if (this.value.includes(" (")) {
-                    this.value = this.value.split(" (")[0];
+                    this.value = this.value.split(" (")[0]; 
                 }
             });
         }
@@ -683,7 +717,7 @@
                             <option value="外婆" ${relValue==='外婆'?'selected':''}>外婆 / Grandmother (Maternal)</option>
                             <option value="祖父(爺爺)" ${relValue==='祖父(爺爺)'?'selected':''}>祖父 (爺爺) / Paternal GF</option>
                             <option value="祖母(岲岅)" ${relValue==='祖母(岅)'?'selected':''}>祖母 (岅) / Paternal GM</option>
-                            <option value="其他" ${relValue==='其他'?'selected':''}>其他 / Other...</option>
+                            <option value="開他" ${relValue==='其他'?'selected':''}>其他 / Other...</option>
                         </select>
                         <input type="text" class="fam-rel-custom" placeholder="請註明 / e.g. Uncle" value="${customRelValue}" onblur="autoTitleCase(this)" style="display: ${isCustom ? 'block' : 'none'}; font-size:12px; padding: 6px 10px;">
                     </div>
@@ -713,34 +747,52 @@
             if (selectEl.value === "其他") { customInput.style.display = "block"; customInput.focus(); } else { customInput.style.display = "none"; customInput.value = ""; }
             const genderSelect = selectEl.closest('tr').querySelector('.fam-gender');
             if (["父親", "外公", "祖父(爺爺)"].indexOf(selectEl.value) !== -1) genderSelect.value = "男";
-            if (["母親", "外婆", "祖母(岅)"].indexOf(selectEl.value) !== -1) genderSelect.value = "女";
+            if (["母親", "外婆", "祖母(嫲岅)"].indexOf(selectEl.value) !== -1) genderSelect.value = "女";
         }
 
         function addEducationRow(data={}, autoFillSchool=true) { 
             const table = document.getElementById('educationTable').getElementsByTagName('tbody')[0]; const row = table.insertRow(); 
-            const defaultSchool = autoFillSchool ? SCHOOL_DEFAULT_NAME : (data.val1 || "");
-            row.innerHTML = `<td><input type="text" class="edu-school" placeholder="e.g. TWGHs Sun Hoi Directors' College" onblur="autoTitleCase(this)" value="${defaultSchool}"></td><td><input type="number" class="edu-from" value="${data.val2||''}" placeholder="2015"></td><td><input type="number" class="edu-to" value="${data.val3||''}" placeholder="2021"></td><td><input type="text" class="edu-level" placeholder="e.g. Primary 6" onblur="autoTitleCase(this)" value="${data.val4||''}"></td><td><button type="button" class="btn btn-danger" onclick="deleteRow(this)">刪除 / X</button></td>`; 
-            
-            // 💡 核心新增：綁定以往學歷的聯想選單
-            bindSuggestionToInput(row.querySelector('.edu-school'));
+            const defaultSchool = autoFillSchool ? "" : (data.val1 || ""); 
+            row.innerHTML = `<td><input type="text" class="edu-school" placeholder="輸入屯門區小學關鍵字 / e.g. Lee Kam" onblur="autoTitleCase(this)" value="${defaultSchool}"></td><td><input type="number" class="edu-from" value="${data.val2||''}" placeholder="2014"></td><td><input type="number" class="edu-to" value="${data.val3||''}" placeholder="2020"></td><td><input type="text" class="edu-level" placeholder="e.g. Primary 6" onblur="autoTitleCase(this)" value="${data.val4||''}"></td><td><button type="button" class="btn btn-danger" onclick="deleteRow(this)">刪除 / X</button></td>`; 
+            bindSuggestionToInput(row.querySelector('.edu-school'), "primarySchoolSuggestions");
         }
         
         function addActivityRow(data={}, autoFillSchool=true) { 
             const table = document.getElementById('activitiesTable').getElementsByTagName('tbody')[0]; const row = table.insertRow(); 
             const defaultOrg = autoFillSchool ? SCHOOL_DEFAULT_NAME : (data.val1 || "");
-            row.innerHTML = `<td><input type="text" class="act-org" placeholder="例：校方 / Hong Kong Red Cross" value="${defaultOrg}"></td><td><input type="text" class="act-name" placeholder="例：紅十字會校隊 / Volunteer Service" value="${data.val2||''}"></td><td><input type="text" class="act-pos" placeholder="例：隊長 / Team Leader" value="${data.val3||''}"></td><td><input type="text" class="act-year" placeholder="2024-2025" value="${data.val4||''}"></td><td><button type="button" class="btn btn-danger" onclick="deleteRow(this)">刪除 / X</button></td>`; 
+            row.innerHTML = `
+                <td><input type="text" class="act-org" placeholder="例：HKSSF / 東華三院賣旗日"></td>
+                <td><input type="text" class="act-name" placeholder="例：Inter-School Basketball / Flag Day" value="${data.val2||''}"></td>
+                <td><input type="text" class="act-pos" placeholder="例：隊長 / Volunteer"></td>
+                <td><input type="text" class="act-year" placeholder="例：2023-2024" pattern="^[0-9]{4}-[0-9]{4}$" required value="${data.val4||''}"></td>
+                <td><button type="button" class="btn btn-danger" onclick="deleteRow(this)">刪除 / X</button></td>
+            `; 
+            bindSuggestionToInput(row.querySelector('.act-org'), "activitySuggestions");
+            bindSuggestionToInput(row.querySelector('.act-name'), "activityNameSuggestions");
+            bindSuggestionToInput(row.querySelector('.act-pos'), "positionSuggestions");
             
-            // 💡 核心新增：綁定活動主辦機構的聯想選單
-            bindSuggestionToInput(row.querySelector('.act-org'));
+            if(autoFillSchool && defaultOrg) {
+                row.querySelector('.act-org').value = defaultOrg;
+            }
         }
         
         function addAwardRow(data={}, autoFillSchool=true) { 
             const table = document.getElementById('awardsTable').getElementsByTagName('tbody')[0]; const row = table.insertRow(); 
             const defaultIssuer = autoFillSchool ? SCHOOL_DEFAULT_NAME : (data.val1 || "");
-            row.innerHTML = `<td><input type="text" class="aw-org" placeholder="e.g. Hong Kong Mathematical Society" onblur="autoTitleCase(this)" value="${defaultIssuer}"></td><td><input type="text" class="aw-name" placeholder="e.g. Mathematics Olympiad Gold Award" onblur="autoTitleCase(this)" value="${data.val2||''}"></td><td><input type="text" class="aw-year" placeholder="2025" value="${data.val3||''}"></td><td><input type="text" class="aw-level" placeholder="e.g. Territory-wide" onblur="autoTitleCase(this)" value="${data.val4||''}"></td><td><button type="button" class="btn btn-danger" onclick="deleteRow(this)">刪除 / X</button></td>`; 
+            row.innerHTML = `
+                <td><input type="text" class="aw-org" placeholder="例：學體會 / 學校方"></td>
+                <td><input type="text" class="aw-name" placeholder="例：100m Gold Award / 1st Runner-up" value="${data.val2||''}"></td>
+                <td><input type="text" class="aw-year" placeholder="例：2024-2025" pattern="^[0-9]{4}-[0-9]{4}$" required value="${data.val3||''}"></td>
+                <td><input type="text" class="aw-level" placeholder="例：1st Place / 團體冠軍 / 隊長" value="${data.val4||''}"></td>
+                <td><button type="button" class="btn btn-danger" onclick="deleteRow(this)">刪除 / X</button></td>
+            `; 
+            bindSuggestionToInput(row.querySelector('.aw-org'), "activitySuggestions");
+            bindSuggestionToInput(row.querySelector('.aw-name'), "activityNameSuggestions");
+            bindSuggestionToInput(row.querySelector('.aw-level'), "rankSuggestions");
             
-            // 💡 核心新增：綁定獲獎頒發機構的聯想選單
-            bindSuggestionToInput(row.querySelector('.aw-org'));
+            if(autoFillSchool && defaultIssuer) {
+                row.querySelector('.aw-org').value = defaultIssuer;
+            }
         }
         
         function deleteRow(btn) { btn.closest('tr').remove(); }
