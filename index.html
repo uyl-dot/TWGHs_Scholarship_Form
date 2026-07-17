@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>東華三院大學獎學金 — 線上填報系統</title>
+    <title>東華三院大學獎學金 — 線上填報系統 </title>
     <style>
         :root {
             --primary-color: #1f4e78; --primary-light: #ebf8ff; --accent-color: #d69e2e; --bg-color: #f7fafc; --card-bg: #ffffff; --text-dark: #2d3748; --text-muted: #718096; --border-color: #e2e8f0; --success-color: #38a169; --danger-color: #e53e3e;
@@ -188,21 +188,25 @@
                     </div>
                     <h4 style="color: var(--primary-color); margin: 0 0 10px 0;">選修科目與原始等級 / Electives</h4>
                     <div class="form-grid">
+                        <!-- 🎯 終極修正：將所有選修科 value 改回純英文代碼（PHY, BIO, CHEM, ECON...），100% 契合大腦對齊寫入 -->
                         <div class="form-group">
                             <select id="elecSubject1">
-                                <option value="">選修科一 / Elective 1...</option><option value="PHY">PHY / 物理</option><option value="BIO">BIO / 生物</option><option value="CHEM">CHEM / 化學</option><option value="ECON">ECON / 經濟</option><option value="BAFS">BAFS / 企會財</option>
+                                <option value="">選修科一 / Elective 1...</option>
+                                <option value="PHY">PHY</option><option value="BIO">BIO</option><option value="CHEM">CHEM</option><option value="ECON">ECON</option><option value="BAFS">BAFS</option><option value="HIST">HIST</option><option value="GEOG">GEOG</option><option value="CHIST">CHIST</option><option value="LIT">LIT</option><option value="ICT">ICT</option><option value="M1">M1</option><option value="M2">M2</option>
                             </select>
                             <input type="number" id="elecScore1" min="1" max="7" placeholder="分數 / Level" style="margin-top:5px;">
                         </div>
                         <div class="form-group">
                             <select id="elecSubject2">
-                                <option value="">選修科二 / Elective 2...</option><option value="PHY">PHY / 物理</option><option value="BIO">BIO / 生物</option><option value="CHEM">CHEM / 化學</option><option value="ECON">ECON / 經濟</option><option value="BAFS">BAFS / 企會財</option>
+                                <option value="">選修科二 / Elective 2...</option>
+                                <option value="PHY">PHY</option><option value="BIO">BIO</option><option value="CHEM">CHEM</option><option value="ECON">ECON</option><option value="BAFS">BAFS</option><option value="HIST">HIST</option><option value="GEOG">GEOG</option><option value="CHIST">CHIST</option><option value="LIT">LIT</option><option value="ICT">ICT</option><option value="M1">M1</option><option value="M2">M2</option>
                             </select>
                             <input type="number" id="elecScore2" min="1" max="7" placeholder="分數 / Level" style="margin-top:5px;">
                         </div>
                         <div class="form-group">
                             <select id="elecSubject3">
-                                <option value="">選修科三 (選填) / Elective 3...</option><option value="PHY">PHY / 物理</option><option value="BIO">BIO / 生物</option><option value="CHEM">CHEM / 化學</option><option value="ECON">ECON / 經濟</option><option value="BAFS">BAFS / 企會財</option>
+                                <option value="">選修科三 (選填) / Elective 3...</option>
+                                <option value="PHY">PHY</option><option value="BIO">BIO</option><option value="CHEM">CHEM</option><option value="ECON">ECON</option><option value="BAFS">BAFS</option><option value="HIST">HIST</option><option value="GEOG">GEOG</option><option value="CHIST">CHIST</option><option value="LIT">LIT</option><option value="ICT">ICT</option><option value="M1">M1</option><option value="M2">M2</option>
                             </select>
                             <input type="number" id="elecScore3" min="1" max="7" placeholder="分數 / Level" style="margin-top:5px;">
                         </div>
@@ -249,7 +253,6 @@
     </div>
 
     <script>
-        // 🎯 終極對齊：已直接鎖定您剛剛在活試算表生成的真格防護網址！
         const BASE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbwtvsSc_asMhDQwUZBeSVLVGpwROM8sEKtDZxW3FZ3WwbDFdJq8kdrdC13esJyPf2Fx/exec"; 
         function getFreshScriptUrl() { return BASE_SCRIPT_URL + "?_cb=" + new Date().getTime() + "_" + Math.floor(Math.random()*9999); }
         
@@ -280,10 +283,16 @@
                     document.getElementById('nameEn').value = data.nameEn; document.getElementById('nameCh').value = data.nameCh; document.getElementById('hkid').value = data.hkid; document.getElementById('dob').value = data.dob; document.getElementById('placeOfBirth').value = data.placeOfBirth; document.getElementById('mobile').value = data.mobile; document.getElementById('email').value = data.email; document.getElementById('wechat').value = data.wechat; document.getElementById('address').value = data.address; document.getElementById('housingType').value = data.housingType; document.getElementById('guardianName').value = data.guardianName; document.getElementById('guardianMobile').value = data.guardianMobile;
                     setSelectValue('uniName', data.uniName); document.getElementById('progName').value = data.progName; document.getElementById('jupasCode').value = data.jupasCode; document.getElementById('duration').value = data.duration;
                     document.getElementById('dseChi').value = data.dseChi || ""; document.getElementById('dseEng').value = data.dseEng || ""; document.getElementById('dseMath').value = data.dseMath || ""; setSelectValue('dseCs', data.dseCs || "");
+                    
+                    if (data.dseE1) { const parts = data.dseE1.split('('); setSelectValue('elecSubject1', parts[0]); if(parts[1]) document.getElementById('elecScore1').value = parts[1].replace(')', '').trim(); }
+                    if (data.dseE2) { const parts = data.dseE2.split('('); setSelectValue('elecSubject2', parts[0]); if(parts[1]) document.getElementById('elecScore2').value = parts[1].replace(')', '').trim(); }
+                    if (data.dseE3) { const parts = data.dseE3.split('('); setSelectValue('elecSubject3', parts[0]); if(parts[1]) document.getElementById('elecScore3').value = parts[1].replace(')', '').trim(); }
+
                     document.getElementById('cssa').value = data.cssa; document.getElementById('cssaAmount').value = data.cssaAmount; document.getElementById('schFinance').value = data.schFinance;
                     document.getElementById('rankS4').value = data.rankS4; document.getElementById('rankS5').value = data.rankS5; document.getElementById('rankS6').value = data.rankS6;
-                    document.querySelector('#familyTable tbody').innerHTML = ""; document.querySelector('#activitiesTable tbody').innerHTML = ""; document.querySelector('#awardsTable tbody').innerHTML = "";
+                    document.querySelector('#familyTable tbody').innerHTML = ""; document.querySelector('#educationTable tbody').innerHTML = '<tr><td><input type="text" class="edu-school" value="TWGHs Sun Hoi Directors\' College" readonly style="background:#f8fafc; font-weight:bold;"></td><td><input type="number" class="edu-from" placeholder="2020"></td><td><input type="number" class="edu-to" placeholder="2026"></td><td><input type="text" class="edu-level" value="Form 6" readonly style="background:#f8fafc; text-align:center;"></td><td><span style="font-size:11px; color:var(--text-muted);">核心母校</span></td></tr>'; document.querySelector('#activitiesTable tbody').innerHTML = ""; document.querySelector('#awardsTable tbody').innerHTML = "";
                     try { const fam = JSON.parse(data.family); fam.forEach(f => addFamilyRow(f)); } catch(e){}
+                    try { const edu = JSON.parse(data.education); edu.forEach(ed => addEducationRow(ed)); } catch(e){}
                     try { const act = JSON.parse(data.activities); act.forEach(a => addActivityRow(a, false)); } catch(e){}
                     try { const aw = JSON.parse(data.awards); aw.forEach(w => addAwardRow(w, false)); } catch(e){}
                     if (data.fileUrls) { uploadedFileUrls = data.fileUrls; Object.keys(uploadedFileUrls).forEach(id => { if (uploadedFileUrls[id]) { document.getElementById(id.replace('file', 'label')).innerText = "✓ 已於雲端就緒"; } }); }
@@ -331,7 +340,7 @@
         }
 
         function switchTab(tabId) { document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active')); document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active')); document.getElementById(tabId).classList.add('active'); document.getElementById('tab_' + tabId).classList.add('active'); }
-        function getTableRowsData(s, cList) { const arr = []; document.querySelectorAll(`${s} tr`).forEach(r => { const o = {}; cList.forEach((c, idx) => { const el = r.querySelector(c); if(el) o[`val${idx+1}`] = el.value.trim(); }); arr.push(o); }); return arr; }
+        function getTableRowsData(s, cList) { const arr = []; document.querySelectorAll(`${s} tr`).forEach((r, idx) => { if(s.includes('educationTable') && idx===0) return; const o = {}; cList.forEach((c, idx2) => { const el = r.querySelector(c); if(el) o[`val${idx2+1}`] = el.value.trim(); }); if(Object.keys(o).length > 0) arr.push(o); }); return arr; }
         function getFamilyTableData() { const arr = []; document.querySelectorAll('#familyTable tbody tr').forEach(r => { const n = r.querySelector('.fam-name').value.trim(); const rel = r.querySelector('.fam-rel').value; if(n || ["父親","母親"].includes(rel)) arr.push({ val1: n, val2: rel, val3: r.querySelector('.fam-age').value.trim(), val4: r.querySelector('.fam-edu').value, val5: r.querySelector('.fam-occ').value.trim(), val6: r.querySelector('.fam-income').value.trim(), val7: r.querySelector('.fam-gender').value }); }); return arr; }
         function getBasicData() { return { schoolYear: document.getElementById('schoolYear').value, studentClass: document.getElementById('studentClass').value, nameEn: document.getElementById('nameEn').value.trim(), nameCh: document.getElementById('nameCh').value, dob: document.getElementById('dob').value, placeOfBirth: document.getElementById('placeOfBirth').value, hkid: document.getElementById('hkid').value.toUpperCase(), address: document.getElementById('address').value.trim(), housingType: document.getElementById('housingType').value, mobile: document.getElementById('mobile').value, email: document.getElementById('email').value.trim(), wechat: document.getElementById('wechat').value.trim(), guardianName: document.getElementById('guardianName').value.trim(), guardianMobile: document.getElementById('guardianMobile').value, uniName: document.getElementById('uniName').value, progName: document.getElementById('progName').value.trim(), jupasCode: document.getElementById('jupasCode').value.toUpperCase(), duration: document.getElementById('duration').value.trim(), dseChi: document.getElementById('dseChi').value, dseEng: document.getElementById('dseEng').value, dseMath: document.getElementById('dseMath').value, dseCs: document.getElementById('dseCs').value, dseE1: document.getElementById('elecSubject1').value ? `${document.getElementById('elecSubject1').value} (${document.getElementById('elecScore1').value})` : "", dseE2: document.getElementById('elecSubject2').value ? `${document.getElementById('elecSubject2').value} (${document.getElementById('elecScore2').value})` : "", dseE3: document.getElementById('elecSubject3').value ? `${document.getElementById('elecSubject3').value} (${document.getElementById('elecScore3').value})` : "" }; }
         function toggleCSSAAmount() { document.getElementById('cssaAmountGroup').style.display = document.getElementById('cssa').value === '是' ? 'flex' : 'none'; }
@@ -341,7 +350,7 @@
             r.innerHTML = `<td><input type="text" class="fam-name" placeholder="Chan Tai Man" onblur="autoTitleCase(this)" value="${data.val1||''}"></td><td><select class="fam-rel" onchange="toggleFamilyGender(this)"><option value="父親" ${relValue==='父親'?'selected':''}>父親 / Father</option><option value="母親" ${relValue==='母親'?'selected':''}>母親 / Mother</option><option value="兄弟姊妹" ${relValue==='兄弟姊妹'?'selected':''}>兄弟姊妹 / Siblings</option></select></td><td><select class="fam-gender"><option value="男" ${genderValue==='男'?'selected':''}>男 / M</option><option value="女" ${genderValue==='女'?'selected':''}>女 / F</option></select></td><td><input type="number" class="fam-age" value="${data.val3||''}" style="text-align:center;"></td><td><select class="fam-edu"><option value="大專/大學">大專/大學 / Tertiary</option><option value="中學">中學 / Secondary</option><option value="小學">小學 / Primary</option></select></td><td><input type="text" class="fam-occ" placeholder="e.g. Clerk" value="${data.val5||''}"></td><td><input type="number" class="fam-income" value="${data.val6||''}" style="text-align:right;" placeholder="HKD"></td><td><button type="button" class="btn btn-danger" onclick="deleteRow(this)">X</button></td>`;
         }
         function toggleFamilyGender(selectEl) { const gSelect = selectEl.closest('tr').querySelector('.fam-gender'); if (selectEl.value === "父親") gSelect.value = "男"; if (selectEl.value === "母親") gSelect.value = "女"; }
-        function addEducationRow(data={}) { const t = document.getElementById('educationTable').getElementsByTagName('tbody')[0]; const r = t.insertRow(); r.innerHTML = `<td><input type="text" class="edu-school" placeholder="Select school..." value="${data.val1||''}"></td><td><input type="number" class="edu-from" placeholder="2014"></td><td><input type="number" class="edu-to" placeholder="2020"></td><td><input type="text" class="edu-level" placeholder="e.g. Primary 6" onblur="autoTitleCase(this)"></td><td><button type="button" class="btn btn-danger" onclick="deleteRow(this)">X</button></td>`; bindSuggestionToInput(r.querySelector('.edu-school'), "primarySchoolSuggestions"); }
+        function addEducationRow(data={}) { const t = document.getElementById('educationTable').getElementsByTagName('tbody')[0]; const r = t.insertRow(); r.innerHTML = `<td><input type="text" class="edu-school" placeholder="Select school..." value="${data.val1||''}"></td><td><input type="number" class="edu-from" value="${data.val2||''}"></td><td><input type="number" class="edu-to" value="${data.val3||''}"></td><td><input type="text" class="edu-level" placeholder="e.g. Primary 6" onblur="autoTitleCase(this)" value="${data.val4||''}"></td><td><button type="button" class="btn btn-danger" onclick="deleteRow(this)">X</button></td>`; bindSuggestionToInput(r.querySelector('.edu-school'), "primarySchoolSuggestions"); }
         function addActivityRow(data={}, autoFillSchool=true) { const t = document.getElementById('activitiesTable').getElementsByTagName('tbody')[0]; const r = t.insertRow(); const dOrg = autoFillSchool ? SCHOOL_DEFAULT_NAME : (data.val1 || ""); r.innerHTML = `<td><input type="text" class="act-org" value="${dOrg}"></td><td><input type="text" class="act-name" value="${data.val2||''}"></td><td><input type="text" class="act-pos" value="${data.val3||''}"></td><td><input type="text" class="act-year" placeholder="2023-2024" required value="${data.val4||''}"></td><td><button type="button" class="btn btn-danger" onclick="deleteRow(this)">X</button></td>`; bindSuggestionToInput(r.querySelector('.act-org'), "activitySuggestions"); }
         function addAwardRow(data={}, autoFillSchool=true) { const t = document.getElementById('awardsTable').getElementsByTagName('tbody')[0]; const r = t.insertRow(); const dIssuer = autoFillSchool ? SCHOOL_DEFAULT_NAME : (data.val1 || ""); r.innerHTML = `<td><input type="text" class="aw-org" value="${dIssuer}"></td><td><input type="text" class="aw-name" value="${data.val2||''}"></td><td><input type="text" class="aw-year" placeholder="2024-2025" required value="${data.val3||''}"></td><td><input type="text" class="aw-level" value="${data.val4||''}"></td><td><button type="button" class="btn btn-danger" onclick="deleteRow(this)">X</button></td>`; bindSuggestionToInput(r.querySelector('.aw-org'), "activitySuggestions"); }
         function deleteRow(b) { b.closest('tr').remove(); }
