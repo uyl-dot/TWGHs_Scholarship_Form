@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>東華三院大學獎學金 — 線上填報系統 V15.3</title>
+    <title>東華三院大學獎學金 — 線上填報系統 V16.5</title>
     <style>
         :root {
             --primary-color: #1f4e78;
@@ -27,7 +27,7 @@
         .card-title { color: var(--primary-color); font-size: 18px; font-weight: bold; margin-top: 0; margin-bottom: 15px; border-bottom: 2px solid var(--border-color); padding-bottom: 10px; display: flex; justify-content: space-between; align-items: center; }
         .card-description { font-size: 14px; color: var(--text-muted); margin-bottom: 20px; }
         .form-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 20px; margin-bottom: 15px; }
-        .form-group { display: flex; flex-direction: column; }
+        .form-group { display: flex; flex-direction: column; position: relative; }
         label { font-weight: 600; font-size: 14px; margin-bottom: 6px; color: var(--text-dark); }
         .req-eng { color: var(--accent-color); font-size: 11px; font-weight: bold; margin-top: 2px; }
         .upload-box { background: #f8fafc; border: 2px dashed #cbd5e1; padding: 18px; border-radius: 6px; text-align: center; cursor: pointer; transition: all 0.2s; min-height: 90px; display: flex; flex-direction: column; align-items: center; justify-content: center; position: relative; }
@@ -40,7 +40,7 @@
         input[type="text"], input[type="number"], input[type="date"], select, textarea { padding: 10px 14px; border: 1px solid var(--border-color); border-radius: 6px; font-size: 14px; width: 100%; }
         table { width: 100%; border-collapse: collapse; margin-bottom: 20px; font-size: 14px; }
         th { background-color: var(--primary-color); color: white; text-align: left; padding: 12px; }
-        td { padding: 10px; border-bottom: 1px solid var(--border-color); }
+        td { padding: 10px; border-bottom: 1px solid var(--border-color); position: relative; }
         .btn { padding: 10px 20px; border-radius: 6px; font-size: 14px; font-weight: 600; cursor: pointer; transition: all 0.2s; border: none; display: inline-flex; align-items: center; justify-content: center; }
         .btn-primary { background-color: var(--primary-color); color: white; }
         .btn-primary:hover { background-color: #153552; }
@@ -54,12 +54,51 @@
         .tab-btn.active { color: var(--primary-color); border-bottom-color: var(--primary-color); }
         .tab-content { display: none; }
         .tab-content.active { display: block; }
-        .diagnose-box { background-color: #1a1a1a; color: #00ff00; font-family: monospace; padding: 15px; border-radius: 6px; margin-top: 15px; font-size: 13px; max-height: 150px; overflow-y: auto; text-align: left; }
+        
+        /* 🎯 核心新增：自動聯想下拉提示框樣式 */
+        .autocomplete-suggestions {
+            position: absolute;
+            z-index: 9999;
+            background: white;
+            border: 1px solid var(--border-color);
+            border-top: none;
+            border-radius: 0 0 6px 6px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            max-height: 180px;
+            overflow-y: auto;
+            width: 95%;
+            margin-top: 1px;
+        }
+        .autocomplete-suggestion {
+            padding: 10px 14px;
+            cursor: pointer;
+            font-size: 13px;
+            text-align: left;
+        }
+        .autocomplete-suggestion:hover {
+            background-color: var(--primary-light);
+            color: var(--primary-color);
+        }
         @keyframes pulse { 0% { opacity: 0.5; } 50% { opacity: 1; } 100% { opacity: 0.5; } }
         @media (max-width: 768px) { .form-grid { grid-template-columns: 1fr; } table { display: block; overflow-x: auto; } }
     </style>
 </head>
 <body>
+
+    <!-- HTML5 原生聯想詞庫 -->
+    <datalist id="orgSuggestions">
+        <option value="The Hong Kong University of Science and Technology (HKUST / 科技大學)">
+        <option value="The University of Hong Kong (HKU / 香港大學)">
+        <option value="The Chinese University of Hong Kong (CUHK / 中文大學)">
+        <option value="The Hong Kong Polytechnic University (PolyU / 理工大學)">
+        <option value="City University of Hong Kong (CityU / 城市大學)">
+        <option value="Hong Kong Baptist University (HKBU / 浸會大學)">
+        <option value="Lingnan University (LU / 嶺南大學)">
+        <option value="The Education University of Hong Kong (EdUHK / 教育大學)">
+        <option value="Hong Kong Metropolitan University (HKMU / 都會大學)">
+        <option value="Hong Kong Shue Yan University (HKSYU / 樹仁大學)">
+        <option value="TWGHs Sun Hoi Directors' College (辛亥年總理中學)">
+    </datalist>
 
     <div class="header">
         <h1>東華三院大學獎學金 — 線上填報系統</h1>
@@ -442,6 +481,14 @@
         window.onload = function() {
             addFamilyRow({ val2: "父親", val7: "男", val5: "" }); 
             addFamilyRow({ val2: "母親", val7: "女", val5: "" }); 
+            
+            // 💡 解析網址參數，支援一鍵直接解鎖載入舊數據
+            const urlParams = new URLSearchParams(window.location.search);
+            const queryAppId = urlParams.get('appId');
+            if (queryAppId) {
+                document.getElementById('searchAppId').value = queryAppId;
+                setTimeout(loadOldData, 800);
+            }
         };
 
         function autoTitleCase(el) {
@@ -449,24 +496,30 @@
             el.value = el.value.toString().toLowerCase().replace(/\b[a-z]/g, function(letter) { return letter.toUpperCase(); }).trim();
         }
 
-        // 🎯【高寬容度前端智慧對譯比對引擎】
         function setSelectValue(id, val) {
             if (!val) return;
             const selectEl = document.getElementById(id); if (!selectEl) return;
-            
-            // 將傳入的值（如 "PHY"）進行極致規範化
             let cleanVal = val.toString().trim().toUpperCase().replace(/[\s\-\_\/]+/g, '');
-            
             for (let i = 0; i < selectEl.options.length; i++) {
                 let optVal = selectEl.options[i].value.toString().trim().toUpperCase().replace(/[\s\-\_\/]+/g, '');
                 let optText = selectEl.options[i].text.toString().trim().toUpperCase().replace(/[\s\-\_\/]+/g, '');
-                
-                // 💡 核心修正：加入 includes 雙向模糊包含判定，徹底粉碎中英對照 "PHY / 物理" 造成的匹配阻礙
                 if (cleanVal === optVal || optVal.includes(cleanVal) || cleanVal.includes(optVal) || optText.includes(cleanVal)) { 
                     selectEl.selectedIndex = i; 
                     return; 
                 }
             }
+        }
+
+        // 🎯 核心新增：專門幫表格內動態增長的 Input 綁定 DataList 提示提示框的工具
+        function bindSuggestionToInput(inputEl) {
+            inputEl.setAttribute("list", "orgSuggestions");
+            
+            // 監聽輸入事件：如果學生直接選取了帶有括號的全稱，自動幫他截短只留最專業的英文全稱
+            inputEl.addEventListener("input", function() {
+                if (this.value.includes(" (")) {
+                    this.value = this.value.split(" (")[0];
+                }
+            });
         }
 
         function loadOldData() {
@@ -556,7 +609,6 @@
                     if (data.dseMath) document.getElementById('dseMath').value = data.dseMath;
                     if (data.dseCs) setSelectValue('dseCs', data.dseCs);
 
-                    // 💡 這裡會完美呼叫全新的對譯引擎，選修科目名稱和分數將一併正確填入
                     if (data.elec1) setSelectValue('elecSubject1', data.elec1);
                     if (data.elecScore1) document.getElementById('elecScore1').value = data.elecScore1;
                     if (data.elec2) setSelectValue('elecSubject2', data.elec2);
@@ -630,7 +682,7 @@
                             <option value="外公" ${relValue==='外公'?'selected':''}>外公 / Grandfather (Maternal)</option>
                             <option value="外婆" ${relValue==='外婆'?'selected':''}>外婆 / Grandmother (Maternal)</option>
                             <option value="祖父(爺爺)" ${relValue==='祖父(爺爺)'?'selected':''}>祖父 (爺爺) / Paternal GF</option>
-                            <option value="祖母(嫲岅)" ${relValue==='祖母(岅)'?'selected':''}>祖母 (岅) / Paternal GM</option>
+                            <option value="祖母(岲岅)" ${relValue==='祖母(岅)'?'selected':''}>祖母 (岅) / Paternal GM</option>
                             <option value="其他" ${relValue==='其他'?'selected':''}>其他 / Other...</option>
                         </select>
                         <input type="text" class="fam-rel-custom" placeholder="請註明 / e.g. Uncle" value="${customRelValue}" onblur="autoTitleCase(this)" style="display: ${isCustom ? 'block' : 'none'}; font-size:12px; padding: 6px 10px;">
@@ -668,17 +720,29 @@
             const table = document.getElementById('educationTable').getElementsByTagName('tbody')[0]; const row = table.insertRow(); 
             const defaultSchool = autoFillSchool ? SCHOOL_DEFAULT_NAME : (data.val1 || "");
             row.innerHTML = `<td><input type="text" class="edu-school" placeholder="e.g. TWGHs Sun Hoi Directors' College" onblur="autoTitleCase(this)" value="${defaultSchool}"></td><td><input type="number" class="edu-from" value="${data.val2||''}" placeholder="2015"></td><td><input type="number" class="edu-to" value="${data.val3||''}" placeholder="2021"></td><td><input type="text" class="edu-level" placeholder="e.g. Primary 6" onblur="autoTitleCase(this)" value="${data.val4||''}"></td><td><button type="button" class="btn btn-danger" onclick="deleteRow(this)">刪除 / X</button></td>`; 
+            
+            // 💡 核心新增：綁定以往學歷的聯想選單
+            bindSuggestionToInput(row.querySelector('.edu-school'));
         }
+        
         function addActivityRow(data={}, autoFillSchool=true) { 
             const table = document.getElementById('activitiesTable').getElementsByTagName('tbody')[0]; const row = table.insertRow(); 
             const defaultOrg = autoFillSchool ? SCHOOL_DEFAULT_NAME : (data.val1 || "");
             row.innerHTML = `<td><input type="text" class="act-org" placeholder="例：校方 / Hong Kong Red Cross" value="${defaultOrg}"></td><td><input type="text" class="act-name" placeholder="例：紅十字會校隊 / Volunteer Service" value="${data.val2||''}"></td><td><input type="text" class="act-pos" placeholder="例：隊長 / Team Leader" value="${data.val3||''}"></td><td><input type="text" class="act-year" placeholder="2024-2025" value="${data.val4||''}"></td><td><button type="button" class="btn btn-danger" onclick="deleteRow(this)">刪除 / X</button></td>`; 
+            
+            // 💡 核心新增：綁定活動主辦機構的聯想選單
+            bindSuggestionToInput(row.querySelector('.act-org'));
         }
+        
         function addAwardRow(data={}, autoFillSchool=true) { 
             const table = document.getElementById('awardsTable').getElementsByTagName('tbody')[0]; const row = table.insertRow(); 
             const defaultIssuer = autoFillSchool ? SCHOOL_DEFAULT_NAME : (data.val1 || "");
             row.innerHTML = `<td><input type="text" class="aw-org" placeholder="e.g. Hong Kong Mathematical Society" onblur="autoTitleCase(this)" value="${defaultIssuer}"></td><td><input type="text" class="aw-name" placeholder="e.g. Mathematics Olympiad Gold Award" onblur="autoTitleCase(this)" value="${data.val2||''}"></td><td><input type="text" class="aw-year" placeholder="2025" value="${data.val3||''}"></td><td><input type="text" class="aw-level" placeholder="e.g. Territory-wide" onblur="autoTitleCase(this)" value="${data.val4||''}"></td><td><button type="button" class="btn btn-danger" onclick="deleteRow(this)">刪除 / X</button></td>`; 
+            
+            // 💡 核心新增：綁定獲獎頒發機構的聯想選單
+            bindSuggestionToInput(row.querySelector('.aw-org'));
         }
+        
         function deleteRow(btn) { btn.closest('tr').remove(); }
         function toggleCSSAAmount() { document.getElementById('cssaAmountGroup').style.display = document.getElementById('cssa').value === '是' ? 'flex' : 'none'; }
         function updateElectiveDropdowns() {}
