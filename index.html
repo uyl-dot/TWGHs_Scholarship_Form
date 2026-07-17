@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>東華三院大學獎學金 — 線上填報系統 V17.3</title>
+    <title>東華三院大學獎學金 — 線上填報系統 </title>
     <style>
         :root {
             --primary-color: #1f4e78;
@@ -19,19 +19,12 @@
         }
         * { box-sizing: border-box; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; }
         body { background-color: var(--bg-color); color: var(--text-dark); margin: 0; padding: 0; line-height: 1.6; }
-        
-        /* 📸 辛亥年總理中學校景美麗橫幅與微暗保護色 */
         .header { 
             background: linear-gradient(rgba(15, 41, 62, 0.65), rgba(15, 41, 62, 0.65)), url('Virtual_Background.jpg') no-repeat center center; 
-            background-size: cover;
-            color: white; 
-            text-align: center; 
-            padding: 55px 20px; 
-            border-bottom: 5px solid var(--accent-color); 
+            background-size: cover; color: white; text-align: center; padding: 55px 20px; border-bottom: 5px solid var(--accent-color); 
         }
         .header h1 { margin: 0; font-size: 26px; letter-spacing: 1.5px; text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.8); }
         .header p { margin: 12px 0 0 0; font-size: 15px; opacity: 0.95; font-weight: 500; text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.8); }
-        
         .container { max-width: 1100px; margin: 30px auto; padding: 0 20px; }
         .card { background: var(--card-bg); border-radius: 8px; box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1); padding: 30px; margin-bottom: 30px; border-top: 4px solid var(--primary-color); }
         .card-title { color: var(--primary-color); font-size: 18px; font-weight: bold; margin-top: 0; margin-bottom: 15px; border-bottom: 2px solid var(--border-color); padding-bottom: 10px; display: flex; justify-content: space-between; align-items: center; }
@@ -40,83 +33,64 @@
         .form-group { display: flex; flex-direction: column; position: relative; }
         label { font-weight: 600; font-size: 14px; margin-bottom: 6px; color: var(--text-dark); }
         .req-eng { color: var(--accent-color); font-size: 11px; font-weight: bold; margin-top: 2px; }
-        
         .upload-box { background: #f8fafc; border: 2px dashed #cbd5e1; padding: 18px; border-radius: 6px; text-align: center; cursor: pointer; transition: all 0.2s; min-height: 90px; display: flex; flex-direction: column; align-items: center; justify-content: center; position: relative; }
         .upload-box:hover { background: var(--primary-light); border-color: var(--primary-color); }
         .upload-box input[type="file"] { display: none; }
         .file-status { font-size: 12px; margin-top: 4px; font-weight: bold; }
-        .status-ready { color: var(--accent-color); }
-        .status-uploading { color: #3182ce; animation: pulse 1.5s infinite; }
-        .status-success { color: var(--success-color); }
-        
         input[type="text"], input[type="number"], input[type="date"], select, textarea { padding: 10px 14px; border: 1px solid var(--border-color); border-radius: 6px; font-size: 14px; width: 100%; }
-        input:invalid { border-color: var(--danger-color); background-color: #fff5f5; }
-        
         table { width: 100%; border-collapse: collapse; margin-bottom: 20px; font-size: 14px; }
         th { background-color: var(--primary-color); color: white; text-align: left; padding: 12px; }
         td { padding: 10px; border-bottom: 1px solid var(--border-color); position: relative; }
-        
         .btn { padding: 10px 20px; border-radius: 6px; font-size: 14px; font-weight: 600; cursor: pointer; transition: all 0.2s; border: none; display: inline-flex; align-items: center; justify-content: center; }
         .btn-primary { background-color: var(--primary-color); color: white; }
-        .btn-primary:hover { background-color: #153552; }
         .btn-outline { background-color: transparent; border: 1px solid var(--primary-color); color: var(--primary-color); }
-        .btn-outline:hover { background-color: var(--primary-light); }
         .btn-success { background-color: var(--success-color); color: white; }
         .btn-danger { background-color: var(--danger-color); color: white; padding: 6px 12px; font-size: 12px; }
-        .action-bar { display: flex; gap: 15px; justify-content: center; margin-top: 40px; margin-bottom: 60px; }
         .tab-menu { display: flex; border-bottom: 2px solid var(--border-color); margin-bottom: 25px; gap: 5px; overflow-x: auto; }
         .tab-btn { padding: 12px 20px; background: transparent; border: none; cursor: pointer; font-size: 15px; font-weight: 600; color: var(--text-muted); border-bottom: 3px solid transparent; white-space: nowrap; }
         .tab-btn.active { color: var(--primary-color); border-bottom-color: var(--primary-color); }
         .tab-content { display: none; }
         .tab-content.active { display: block; }
-        @keyframes pulse { 0% { opacity: 0.5; } 50% { opacity: 1; } 100% { opacity: 0.5; } }
-        @media (max-width: 768px) { .form-grid { grid-template-columns: 1fr; } table { display: block; overflow-x: auto; } }
     </style>
 </head>
 <body>
 
-    <!-- 🏫 詞庫 A：屯門區本地主要小學英文全寫 -->
     <datalist id="primarySchoolSuggestions">
         <option value="SHTTGA Ho Yat Tung Primary School (順德聯誼總會何日東小學)">
         <option value="SHTTGA Wu Siu Kui Primary School (順德聯誼總會胡少渠紀念小學)">
         <option value="SHTTGA Lee Kam Primary School (順德聯誼總會李金小學)">
         <option value="Po Leung Kuk Fong Wong Kam Chuen Primary School (保良局方王錦全小學)">
         <option value="Po Leung Kuk Castle Peak Primary School (保良局志豪小學)">
-        <option value="Po Leung Kuk Hong Kong Taoist Association Yuen Yuen Primary School (保良局香港道教聯合會圓玄小學)">
         <option value="Tuen Mun Government Primary School (屯門官立小學)">
-        <option value="Yan Oi Tong Tin Ka Ping Primary School (仁愛堂田家炳小學)">
-        <option value="YCH Ho Shi Chu Primary School (仁濟醫院何式南小學)">
     </datalist>
 
-    <!-- 🏆 詞庫 B：全港核心大型機構、學界主要主辦機構 -->
     <datalist id="activitySuggestions">
         <option value="The Hong Kong Schools Sports Federation (HKSSF / 香港學界體育聯會)">
         <option value="HKSSF Tuen Mun Secondary Schools Area Committee (香港學界體育聯會屯門區中學分會)">
+        <option value="The Hong Kong Football Association (HKFA / 香港足球總會)">
+        <option value="The Hong Kong Basketball Association (HKBA / 香港籃球總會)">
+        <option value="Hong Kong China Athletics Association (香港田徑總會)">
         <option value="Hong Kong Schools Music and Speech Association (香港學校音樂及朗誦協會)">
-        <option value="Tung Wah Group of Hospitals (東華三院 - 賣旗日/總部)">
-        <option value="Hong Kong National Team / Association (香港代表隊 / 體育總會)">
-        <option value="TWGHs Sun Hoi Directors' College (東華三院辛亥年總理中學)">
-        <option value="The Hong Kong Award for Young People (AYP / 香港青年獎勵計劃)">
+        <option value="Tung Wah Group of Hospitals (TWGHs / 東華三院總部)">
+        <option value="TWGHs Flag Day Annual Charity Volunteer (東華三院全港賣旗日大會)">
+        <option value="Sir Edward Youde Memorial Fund Council (尤德爵士紀念基金理事會)">
+        <option value="Microsoft Hong Kong Limited (微軟香港有限公司)">
+        <option value="Tencent Holdings Limited (騰訊控股有限公司)">
+        <option value="The Hong Kong Association for Computer Education (HKACE / 香港電腦教育學學會)">
     </datalist>
 
-    <!-- 📝 詞庫 C：學生最常參加之學界大型活動與比賽名稱（全英文全寫） -->
     <datalist id="activityNameSuggestions">
         <option value="Inter-School Athletics Competition (學界田徑比賽)">
         <option value="Inter-School Basketball Competition (學界籃球比賽)">
         <option value="Inter-School Football Competition (學界足球比賽)">
-        <option value="Inter-School Swimming Competition (學界游泳比賽)">
-        <option value="Inter-School Volleyball Competition (學界排球比賽)">
         <option value="Hong Kong Schools Music Festival (香港學校音樂節)">
         <option value="Hong Kong Schools Speech Festival (香港學校朗誦節)">
-        <option value="TWGHs Flag Day Annual Charity Volunteer (東華三院全港賣旗日義工)">
     </datalist>
 
-    <!-- 👔 詞庫 D：活動擔任職位中英對照聯想 -->
     <datalist id="positionSuggestions">
         <option value="Chairman (主席)"><option value="Vice-chairman (副主席)"><option value="Committee Member (幹事)"><option value="Volunteer (義工人員)"><option value="Prefect / School Leader (領袖生)"><option value="Team Captain (隊長)"><option value="Participant (參與者)">
     </datalist>
 
-    <!-- 🥇 詞庫 E：名次/級別標準化中英聯想 -->
     <datalist id="rankSuggestions">
         <option value="1st Place / Champion (第一名 / 冠軍)"><option value="2nd Place / 1st Runner-up (第二名 / 亞軍)"><option value="3rd Place / 2nd Runner-up (第三名 / 季軍)"><option value="Champion - Team (團體冠軍)"><option value="Champion - Individual (個人冠軍)"><option value="Hong Kong Team Representative (香港代表隊資格)">
     </datalist>
@@ -127,36 +101,22 @@
     </div>
 
     <div class="container">
-        <!-- 首次申請入口（強制提醒防呆鎖歸位） -->
+        <!-- 首次填寫安全驗證 -->
         <div class="card" style="border-top: 4px solid #3182ce; background-color: #f0f9ff;">
             <div class="card-title" style="color: #2b6cb0;">🆕 首次申請填報入口 / First-time Application Entry</div>
-            <div class="card-description" style="color: var(--danger-color); font-weight: bold;">⚠️ 注意：本區僅供【從未提交過】的同學首次實名對齊使用。如欲更新、修正或補交文件，請絕對不要使用本區，請一律使用下方歷史修改區解鎖！</div>
-            
+            <div class="card-description" style="color: var(--danger-color); font-weight: bold;">⚠️ 注意 / Notice：本區僅供【從未提交過】的同學首次填寫。更新資料請利用下方四重鎖！</div>
             <div style="display: flex; gap: 15px; flex-wrap: wrap; align-items: flex-end;">
-                <div style="flex: 1; min-width: 140px;">
-                    <label>中六班別 / Class</label>
-                    <select id="classInput" onfocus="warnDuplicateStudent()"><option value="">請選擇...</option><option value="6A">6A</option><option value="6B">6B</option><option value="6C">6C</option><option value="6D">6D</option></select>
-                </div>
-                <div style="flex: 1; min-width: 120px;">
-                    <label>學號 / Class No.</label>
-                    <input type="number" id="numInput" placeholder="例: 5" min="1" max="45" onfocus="warnDuplicateStudent()">
-                </div>
-                <div style="flex: 1.5; min-width: 220px;">
-                    <label style="color: var(--danger-color);">身份證首 4 字元 / First 4 Characters of HKID</label>
-                    <input type="text" id="hkidVerifyInput" placeholder="例: W123" style="text-transform: uppercase;" maxlength="4" onfocus="warnDuplicateStudent()">
-                </div>
+                <div style="flex: 1; min-width: 140px;"><label>中六班別 / Class</label><select id="classInput" onfocus="warnDuplicateStudent()"><option value="">請選擇...</option><option value="6A">6A</option><option value="6B">6B</option><option value="6C">6C</option><option value="6D">6D</option></select></div>
+                <div style="flex: 1; min-width: 120px;"><label>學號 / Class No.</label><input type="number" id="numInput" placeholder="例: 5" onfocus="warnDuplicateStudent()"></div>
+                <div style="flex: 1.5; min-width: 220px;"><label style="color: var(--danger-color);">身份證首 4 字元 / First 4 of HKID</label><input type="text" id="hkidVerifyInput" placeholder="例: W123" style="text-transform: uppercase;" maxlength="4" onfocus="warnDuplicateStudent()"></div>
                 <button type="button" class="btn" id="autofillBtn" onclick="autoFillStudentData()" style="background-color: #3182ce; color: white; height: 45px;">⚡ 首次實名驗證載入 / Verify & Entry</button>
             </div>
-            <div id="diagnoseArea" style="margin-top: 20px;">
-                <div style="display: flex; justify-content: space-between; align-items: center;"><label style="color: #2b6cb0; font-weight: bold;">🚨 實名連線控制台 / Live Status Console</label><button type="button" class="btn btn-success" onclick="manualSaveProgress()" style="padding: 4px 12px; font-size: 12px; height: auto;">💾 暫存目前填寫進度 / Save Progress</button></div>
-                <div class="diagnose-box" id="consoleLog">▶ 雲端雙向對齊機制就緒 / Cloud synchronization ready.</div>
-            </div>
+            <div id="diagnoseArea" style="margin-top: 20px;"><div style="display: flex; justify-content: space-between; align-items: center;"><label style="color: #2b6cb0; font-weight: bold;">🚨 實名連線控制台 / Live Status Console</label><button type="button" class="btn btn-success" onclick="manualSaveProgress()" style="padding: 4px 12px; font-size: 12px; height: auto;">💾 暫存目前填寫進度 / Save Progress</button></div><div id="consoleLog">▶ 雲端雙向對齊機制就緒 / Cloud synchronization ready.</div></div>
         </div>
 
-        <!-- 四重防禦聯鎖歷史解鎖系統 -->
+        <!-- 四重防禦聯鎖解鎖修改區 -->
         <div class="card" style="border-top: 4px solid var(--accent-color); background-color: #fffdf5;">
             <div class="card-title" style="color: #b7791f;">🔒 歷史紀錄查詢、資料增補與文件補交 (四重安全聯鎖防禦系統)</div>
-            <div class="card-description">為確保資訊安全，請完整填寫以下四項關鍵要素以比對並解鎖您的雲端檔案:</div>
             <div class="form-grid" style="grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));">
                 <div class="form-group"><label>1. 中文姓名 / Chinese Name</label><input type="text" id="secureName" placeholder="例: 陳大文"></div>
                 <div class="form-group"><label>2. 身份證首4位 / First 4 of HKID</label><input type="text" id="secureHkid" placeholder="例: W123" maxlength="4" style="text-transform: uppercase;"></div>
@@ -165,110 +125,101 @@
             </div>
             <div style="text-align: right; margin-top: 15px;"><button type="button" class="btn btn-primary" id="loadBtn" onclick="secureLoadOldData()" style="background-color: var(--accent-color); padding: 12px 30px;">🔑 四重聯鎖比對並解鎖檔案 / Double Authenticate & Unlock</button></div>
             <div style="margin-top: 25px; padding-top: 20px; border-top: 1px dashed #f0e4c3; display: flex; justify-content: space-between; align-items: flex-end; flex-wrap: wrap; gap: 15px;">
-                <div style="flex: 1; min-width: 280px;">
-                    <label style="color: #b7791f; font-weight: bold;">🙋‍♂️ 忘記了申請編號？ / Forgot your Application ID?</label>
-                    <div style="font-size: 12px; color: var(--text-muted); margin-bottom: 6px;">請輸入您報名時填寫的電子郵件，系統會立刻將編號發送到您的信箱：</div>
-                    <input type="text" id="recoveryEmail" placeholder="例: student@example.com">
-                </div>
+                <div style="flex: 1; min-width: 280px;"><label style="color: #b7791f; font-weight: bold;">🙋‍♂️ 忘記了申請編號？ / Forgot your Application ID?</label><input type="text" id="recoveryEmail" placeholder="例: student@example.com"></div>
                 <button type="button" class="btn btn-outline" id="rescueBtn" onclick="rescueApplicationId()" style="height: 45px; border-color: #b7791f; color: #b7791f;">📩 發送我的申請編號 / Email my App ID</button>
             </div>
         </div>
 
         <div class="tab-menu">
-            <button class="tab-btn active" id="tab_basic" onclick="switchTab('basic')">1. 個人與 DSE 資料</button>
-            <button class="tab-btn" id="tab_family" onclick="switchTab('family')">2. 同住家庭成員</button>
-            <button class="tab-btn" id="tab_education" onclick="switchTab('education')">3. 教育背景與排名</button>
-            <button class="tab-btn" id="tab_activities" onclick="switchTab('activities')">4. 活動與服務經歷</button>
-            <button class="tab-btn" id="tab_awards" onclick="switchTab('awards')">5. 曾獲獎項與文件</button>
+            <button class="tab-btn active" id="tab_basic" onclick="switchTab('basic')">1. 個人與 DSE 資料 / Personal & DSE Data</button>
+            <button class="tab-btn" id="tab_family" onclick="switchTab('family')">2. 同住家庭成員 / Household Members</button>
+            <button class="tab-btn" id="tab_education" onclick="switchTab('education')">3. 教育背景與排名 / Education & Rankings</button>
+            <button class="tab-btn" id="tab_activities" onclick="switchTab('activities')">4. 活動與服務經歷 / Activities & Services</button>
+            <button class="tab-btn" id="tab_awards" onclick="switchTab('awards')">5. 曾獲獎項與文件 / Awards & Documents</button>
         </div>
 
         <form id="scholarshipForm">
             <input type="hidden" id="currentAppId" value="">
 
-            <!-- 分頁 1 -->
             <div id="basic" class="tab-content active">
                 <div class="card">
-                    <div class="card-title">第一部分：中學就讀基本資料</div>
+                    <div class="card-title">第一部分：中學就讀基本資料 / Section 1: School Info</div>
                     <div class="form-grid">
-                        <div class="form-group"><label for="schoolYear">中六就讀年度</label><select id="schoolYear"><option value="2025至2026" selected>2025至2026</option></select></div>
-                        <div class="form-group"><label for="studentClass">中六就讀班別</label><select id="studentClass"><option value="">請選擇...</option><option value="6A">6A</option><option value="6B">6B</option><option value="6C">6C</option><option value="6D">6D</option></select></div>
+                        <div class="form-group"><label>中六就讀年度 / Academic Year</label><select id="schoolYear"><option value="2025至2026" selected>2025至2026</option></select></div>
+                        <div class="form-group"><label>中六就讀班別 / Current Class</label><select id="studentClass"><option value="">請選擇...</option><option value="6A">6A</option><option value="6B">6B</option><option value="6C">6C</option><option value="6D">6D</option></select></div>
                     </div>
                 </div>
 
                 <div class="card">
-                    <div class="card-title">第二部分：申請人基本個人資料</div>
+                    <div class="card-title">第二部分：申請人基本個人資料 / Section 2: Personal Particulars</div>
                     <div class="form-grid">
-                        <div class="form-group"><label for="nameEn">英文全名 / Full Name <span class="req-eng">※ 請以英文填寫 / In English</span></label><input type="text" id="nameEn" placeholder="Chan Tai Man" onblur="autoTitleCase(this)"></div>
-                        <div class="form-group"><label for="nameCh">中文姓名</label><input type="text" id="nameCh" placeholder="陳大文"></div>
-                        <div class="form-group"><label for="dob">出生日期</label><input type="date" id="dob"></div>
-                        <div class="form-group"><label for="placeOfBirth">出生地點</label><select id="placeOfBirth"><option value="香港" selected>香港 / Hong Kong</option><option value="中國內地">中國內地 / Mainland China</option><option value="澳門">澳門 / Macau</option><option value="其他境外地區">其他境外地區 / Other Regions</option></select></div>
+                        <div class="form-group"><label>英文全名 / Full Name in English <span class="req-eng">※ 請以英文填寫 / In English</span></label><input type="text" id="nameEn" placeholder="Chan Tai Man" onblur="autoTitleCase(this)"></div>
+                        <div class="form-group"><label>中文姓名 / Name in Chinese</label><input type="text" id="nameCh" placeholder="陳大文"></div>
+                        <div class="form-group"><label>出生日期 / Date of Birth</label><input type="date" id="dob"></div>
+                        <div class="form-group"><label>出生地點 / Place of Birth</label><select id="placeOfBirth"><option value="香港" selected>香港 / Hong Kong</option><option value="中國內地">中國內地 / Mainland China</option><option value="澳門">澳門 / Macau</option><option value="其他境外地區">其他境外地區 / Other Regions</option></select></div>
                     </div>
                     <div class="form-grid">
-                        <div class="form-group"><label for="hkid">香港身份證號碼 <span class="req-eng">※ 英文需大寫 / Capital Letters</span></label><input type="text" id="hkid" placeholder="A123456(7)" style="text-transform: uppercase;"></div>
-                        <div class="form-group"><label for="mobile">學生手提電話</label><input type="text" id="mobile" placeholder="91234567"></div>
-                        <div class="form-group"><label for="email">電郵地址 <span class="req-eng">※ 請以英文填寫 / In English</span></label><input type="text" id="email" placeholder="chantaiman@example.com"></div>
-                        <div class="form-group"><label for="wechat">微信號 <span class="req-eng">※ 請以英文填寫 / In English</span></label><input type="text" id="wechat" placeholder="ChanWechat123"></div>
+                        <div class="form-group"><label>香港身份證號碼 / HKID No. <span class="req-eng">※ 英文需大寫 / Capital Letters</span></label><input type="text" id="hkid" placeholder="A123456(7)" style="text-transform: uppercase;"></div>
+                        <div class="form-group"><label>學生手提電話 / Mobile No.</label><input type="text" id="mobile" placeholder="91234567"></div>
+                        <div class="form-group"><label>電郵地址 / Email Address <span class="req-eng">※ 請以英文填寫</span></label><input type="text" id="email" placeholder="student@example.com"></div>
+                        <div class="form-group"><label>微信號 / WeChat ID <span class="req-eng">※ 請以英文填寫</span></label><input type="text" id="wechat" placeholder="ChanWechat123"></div>
                     </div>
                     <div class="form-grid">
-                        <div class="form-group" style="grid-column: span 2;"><label for="address">詳細住宅地址 <span class="req-eng">※ 請以英文填寫 / In English</span></label><input type="text" id="address" placeholder="Flat A, 10/F, Block 1, Tung Wah Building, Wanchai" onblur="autoTitleCase(this)"></div>
-                        <div class="form-group"><label for="housingType">住宅類型</label><select id="housingType"><option value="">請選擇...</option><option value="公屋">公共屋邨 / Public Housing</option><option value="居屋">資助居屋 / HOS Flat</option><option value="租住私人房屋">租住私人房屋 / Private Rented Flat</option><option value="自置物業">自置私人物業 / Self-owned Property</option></select></div>
+                        <div class="form-group" style="grid-column: span 2;"><label>詳細住宅地址 / Residential Address <span class="req-eng">※ 請以英文填寫</span></label><input type="text" id="address" placeholder="Flat A, 10/F, Block 1, Wanchai" onblur="autoTitleCase(this)"></div>
+                        <div class="form-group"><label>住宅類型 / Housing Type</label><select id="housingType"><option value="">請選擇...</option><option value="公屋">公共屋邨 / Public Housing</option><option value="居屋">資助居屋 / HOS Flat</option><option value="租住私人房屋">租住私人房屋 / Private Rented Flat</option><option value="自置物業">自置私人物業 / Self-owned Property</option></select></div>
                     </div>
                 </div>
 
                 <div class="card">
-                    <div class="card-title">第三部分：父母 / 監護人聯絡資料</div>
+                    <div class="card-title">第三部分：父母 / 監護人聯絡資料 / Section 3: Guardian Info</div>
                     <div class="form-grid">
-                        <div class="form-group"><label for="guardianName">監護人英文姓名 <span class="req-eng">※ 請以英文填寫 / In English</span></label><input type="text" id="guardianName" placeholder="Chan Tai Chi" onblur="autoTitleCase(this)"></div>
-                        <div class="form-group"><label for="guardianMobile">監護人聯絡電話</label><input type="text" id="guardianMobile" placeholder="93079097"></div>
+                        <div class="form-group"><label>監護人英文姓名 / Guardian Full Name <span class="req-eng">※ 請以英文填寫</span></label><input type="text" id="guardianName" placeholder="Chan Tai Chi" onblur="autoTitleCase(this)"></div>
+                        <div class="form-group"><label>監護人聯絡電話 / Guardian Mobile No.</label><input type="text" id="guardianMobile" placeholder="93079097"></div>
                     </div>
                 </div>
 
                 <div class="card" style="border-top: 4px solid var(--accent-color);">
-                    <div class="card-title" style="color: var(--accent-color);">院校取錄結果：大學修讀科目</div>
+                    <div class="card-title" style="color: var(--accent-color);">院校取錄結果：大學修讀科目 / Section 4: University Result</div>
                     <div class="form-grid">
                         <div class="form-group">
-                            <label for="uniName">就讀大學名稱</label>
+                            <label Gold>就讀大學名稱 / University Name</label>
                             <select id="uniName">
                                 <option value="">請選擇就讀大學 / Select University...</option>
-                                <option value="香港大學 (HKU)">香港大學 (HKU)</option><option value="香港中文大學 (CUHK)">香港中文大學 (CUHK)</option><option value="香港科技大學 (HKUST)">香港科技大學 (HKUST)</option><option value="香港理工大學 (PolyU)">香港理工大學 (PolyU)</option><option value="香港城市大學 (CityU)">香港城市大學 (CityU)</option><option value="香港浸會大學 (HKBU)">香港浸會大學 (HKBU)</option><option value="嶺南大學 (LNU)">嶺南大學 (LNU)</option><option value="香港教育大學 (EdUHK)">香港教育大學 (EdUHK)</option><option value="香港都會大學 (HKMU)">香港都會大學 (HKMU)</option><option value="香港樹仁大學 (HKSYU)">香港樹仁大學 (HKSYU)</option>
+                                <option value="香港大學 (HKU)">香港大學 (HKU) / The University of Hong Kong</option><option value="香港中文大學 (CUHK)">香港中文大學 (CUHK) / The Chinese University of Hong Kong</option><option value="香港科技大學 (HKUST)">香港科技大學 (HKUST) / HKUST</option><option value="香港理工大學 (PolyU)">香港理工大學 (PolyU) / PolyU</option><option value="香港城市大學 (CityU)">香港城市大學 (CityU) / CityU</option><option value="香港浸會大學 (HKBU)">香港浸會大學 (HKBU) / HKBU</option><option value="嶺南大學 (LNU)">嶺南大學 (LNU) / Lingnan U</option><option value="香港教育大學 (EdUHK)">香港教育大學 (EdUHK) / EdUHK</option><option value="香港都會大學 (HKMU)">香港都會大學 (HKMU) / HKMU</option><option value="香港樹仁大學 (HKSYU)">香港樹仁大學 (HKSYU) / HKSYU</option>
                             </select>
                         </div>
-                        <div class="form-group"><label for="progName">學位課程全名 <span class="req-eng">※ 請以英文填寫 / In English</span></label><input type="text" id="progName" placeholder="Bachelor of Business Administration" onblur="autoTitleCase(this)"></div>
-                        <div class="form-group"><label for="jupasCode">JUPAS 課程編號 <span class="req-eng">※ 英文需大寫 / Capital Letters</span></label><input type="text" id="jupasCode" placeholder="JS6729" style="text-transform: uppercase;"></div>
-                        <div class="form-group"><label for="duration">課程修讀年期 <span class="req-eng">※ 請以英文填寫 / In English</span></label><input type="text" id="duration" placeholder="4 Years" onblur="autoTitleCase(this)"></div>
+                        <div class="form-group"><label>學位課程全名 / Full Programme Name <span class="req-eng">※ 請以英文填寫</span></label><input type="text" id="progName" placeholder="Bachelor of Business Administration" onblur="autoTitleCase(this)"></div>
+                        <div class="form-group"><label>JUPAS 課程編號 / JUPAS Code</label><input type="text" id="jupasCode" placeholder="JS6729" style="text-transform: uppercase;"></div>
+                        <div class="form-group"><label>課程修讀年期 / Study Duration <span class="req-eng">※ 請以英文填寫</span></label><input type="text" id="duration" placeholder="4 Years" onblur="autoTitleCase(this)"></div>
                     </div>
                 </div>
 
-                <!-- 📊 文憑試成績原始分全模組歸位 -->
                 <div class="card" style="border-top: 4px solid #4a5568;">
-                    <div class="card-title">📊 第四部分：香港中學文憑試 (HKDSE) 成績原始分數</div>
+                    <div class="card-title">📊 第四部分：香港中學文憑試 (HKDSE) 成績原始分數 / Section 5: DSE Results</div>
                     <h4 style="color: var(--primary-color); margin: 0 0 10px 0;">核心主科原始分數 / Core Subjects</h4>
                     <div class="form-grid" style="margin-bottom: 20px;">
-                        <div class="form-group"><label>中國語文</label><input type="number" id="dseChi" min="1" max="7"></div>
-                        <div class="form-group"><label>英國語文</label><input type="number" id="dseEng" min="1" max="7"></div>
-                        <div class="form-group"><label>數學必修部分</label><input type="number" id="dseMath" min="1" max="7"></div>
-                        <div class="form-group"><label>公民與社會發展科</label><select id="dseCs"><option value="">請選擇...</option><option value="A">達標 (Attained)</option><option value="U">未達標</option></select></div>
+                        <div class="form-group"><label>中國語文 / Chinese</label><input type="number" id="dseChi" min="1" max="7"></div>
+                        <div class="form-group"><label>英國語文 / English</label><input type="number" id="dseEng" min="1" max="7"></div>
+                        <div class="form-group"><label>數學必修部分 / Mathematics</label><input type="number" id="dseMath" min="1" max="7"></div>
+                        <div class="form-group"><label>公民與社會發展科 / Citizenships & Social Dev.</label><select id="dseCs"><option value="">請選擇...</option><option value="A">達標 (Attained)</option><option value="U">未達標 / Unattained</option></select></div>
                     </div>
-                    <h4 style="color: var(--primary-color); margin: 0 0 10px 0;">選修科目與原始等級 / Elective Subjects</h4>
+                    <h4 style="color: var(--primary-color); margin: 0 0 10px 0;">選修科目與原始等級 / Electives</h4>
                     <div class="form-grid">
                         <div class="form-group">
                             <select id="elecSubject1">
-                                <option value="">選修科一 / Elective 1...</option>
-                                <option value="PHY">PHY / 物理</option><option value="BIO">BIO / 生物</option><option value="CHEM">CHEM / 化學</option><option value="ECON">ECON / 經濟</option><option value="BAFS">BAFS / 企會財</option><option value="GEOG">GEOG / 地理</option><option value="HIS">HIS / 歷史</option><option value="CHIS">CHIS / 中史</option><option value="VA">VA / 視藝</option><option value="ICT">ICT / 資訊科技</option><option value="M2">M2 / 數學延伸二</option>
+                                <option value="">選修科一 / Elective 1...</option><option value="PHY">PHY / 物理</option><option value="BIO">BIO / 生物</option><option value="CHEM">CHEM / 化學</option><option value="ECON">ECON / 經濟</option><option value="BAFS">BAFS / 企會財</option>
                             </select>
                             <input type="number" id="elecScore1" min="1" max="7" placeholder="分數 / Level" style="margin-top:5px;">
                         </div>
                         <div class="form-group">
                             <select id="elecSubject2">
-                                <option value="">選修科二 / Elective 2...</option>
-                                <option value="PHY">PHY / 物理</option><option value="BIO">BIO / 生物</option><option value="CHEM">CHEM / 化學</option><option value="ECON">ECON / 經濟</option><option value="BAFS">BAFS / 企會財</option><option value="GEOG">GEOG / 地理</option><option value="HIS">HIS / 歷史</option><option value="CHIS">CHIS / 中史</option><option value="VA">VA / 視藝</option><option value="ICT">ICT / 資訊科技</option><option value="M2">M2 / 數學延伸二</option>
+                                <option value="">選修科二 / Elective 2...</option><option value="PHY">PHY / 物理</option><option value="BIO">BIO / 生物</option><option value="CHEM">CHEM / 化學</option><option value="ECON">ECON / 經濟</option><option value="BAFS">BAFS / 企會財</option>
                             </select>
                             <input type="number" id="elecScore2" min="1" max="7" placeholder="分數 / Level" style="margin-top:5px;">
                         </div>
                         <div class="form-group">
                             <select id="elecSubject3">
-                                <option value="">選修科三 (選填) / Elective 3...</option>
-                                <option value="PHY">PHY / 物理</option><option value="BIO">BIO / 生物</option><option value="CHEM">CHEM / 化學</option><option value="ECON">ECON / 經濟</option><option value="BAFS">BAFS / 企會財</option><option value="GEOG">GEOG / 地理</option><option value="HIS">HIS / 歷史</option><option value="CHIS">CHIS / 中史</option><option value="VA">VA / 視藝</option><option value="ICT">ICT / 資訊科技</option><option value="M2">M2 / 數學延伸二</option>
+                                <option value="">選修科三 (選填) / Elective 3...</option><option value="PHY">PHY / 物理</option><option value="BIO">BIO / 生物</option><option value="CHEM">CHEM / 化學</option><option value="ECON">ECON / 經濟</option><option value="BAFS">BAFS / 企會財</option>
                             </select>
                             <input type="number" id="elecScore3" min="1" max="7" placeholder="分數 / Level" style="margin-top:5px;">
                         </div>
@@ -276,223 +227,112 @@
                 </div>
 
                 <div class="card">
-                    <div class="card-title">第五部分：家庭經濟狀況及津貼</div>
+                    <div class="card-title">第五部分：家庭經濟狀況及津貼 / Section 6: Financial Status</div>
                     <div class="form-grid">
-                        <div class="form-group"><label for="cssa">是否領取綜援？</label><select id="cssa" onchange="toggleCSSAAmount()"><option value="否">否 / No</option><option value="是">是 / Yes</option></select></div>
-                        <div class="form-group" id="cssaAmountGroup" style="display:none;"><label for="cssaAmount">每月綜援金額 (HKD)</label><input type="number" id="cssaAmount" placeholder="請輸入金額"></div>
-                        <div class="form-group"><label for="schFinance">書簿津貼狀況</label><select id="schFinance"><option value="沒有">沒有 / None</option><option value="有 (全額津貼)">有 - 全額資助 / Full Grant</option><option value="有 (半額津貼)">有 - 半額資助 / Half Grant</option></select></div>
+                        <div class="form-group"><label>是否領取綜援？ / CSSA Allowance?</label><select id="cssa" onchange="toggleCSSAAmount()"><option value="否">否 / No</option><option value="是">是 / Yes</option></select></div>
+                        <div class="form-group" id="cssaAmountGroup" style="display:none;"><label>每月綜援金額 (HKD) / Monthly Amount</label><input type="number" id="cssaAmount" placeholder="金額 / Amount"></div>
+                        <div class="form-group"><label>書簿津貼狀況 / Textbook Assistance</label><select id="schFinance"><option value="沒有">沒有 / None</option><option value="有 (全額津貼)">有 - 全額資助 / Full Grant</option><option value="有 (半額津貼)">有 - 半額資助 / Half Grant</option></select></div>
                     </div>
                 </div>
             </div>
 
-            <!-- 分頁 2：同住成員（黃金預設機制完美恢復） -->
-            <div id="family" class="tab-content">
-                <div class="card">
-                    <div class="card-title">同住家庭成員經濟與學歷背景 / Household Members Particulars</div>
-                    <table id="familyTable">
-                        <thead>
-                            <tr>
-                                <th style="width: 20%;">英文姓名<br>Name (English)</th>
-                                <th style="width: 22%;">關係<br>Relationship</th>
-                                <th style="width: 10%;">性別<br>Gender</th>
-                                <th style="width: 8%;">年齡<br>Age</th>
-                                <th style="width: 15%;">最高學歷<br>Education</th>
-                                <th style="width: 15%;">現職<br>Occupation (Eng)</th>
-                                <th style="width: 10%;">平均月收<br>Monthly Income</th>
-                                <th style="width: 5%;">操作</th>
-                            </tr>
-                        </thead>
-                        <tbody></tbody>
-                    </table>
-                    <div class="add-row-container"><button type="button" class="btn btn-outline" onclick="addFamilyRow()">＋ 新增其他成員 / Add Household Member</button></div>
-                </div>
-            </div>
-
+            <!-- 分頁 2 (100% 中英雙語對照回歸) -->
+            <div id="family" class="tab-content"><div class="card"><div class="card-title">同住家庭成員經濟與學歷背景 / Household Members Particulars</div><table id="familyTable"><thead><tr><th>英文姓名<br>Full Name</th><th>關係<br>Relationship</th><th>性別<br>Gender</th><th>年齡<br>Age</th><th>最高學歷<br>Education</th><th>現職<br>Occupation (Eng)</th><th>平均月收<br>Monthly Income</th><th>操作</th></tr></thead><tbody></tbody></table><div class="add-row-container"><button type="button" class="btn btn-outline" onclick="addFamilyRow()">＋ 新增其他成員 / Add Household Member</button></div></div></div>
+            
             <!-- 分頁 3 -->
-            <div id="education" class="tab-content">
-                <div class="card">
-                    <div class="card-title">校內學術表現：最近 3 年全級排名</div>
-                    <div class="form-grid">
-                        <div class="form-group"><label for="rankS4">中四全級年終總排名</label><input type="text" id="rankS4" placeholder="例：全級第3名 / Ranked 3rd"></div>
-                        <div class="form-group"><label for="rankS5">中五全級年終總排名</label><input type="text" id="rankS5" placeholder="例：全級第2名 / Ranked 2nd"></div>
-                        <div class="form-group"><label for="rankS6">中六全級模擬考試總排名</label><input type="text" id="rankS6" placeholder="例：全級第12名 / Ranked 12th"></div>
-                    </div>
-                </div>
-                <div class="card">
-                    <div class="card-title">以往學歷背景</div>
-                    <table id="educationTable">
-                        <thead><tr><th>學校名稱 School Name (In English)</th><th>開始年份</th><th>結束年份</th><th>最高就讀班級</th><th>操作</th></tr></thead>
-                        <tbody>
-                            <tr>
-                                <td><input type="text" class="edu-school" value="TWGHs Sun Hoi Directors' College" readonly style="background:#f8fafc; font-weight:bold;"></td>
-                                <td><input type="number" class="edu-from" placeholder="2020"></td>
-                                <td><input type="number" class="edu-to" placeholder="2026"></td>
-                                <td><input type="text" class="edu-level" value="Form 6" readonly style="background:#f8fafc; text-align:center;"></td>
-                                <td><span style="font-size:11px; color:var(--text-muted);">核心母校</span></td>
-                            </tr>
-                        </tbody>
-                    </table>
-                    <div class="add-row-container"><button type="button" class="btn btn-outline" onclick="addEducationRow()">＋ 新增以往就讀學校 / Add Previous School</button></div>
-                </div>
-            </div>
-
-            <!-- 分頁 4：活動經歷（母校自動填入完美回歸） -->
-            <div id="activities" class="tab-content">
-                <div class="card">
-                    <div class="card-title">過往校內外活動、服務經歷 / Section 8: Activities & Extra-curricular Services</div>
-                    <table id="activitiesTable">
-                        <thead><tr><th>主辦機構 / 學校<br>Institution / School</th><th>活動經歷名稱<br>Activity / Service Name</th><th>擔任職位<br>Position Held</th><th>參與年度 (例: 2023-2024)</th><th>操作</th></tr></thead>
-                        <tbody></tbody>
-                    </table>
-                    <div class="add-row-container"><button type="button" class="btn btn-outline" onclick="addActivityRow({}, true)">＋ 新增經歷 / Add Experience</button></div>
-                </div>
-            </div>
-
-            <!-- 分頁 5：獎項經歷（母校自動填入、易懂標題完美回歸） -->
+            <div id="education" class="tab-content"><div class="card"><div class="card-title">最近 3 年全級排名 / Rank Performance</div><div class="form-grid"><div class="form-group"><label>中四全級排名 / S4 Rank</label><input type="text" id="rankS4" placeholder="Ranked 3rd"></div><div class="form-group"><label>中五全級排名 / S5 Rank</label><input type="text" id="rankS5" placeholder="Ranked 2nd"></div><div class="form-group"><label>中六模擬試排名 / S6 Rank</label><input type="text" id="rankS6" placeholder="Ranked 12th"></div></div></div><div class="card"><div class="card-title">以往學歷背景 / Section 7: Educational Background</div><table id="educationTable"><thead><tr><th>學校名稱 School Name (In English)</th><th>開始年份<br>From (Year)</th><th>結束年份<br>To (Year)</th><th>最高就讀班級<br>Highest Form</th><th>操作</th></tr></thead><tbody><tr><td><input type="text" class="edu-school" value="TWGHs Sun Hoi Directors' College" readonly style="background:#f8fafc; font-weight:bold;"></td><td><input type="number" class="edu-from" placeholder="2020"></td><td><input type="number" class="edu-to" placeholder="2026"></td><td><input type="text" class="edu-level" value="Form 6" readonly style="background:#f8fafc; text-align:center;"></td><td><span style="font-size:11px; color:var(--text-muted);">核心母校</span></td></tr></tbody></table><div class="add-row-container"><button type="button" class="btn btn-outline" onclick="addEducationRow()">＋ 新增以往就讀學校 / Add Previous School</button></div></div></div>
+            
+            <!-- 分頁 4 -->
+            <div id="activities" class="tab-content"><div class="card"><div class="card-title">過往校內外活動、服務經歷 / Section 8: Activities & Services</div><table id="activitiesTable"><thead><tr><th>主辦機構 / 學校<br>Institution / School</th><th>活動經歷名稱<br>Activity / Service Name</th><th>擔任職位<br>Position Held</th><th>參與年度<br>Academic Year</th><th>操作</th></tr></thead><tbody></tbody></table><div class="add-row-container"><button type="button" class="btn btn-outline" onclick="addActivityRow({}, true)">＋ 新增經歷 / Add Experience</button></div></div></div>
+            
+            <!-- 分頁 5 -->
             <div id="awards" class="tab-content">
                 <div class="card">
-                    <div class="card-title">曾獲取之獎學金與校內外重要獎項紀錄</div>
+                    <div class="card-title">曾獲取之獎學金與校內外重要獎項紀錄 / Section 9: Awards Received</div>
                     <table id="awardsTable">
-                        <thead>
-                            <tr>
-                                <th style="width: 25%;">頒發機構<br>Issuer (In English)</th>
-                                <th style="width: 35%;">獎學金 / 獎項全名<br>Name of Award (In English)</th>
-                                <th style="width: 15%;">獲獎年度 (例: 2024-2025)</th>
-                                <th style="width: 15%;">獎項名次 / 級別<br>Award Rank / Level (Eng)</th>
-                                <th style="width: 10%;">操作</th>
-                            </tr>
-                        </thead>
-                        <tbody></tbody>
-                    </table>
+                        <thead><tr><th>頒發機構<br>Issuer (In English)</th><th>獎項全名<br>Name of Award (In English)</th><th>獲獎年度<br>Academic Year</th><th>獎項名次 / 級別<br>Award Rank / Level</th><th>操作</th></tr></thead><tbody></tbody></table>
                     <div class="add-row-container"><button type="button" class="btn btn-outline" onclick="addAwardRow({}, true)">＋ 新增獎項紀錄 / Add Award</button></div>
                 </div>
 
                 <div class="card" style="border-top: 4px solid var(--success-color);">
                     <div class="card-title" style="color: var(--success-color);">📂 證明文件即時背景上載 / Section 10: Supporting Documents</div>
                     <div class="form-grid" style="grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));">
-                        <div class="form-group"><label>1. 中四全年校內成績單 *</label><div class="upload-box" onclick="document.getElementById('fileS4').click()"><span id="labelS4">📁 點擊選取中四成績單</span><input type="file" id="fileS4" onchange="ajaxUploadSingleFile(this, 'labelS4', 'statusS4')"><div class="file-status" id="statusS4"></div></div></div>
-                        <div class="form-group"><label>2. 中五全年校內成績單 *</label><div class="upload-box" onclick="document.getElementById('fileS5').click()"><span id="labelS5">📁 點擊選取中五成績單</span><input type="file" id="fileS5" onchange="ajaxUploadSingleFile(this, 'labelS5', 'statusS5')"><div class="file-status" id="statusS5"></div></div></div>
-                        <div class="form-group"><label>3. 中六模擬考試成績單 *</label><div class="upload-box" onclick="document.getElementById('fileS6').click()"><span id="labelS6">📁 點擊選取中六成績單</span><input type="file" id="fileS6" onchange="ajaxUploadSingleFile(this, 'labelS6', 'statusS6')"><div class="file-status" id="statusS6"></div></div></div>
-                        <div class="form-group"><label>4. 香港中學文憑試成績通知書 *</label><div class="upload-box" onclick="document.getElementById('fileDse').click()"><span id="labelDse">📁 點擊選取 DSE 成績表</span><input type="file" id="fileDse" onchange="ajaxUploadSingleFile(this, 'labelDse', 'statusDse')"><div class="file-status" id="statusDse"></div></div></div>
-                        <div class="form-group"><label>5. 香港身份證 *</label><div class="upload-box" onclick="document.getElementById('fileHkid').click()"><span id="labelHkid">📁 點擊選取香港身份證</span><input type="file" id="fileHkid" onchange="ajaxUploadSingleFile(this, 'fileHkid', 'statusHkid')"><div class="file-status" id="statusHkid"></div></div></div>
-                        <div class="form-group"><label>6. 大專院校取錄通知書 或 大學學生證 (如有)</label><div class="upload-box" onclick="document.getElementById('fileAdmission').click()"><span id="labelAdmission">📁 點擊選取取錄信/學生證</span><input type="file" id="fileAdmission" onchange="ajaxUploadSingleFile(this, 'labelAdmission', 'statusAdmission')"><div class="file-status" id="statusAdmission"></div></div></div>
+                        <div class="form-group"><label>1. 中四全年成績單 * / S4 Transcript *</label><div class="upload-box" onclick="document.getElementById('fileS4').click()"><span id="labelS4">📁 選取中四成績單 / Upload S4</span><input type="file" id="fileS4" onchange="ajaxUploadSingleFile(this, 'labelS4', 'statusS4')"><div class="file-status" id="statusS4"></div></div></div>
+                        <div class="form-group"><label>2. 中五全年成績單 * / S5 Transcript *</label><div class="upload-box" onclick="document.getElementById('fileS5').click()"><span id="labelS5">📁 選取中五成績單 / Upload S5</span><input type="file" id="fileS5" onchange="ajaxUploadSingleFile(this, 'labelS5', 'statusS5')"><div class="file-status" id="statusS5"></div></div></div>
+                        <div class="form-group"><label>3. 中六模擬試成績單 * / S6 Mock *</label><div class="upload-box" onclick="document.getElementById('fileS6').click()"><span id="labelS6">📁 選取中六成績單 / Upload S6 Mock</span><input type="file" id="fileS6" onchange="ajaxUploadSingleFile(this, 'labelS6', 'statusS6')"><div class="file-status" id="statusS6"></div></div></div>
+                        <div class="form-group"><label>4. DSE 成績通知書 * / HKDSE Notice *</label><div class="upload-box" onclick="document.getElementById('fileDse').click()"><span id="labelDse">📁 選取 DSE 成績表 / Upload DSE</span><input type="file" id="fileDse" onchange="ajaxUploadSingleFile(this, 'labelDse', 'statusDse')"><div class="file-status" id="statusDse"></div></div></div>
+                        <div class="form-group"><label>5. 香港身份證 * / HKID Copy *</label><div class="upload-box" onclick="document.getElementById('fileHkid').click()"><span id="labelHkid">📁 選取香港身份證 / Upload HKID</span><input type="file" id="fileHkid" onchange="ajaxUploadSingleFile(this, 'fileHkid', 'statusHkid')"><div class="file-status" id="statusHkid"></div></div></div>
+                        <div class="form-group"><label>6. 取錄通知書 或 大專學生證 / Offer Letter or College ID</label><div class="upload-box" onclick="document.getElementById('fileAdmission').click()"><span id="labelAdmission">📁 選取取錄信/學生證 / Offer or ID</span><input type="file" id="fileAdmission" onchange="ajaxUploadSingleFile(this, 'labelAdmission', 'statusAdmission')"><div class="file-status" id="statusAdmission"></div></div></div>
                     </div>
                 </div>
-                <div class="action-bar"><button type="button" class="btn btn-primary" id="submitBtn" onclick="submitToServer()" style="font-size: 16px; padding: 15px 50px;">🚀 最終確認並提交檔案</button></div>
+                <div class="action-bar"><button type="button" class="btn btn-primary" id="submitBtn" onclick="submitToServer()" style="font-size: 16px; padding: 15px 50px;">🚀 最終確認並提交檔案 / Confirm & Submit</button></div>
             </div>
         </form>
     </div>
 
     <script>
         const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbz44pr5ZgQa0AcpfG3nYnYWH8X4iLEk7aIILcVZB62AkHdCfe-0fw71rupZq2RNWDsb/exec"; 
-        let ignoreWarningsOnce = false;
-        let uploadedFileUrls = { fileS4: "", fileS5: "", fileS6: "", fileDse: "", fileHkid: "", fileAdmission: "" };
-
+        let ignoreWarningsOnce = false; let uploadedFileUrls = { fileS4: "", fileS5: "", fileS6: "", fileDse: "", fileHkid: "", fileAdmission: "" };
         const SCHOOL_DEFAULT_NAME = "TWGHs Sun Hoi Directors' College";
 
-        // 🌟 核心復位：同住家屬預先載入兩行（父親、母親）機制
-        window.onload = function() {
-            addFamilyRow({ val2: "父親", val7: "男", val5: "" }); 
-            addFamilyRow({ val2: "母親", val7: "女", val5: "" }); 
-        };
-
-        function warnDuplicateStudent() {
-            if(!window.alreadyWarned) {
-                alert("🚨【核心提醒 / Security Notice】\n\n如果您先前已經進入本系統並「最終確認提交」過檔案，您已經擁有了專屬的申請編號。\n\n請【絕對不要】在這一區重複進行實名填寫，這會導致數據庫產生衝突重複！更新資料請至下方使用『四重安全聯鎖解鎖』。");
-                window.alreadyWarned = true;
-            }
-        }
-
+        window.onload = function() { addFamilyRow({ val2: "父親", val7: "男" }); addFamilyRow({ val2: "母親", val7: "女" }); };
+        function warnDuplicateStudent() { if(!window.alreadyWarned) { alert("🚨【核心提醒】如果您先前已經進入本系統過，請不要在此處重複首次實名填寫，這會產生廢檔！請利用下方歷史區解鎖。"); window.alreadyWarned = true; } }
         function autoTitleCase(el) { if (el && el.value) el.value = el.value.toString().toLowerCase().replace(/\b[a-z]/g, function(letter) { return letter.toUpperCase(); }).trim(); }
-
+        
         function setSelectValue(id, val) {
-            if (!val) return;
-            const selectEl = document.getElementById(id); if (!selectEl) return;
+            if (!val) return; const selectEl = document.getElementById(id); if (!selectEl) return;
             let cleanVal = val.toString().trim().toUpperCase().replace(/[\s\-\_\/]+/g, '');
             for (let i = 0; i < selectEl.options.length; i++) {
                 if (selectEl.options[i].value.toString().trim().toUpperCase().replace(/[\s\-\_\/]+/g, '').includes(cleanVal)) { selectEl.selectedIndex = i; return; }
             }
         }
+        function bindSuggestionToInput(inputEl, listId) { inputEl.setAttribute("list", listId); inputEl.addEventListener("input", function() { if (this.value.includes(" (")) this.value = this.value.split(" (")[0]; }); }
 
-        function bindSuggestionToInput(inputEl, listId) {
-            inputEl.setAttribute("list", listId);
-            inputEl.addEventListener("input", function() { if (this.value.includes(" (")) this.value = this.value.split(" (")[0]; });
-        }
-
-        // 🌟 核心復位：四重防禦安全解鎖與各分頁資料還原對齊
         function secureLoadOldData() {
-            const nameCh = document.getElementById('secureName').value.trim();
-            const hkidVerify = document.getElementById('secureHkid').value.trim().toUpperCase();
-            const classNo = document.getElementById('secureNo').value.trim();
-            const appLast3 = document.getElementById('secureAppLast3').value.trim();
-
-            if (!nameCh || hkidVerify.length < 4 || !classNo || appLast3.length < 3) {
-                alert("⚠️ 請完整填寫四重安全要素以進行密鑰比對！"); return;
-            }
-            const btn = document.getElementById('loadBtn'); btn.innerText = "四重密鑰匹配安全認證中..."; btn.disabled = true;
-
+            const nameCh = document.getElementById('secureName').value.trim(); const hkidVerify = document.getElementById('secureHkid').value.trim().toUpperCase(); const classNo = document.getElementById('secureNo').value.trim(); const appLast3 = document.getElementById('secureAppLast3').value.trim();
+            if (!nameCh || hkidVerify.length < 4 || !classNo || appLast3.length < 3) { alert("⚠️ 請完整填寫四重安全要素以進行密鑰比對！"); return; }
+            const btn = document.getElementById('loadBtn'); btn.innerText = "安全校驗中..."; btn.disabled = true;
             fetch(`${SCRIPT_URL}?action=secureLoadOldData&nameCh=${encodeURIComponent(nameCh)}&hkidVerify=${encodeURIComponent(hkidVerify)}&classNo=${encodeURIComponent(classNo)}&appLast3=${encodeURIComponent(appLast3)}`)
             .then(res => res.json()).then(data => {
                 btn.innerText = "🔑 四重聯鎖比對並解鎖檔案"; btn.disabled = false;
                 if (data.status === "success") {
-                    document.getElementById('currentAppId').value = data.appId;
-                    document.getElementById('numInput').value = classNo;
-                    document.getElementById('hkidVerifyInput').value = hkidVerify;
-                    document.getElementById('studentClass').value = data.studentClass;
-                    
+                    document.getElementById('currentAppId').value = data.appId; document.getElementById('numInput').value = classNo; document.getElementById('hkidVerifyInput').value = hkidVerify; document.getElementById('studentClass').value = data.studentClass;
                     document.getElementById('nameEn').value = data.nameEn; document.getElementById('nameCh').value = data.nameCh; document.getElementById('hkid').value = data.hkid; document.getElementById('dob').value = data.dob; document.getElementById('placeOfBirth').value = data.placeOfBirth; document.getElementById('mobile').value = data.mobile; document.getElementById('email').value = data.email; document.getElementById('wechat').value = data.wechat; document.getElementById('address').value = data.address; document.getElementById('housingType').value = data.housingType; document.getElementById('guardianName').value = data.guardianName; document.getElementById('guardianMobile').value = data.guardianMobile;
                     setSelectValue('uniName', data.uniName); document.getElementById('progName').value = data.progName; document.getElementById('jupasCode').value = data.jupasCode; document.getElementById('duration').value = data.duration;
-                    
                     document.getElementById('dseChi').value = data.dseChi || ""; document.getElementById('dseEng').value = data.dseEng || ""; document.getElementById('dseMath').value = data.dseMath || ""; setSelectValue('dseCs', data.dseCs || "");
                     if (data.dseE1) { const parts = data.dseE1.split('('); setSelectValue('elecSubject1', parts[0]); if(parts[1]) document.getElementById('elecScore1').value = parts[1].replace(')', ''); }
                     if (data.dseE2) { const parts = data.dseE2.split('('); setSelectValue('elecSubject2', parts[0]); if(parts[1]) document.getElementById('elecScore2').value = parts[1].replace(')', ''); }
                     if (data.dseE3) { const parts = data.dseE3.split('('); setSelectValue('elecSubject3', parts[0]); if(parts[1]) document.getElementById('elecScore3').value = parts[1].replace(')', ''); }
-                    
                     document.getElementById('cssa').value = data.cssa; document.getElementById('cssaAmount').value = data.cssaAmount; document.getElementById('schFinance').value = data.schFinance;
                     document.getElementById('rankS4').value = data.rankS4; document.getElementById('rankS5').value = data.rankS5; document.getElementById('rankS6').value = data.rankS6;
-                    toggleCSSAAmount();
-                    
-                    document.querySelector('#familyTable tbody').innerHTML = "";
-                    document.querySelector('#activitiesTable tbody').innerHTML = ""; document.querySelector('#awardsTable tbody').innerHTML = "";
+                    document.querySelector('#familyTable tbody').innerHTML = ""; document.querySelector('#activitiesTable tbody').innerHTML = ""; document.querySelector('#awardsTable tbody').innerHTML = "";
                     try { const fam = JSON.parse(data.family); fam.forEach(f => addFamilyRow(f)); } catch(e){}
                     try { const act = JSON.parse(data.activities); act.forEach(a => addActivityRow(a, false)); } catch(e){}
                     try { const aw = JSON.parse(data.awards); aw.forEach(w => addAwardRow(w, false)); } catch(e){}
                     if (data.fileUrls) { uploadedFileUrls = data.fileUrls; Object.keys(uploadedFileUrls).forEach(id => { if (uploadedFileUrls[id]) { document.getElementById(id.replace('file', 'label')).innerText = "✓ 已於雲端就緒"; } }); }
-                    alert(`🔓 安全核對成功！已解鎖調閱您的申請檔案。(ID: ${data.appId})`);
-                } else {
-                    alert("❌ 密鑰不匹配！四重安全校驗失敗，無法調閱雲端檔案。請確認姓名、學號與申請編號後三碼。");
-                }
+                    alert(`🔓 調閱成功！(ID: ${data.appId})`);
+                } else { alert("❌ 密鑰不匹配！四重安全校驗失敗。"); }
             }).catch(e => { btn.disabled = false; });
         }
 
         function rescueApplicationId() {
-            const email = document.getElementById('recoveryEmail').value.trim();
-            if(!email || !email.includes("@")) { alert("⚠️ 請輸入有效的電郵地址！"); return; }
-            const btn = document.getElementById('rescueBtn'); btn.innerText = "尋找檔案並寄送中..."; btn.disabled = true;
-            fetch(`${SCRIPT_URL}?action=rescueAppId&email=${encodeURIComponent(email)}`)
-            .then(res => res.json()).then(data => {
-                btn.innerText = "📩 發送我的申請編號"; btn.disabled = false;
-                if(data.status === "success") { alert(`📬 自助救援成功！系統已將完整申請編號發送至您的郵箱：${email}`); } else { alert("❌ 找不到匹配紀錄！數據庫中沒有任何學生綁定過這個電郵。"); }
-            }).catch(e => { btn.disabled = false; });
+            const email = document.getElementById('recoveryEmail').value.trim(); if(!email.includes("@")) { alert("⚠️ 請填寫電郵！"); return; }
+            const btn = document.getElementById('rescueBtn'); btn.innerText = "救援中..."; btn.disabled = true;
+            fetch(`${SCRIPT_URL}?action=rescueAppId&email=${encodeURIComponent(email)}`).then(res => res.json()).then(data => { btn.disabled = false; btn.innerText = "📩 發送我的申請編號"; if(data.status === "success") { alert(`📬 救援信已發送至：${email}`); } else { alert("❌ 找不到匹配紀錄！"); } }).catch(e => { btn.disabled = false; });
         }
 
         function ajaxUploadSingleFile(inputEl, labelId, statusId) {
             const file = inputEl.files[0]; if (!file) return;
-            document.getElementById(labelId).innerText = `📄 ${file.name}`;
-            document.getElementById(statusId).innerHTML = `<span class="status-uploading">⚡ 上載中...</span>`;
-            const reader = new FileReader();
-            reader.onload = function(e) {
-                fetch(SCRIPT_URL, {
-                    method: 'POST', headers: { 'Content-Type': 'text/plain;charset=utf-8' },
-                    body: JSON.stringify({ action: "singleFileUpload", fieldId: inputEl.id, filename: file.name, mimeType: file.type, base64: e.target.result.split(',')[1], studentName: document.getElementById('nameCh').value || "姓名未填", studentClass: document.getElementById('studentClass').value || "班別未填" })
-                }).then(res => res.json()).then(result => { if (result.status === "success") { uploadedFileUrls[inputEl.id] = result.fileUrl; document.getElementById(statusId).innerHTML = `<span class="status-success">✅ 已就緒</span>`; } });
+            document.getElementById(labelId).innerText = `📄 ${file.name}`; document.getElementById(statusId).innerHTML = `<span>⚡ 上載中...</span>`;
+            const reader = new FileReader(); reader.onload = function(e) {
+                fetch(SCRIPT_URL, { method: 'POST', headers: { 'Content-Type': 'text/plain;charset=utf-8' }, body: JSON.stringify({ action: "singleFileUpload", fieldId: inputEl.id, filename: file.name, mimeType: file.type, base64: e.target.result.split(',')[1], studentName: document.getElementById('nameCh').value, studentClass: document.getElementById('studentClass').value }) }).then(res => res.json()).then(result => { if (result.status === "success") { uploadedFileUrls[inputEl.id] = result.fileUrl; document.getElementById(statusId).innerHTML = `<span style="color:var(--success-color)">✅ 已就緒</span>`; } });
             }; reader.readAsDataURL(file);
         }
 
         function autoFillStudentData() {
             const classVal = document.getElementById('classInput').value; const numVal = document.getElementById('numInput').value; const hkidVerify = document.getElementById('hkidVerifyInput').value.trim().toUpperCase();
-            if(!classVal || !numVal || hkidVerify.length < 4) { alert("⚠️ 請填寫完整實名對齊欄位！"); return; }
-            const btn = document.getElementById('autofillBtn'); btn.innerText = "校對預入學籍中..."; btn.disabled = true;
+            if(!classVal || !numVal || hkidVerify.length < 4) { alert("⚠️ 請填寫驗證欄位！"); return; }
+            const btn = document.getElementById('autofillBtn'); btn.innerText = "校對中..."; btn.disabled = true;
             fetch(`${SCRIPT_URL}?action=autofill&class=${encodeURIComponent(classVal)}&num=${encodeURIComponent(numVal)}&hkidVerify=${encodeURIComponent(hkidVerify)}`)
             .then(res => res.json()).then(data => {
                 btn.innerText = "⚡ 首次實名驗證載入"; btn.disabled = false;
@@ -502,70 +342,50 @@
                     if (data.dseEng) document.getElementById('dseEng').value = data.dseEng;
                     if (data.dseMath) document.getElementById('dseMath').value = data.dseMath;
                     if (data.dseCs) setSelectValue('dseCs', data.dseCs);
-                    alert("🎉 實名校對核實通過！已載入您的學籍底稿。");
-                } else { alert("❌ 驗證不匹配！您的班別學號與身份證首四位不符。"); }
+                    alert("🎉 實名校對通過！已載入您的學籍底稿。");
+                } else { alert("❌ 驗證不匹配！班別學號或身份證錯誤。"); }
             }).catch(e => { btn.disabled = false; });
         }
 
         function submitToServer() {
             const btn = document.getElementById('submitBtn'); btn.innerText = "儲存中..."; btn.disabled = true;
-            fetch(SCRIPT_URL, {
-                method: 'POST', headers: { 'Content-Type': 'text/plain;charset=utf-8' },
-                body: JSON.stringify({ action: "submitFormTextAndLinks", appId: document.getElementById('currentAppId').value, numInput: document.getElementById('numInput').value, basic: getBasicData(), family: getFamilyTableData(), education: getTableRowsData('#educationTable tbody', ['.edu-school', '.edu-from', '.edu-to', '.edu-level']), activities: getTableRowsData('#activitiesTable tbody', ['.act-org', '.act-name', '.act-pos', '.act-year']), awards: getTableRowsData('#awardsTable tbody', ['.aw-org', '.aw-name', '.aw-year', '.aw-level']), fileUrls: uploadedFileUrls })
-            }).then(res => res.json()).then(result => { if (result.status === 'success') { alert(`🎉 【檔案正式提交成功！】\n您的專屬申請編號為：${result.id}`); btn.innerText = "✅ 提交成功"; } })
-            .catch(e => { btn.disabled = false; });
+            fetch(SCRIPT_URL, { method: 'POST', headers: { 'Content-Type': 'text/plain;charset=utf-8' }, body: JSON.stringify({ action: "submitFormTextAndLinks", appId: document.getElementById('currentAppId').value, numInput: document.getElementById('numInput').value, basic: getBasicData(), family: getFamilyTableData(), education: getTableRowsData('#educationTable tbody', ['.edu-school', '.edu-from', '.edu-to', '.edu-level']), activities: getTableRowsData('#activitiesTable tbody', ['.act-org', '.act-name', '.act-pos', '.act-year']), awards: getTableRowsData('#awardsTable tbody', ['.aw-org', '.aw-name', '.aw-year', '.aw-level']), fileUrls: uploadedFileUrls }) }).then(res => res.json()).then(result => { if (result.status === 'success') { alert(`🎉 【提交成功！】您的申請編號為：${result.id}`); btn.innerText = "✅ 提交成功"; } }).catch(e=> btn.disabled=false);
         }
 
         function switchTab(tabId) { document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active')); document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active')); document.getElementById(tabId).classList.add('active'); document.getElementById('tab_' + tabId).classList.add('active'); }
         function getTableRowsData(s, cList) { const arr = []; document.querySelectorAll(`${s} tr`).forEach(r => { const o = {}; cList.forEach((c, idx) => { const el = r.querySelector(c); if(el) o[`val${idx+1}`] = el.value.trim(); }); arr.push(o); }); return arr; }
-        
         function getFamilyTableData() { const arr = []; document.querySelectorAll('#familyTable tbody tr').forEach(r => { const n = r.querySelector('.fam-name').value.trim(); const rel = r.querySelector('.fam-rel').value; if(n || ["父親","母親"].includes(rel)) arr.push({ val1: n, val2: rel, val3: r.querySelector('.fam-age').value.trim(), val4: r.querySelector('.fam-edu').value, val5: r.querySelector('.fam-occ').value.trim(), val6: r.querySelector('.fam-income').value.trim(), val7: r.querySelector('.fam-gender').value }); }); return arr; }
         function getBasicData() { return { schoolYear: document.getElementById('schoolYear').value, studentClass: document.getElementById('studentClass').value, nameEn: document.getElementById('nameEn').value.trim(), nameCh: document.getElementById('nameCh').value, dob: document.getElementById('dob').value, placeOfBirth: document.getElementById('placeOfBirth').value, hkid: document.getElementById('hkid').value.toUpperCase(), address: document.getElementById('address').value.trim(), housingType: document.getElementById('housingType').value, mobile: document.getElementById('mobile').value, email: document.getElementById('email').value.trim(), wechat: document.getElementById('wechat').value.trim(), guardianName: document.getElementById('guardianName').value.trim(), guardianMobile: document.getElementById('guardianMobile').value, uniName: document.getElementById('uniName').value, progName: document.getElementById('progName').value.trim(), jupasCode: document.getElementById('jupasCode').value.toUpperCase(), duration: document.getElementById('duration').value.trim(), dseChi: document.getElementById('dseChi').value, dseEng: document.getElementById('dseEng').value, dseMath: document.getElementById('dseMath').value, dseCs: document.getElementById('dseCs').value, dseE1: document.getElementById('elecSubject1').value ? `${document.getElementById('elecSubject1').value} (${document.getElementById('elecScore1').value})` : "", dseE2: document.getElementById('elecSubject2').value ? `${document.getElementById('elecSubject2').value} (${document.getElementById('elecScore2').value})` : "", dseE3: document.getElementById('elecSubject3').value ? `${document.getElementById('elecSubject3').value} (${document.getElementById('elecScore3').value})` : "" }; }
         function toggleCSSAAmount() { document.getElementById('cssaAmountGroup').style.display = document.getElementById('cssa').value === '是' ? 'flex' : 'none'; }
         
-        // 🌟 核心復位：家屬預設關係、男女對齊連動機制
         function addFamilyRow(data={}) {
             const t = document.getElementById('familyTable').getElementsByTagName('tbody')[0]; const r = t.insertRow();
-            const defaultRelations = ["父親", "母親", "兄弟姊妹"];
-            let relValue = data.val2 || "父親";
-            let genderValue = data.val7 || "男"; if (!data.val7 && relValue === "母親") genderValue = "女";
-            
+            let relValue = data.val2 || "父親"; let genderValue = data.val7 || "男";
             r.innerHTML = `
                 <td><input type="text" class="fam-name" placeholder="Chan Tai Man" onblur="autoTitleCase(this)" value="${data.val1||''}"></td>
                 <td><select class="fam-rel" onchange="toggleFamilyGender(this)"><option value="父親" ${relValue==='父親'?'selected':''}>父親 / Father</option><option value="母親" ${relValue==='母親'?'selected':''}>母親 / Mother</option><option value="兄弟姊妹" ${relValue==='兄弟姊妹'?'selected':''}>兄弟姊妹 / Siblings</option></select></td>
                 <td><select class="fam-gender"><option value="男" ${genderValue==='男'?'selected':''}>男 / M</option><option value="女" ${genderValue==='女'?'selected':''}>女 / F</option></select></td>
                 <td><input type="number" class="fam-age" value="${data.val3||''}" style="text-align:center;"></td>
-                <td><select class="fam-edu"><option value="大專/大學" ${data.val4==='大專/大學'?'selected':''}>大專/大學 / Tertiary</option><option value="中學" ${data.val4==='中學'?'selected':''}>中學 / Secondary</option><option value="小學" ${data.val4==='小學'?'selected':''}>小學 / Primary</option></select></td>
-                <td><input type="text" class="fam-occ" placeholder="e.g. Clerk" value="${data.val5||''}" onblur="autoTitleCase(this)"></td>
+                <td><select class="fam-edu"><option value="大專/大學">大專/大學 / Tertiary</option><option value="中學">中學 / Secondary</option><option value="小學">小學 / Primary</option></select></td>
+                <td><input type="text" class="fam-occ" placeholder="e.g. Clerk" value="${data.val5||''}"></td>
                 <td><input type="number" class="fam-income" value="${data.val6||''}" style="text-align:right;" placeholder="HKD"></td>
                 <td><button type="button" class="btn btn-danger" onclick="deleteRow(this)">X</button></td>
             `;
         }
-        function toggleFamilyGender(selectEl) {
-            const genderSelect = selectEl.closest('tr').querySelector('.fam-gender');
-            if (selectEl.value === "父親") genderSelect.value = "男";
-            if (selectEl.value === "母親") genderSelect.value = "女";
-        }
-
+        function toggleFamilyGender(selectEl) { const gSelect = selectEl.closest('tr').querySelector('.fam-gender'); if (selectEl.value === "父親") gSelect.value = "男"; if (selectEl.value === "母親") gSelect.value = "女"; }
         function addEducationRow(data={}) {
             const t = document.getElementById('educationTable').getElementsByTagName('tbody')[0]; const r = t.insertRow();
-            r.innerHTML = `<td><input type="text" class="edu-school" placeholder="輸入屯門區小學 / e.g. Lee Kam" value="${data.val1||''}"></td><td><input type="number" class="edu-from" value="${data.val2||''}" placeholder="2014"></td><td><input type="number" class="edu-to" value="${data.val3||''}" placeholder="2020"></td><td><input type="text" class="edu-level" placeholder="e.g. Primary 6" onblur="autoTitleCase(this)" value="${data.val4||''}"></td><td><button type="button" class="btn btn-danger" onclick="deleteRow(this)">X</button></td>`;
+            r.innerHTML = `<td><input type="text" class="edu-school" placeholder="輸入小學英文全稱 / e.g. Lee Kam" value="${data.val1||''}"></td><td><input type="number" class="edu-from" placeholder="2014"></td><td><input type="number" class="edu-to" placeholder="2020"></td><td><input type="text" class="edu-level" placeholder="e.g. Primary 6" onblur="autoTitleCase(this)"></td><td><button type="button" class="btn btn-danger" onclick="deleteRow(this)">X</button></td>`;
             bindSuggestionToInput(r.querySelector('.edu-school'), "primarySchoolSuggestions");
         }
-        
-        // 🌟 核心復位：活動經歷自動載入母校名稱機制
         function addActivityRow(data={}, autoFillSchool=true) {
-            const t = document.getElementById('activitiesTable').getElementsByTagName('tbody')[0]; const r = t.insertRow();
-            const defaultOrg = autoFillSchool ? SCHOOL_DEFAULT_NAME : (data.val1 || "");
-            r.innerHTML = `<td><input type="text" class="act-org" placeholder="例: HKSSF / 東華三院賣旗日" value="${defaultOrg}"></td><td><input type="text" class="act-name" placeholder="例: Inter-School Basketball" value="${data.val2||''}"></td><td><input type="text" class="act-pos" placeholder="例: 隊長 / Volunteer" value="${data.val3||''}"></td><td><input type="text" class="act-year" placeholder="例: 2023-2024" pattern="^[0-9]{4}-[0-9]{4}$" required value="${data.val4||''}"></td><td><button type="button" class="btn btn-danger" onclick="deleteRow(this)">X</button></td>`;
+            const t = document.getElementById('activitiesTable').getElementsByTagName('tbody')[0]; const r = t.insertRow(); const dOrg = autoFillSchool ? SCHOOL_DEFAULT_NAME : (data.val1 || "");
+            r.innerHTML = `<td><input type="text" class="act-org" placeholder="例: HKSSF / 東華三院賣旗日" value="${dOrg}"></td><td><input type="text" class="act-name" placeholder="例: Inter-School Basketball" value="${data.val2||''}"></td><td><input type="text" class="act-pos" placeholder="例: 隊長 / Volunteer" value="${data.val3||''}"></td><td><input type="text" class="act-year" placeholder="例: 2023-2024" pattern="^[0-9]{4}-[0-9]{4}$" required value="${data.val4||''}"></td><td><button type="button" class="btn btn-danger" onclick="deleteRow(this)">X</button></td>`;
             bindSuggestionToInput(r.querySelector('.act-org'), "activitySuggestions"); bindSuggestionToInput(r.querySelector('.act-name'), "activityNameSuggestions"); bindSuggestionToInput(r.querySelector('.act-pos'), "positionSuggestions");
         }
-        
-        // 🌟 核心復位：獎項紀錄自動載入母校名稱機制
         function addAwardRow(data={}, autoFillSchool=true) {
-            const t = document.getElementById('awardsTable').getElementsByTagName('tbody')[0]; const r = t.insertRow();
-            const defaultIssuer = autoFillSchool ? SCHOOL_DEFAULT_NAME : (data.val1 || "");
-            r.innerHTML = `<td><input type="text" class="aw-org" placeholder="例: 學體會 / 學校方" value="${defaultIssuer}"></td><td><input type="text" class="aw-name" placeholder="例: 100m Gold Award" value="${data.val2||''}"></td><td><input type="text" class="aw-year" placeholder="例: 2024-2025" pattern="^[0-9]{4}-[0-9]{4}$" required value="${data.val3||''}"></td><td><input type="text" class="aw-level" placeholder="例: 團體冠軍 / 第一名" value="${data.val4||''}"></td><td><button type="button" class="btn btn-danger" onclick="deleteRow(this)">X</button></td>`;
+            const t = document.getElementById('awardsTable').getElementsByTagName('tbody')[0]; const r = t.insertRow(); const dIssuer = autoFillSchool ? SCHOOL_DEFAULT_NAME : (data.val1 || "");
+            r.innerHTML = `<td><input type="text" class="aw-org" placeholder="例: 學體會" value="${dIssuer}"></td><td><input type="text" class="aw-name" placeholder="例: 100m Gold Award" value="${data.val2||''}"></td><td><input type="text" class="aw-year" placeholder="例: 2024-2025" pattern="^[0-9]{4}-[0-9]{4}$" required value="${data.val3||''}"></td><td><input type="text" class="aw-level" placeholder="例: 團體冠軍 / 第一名" value="${data.val4||''}"></td><td><button type="button" class="btn btn-danger" onclick="deleteRow(this)">X</button></td>`;
             bindSuggestionToInput(r.querySelector('.aw-org'), "activitySuggestions"); bindSuggestionToInput(r.querySelector('.aw-name'), "activityNameSuggestions"); bindSuggestionToInput(r.querySelector('.aw-level'), "rankSuggestions");
         }
         function deleteRow(b) { b.closest('tr').remove(); }
