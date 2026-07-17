@@ -47,34 +47,6 @@
 </head>
 <body>
 
-    <datalist id="primarySchoolSuggestions">
-        <option value="順德聯誼總會何日東小學 (SHTTGA Ho Yat Tung Primary School)">
-        <option value="順德聯誼總會胡少渠紀念小學 (SHTTGA Wu Siu Kui Primary School)">
-        <option value="順德聯誼總會李金小學 (SHTTGA Lee Kam Primary School)">
-        <option value="保良局方王錦全小學 (Po Leung Kuk Fong Wong Kam Chuen Primary School)">
-        <option value="保良局志豪小學 (Po Leung Kuk Castle Peak Primary School)">
-        <option value="保良局香港道教聯會圓玄小學 (Po Leung Kuk Hong Kong Taoist Association Yuen Yuen Primary School)">
-        <option value="屯門官立小學 (Tuen Mun Government Primary School)">
-        <option value="仁愛堂田家炳小學 (Yan Oi Tong Tin Ka Ping Primary School)">
-        <option value="仁濟醫院何式南小學 (YCH Ho Shi Chu Primary School)">
-    </datalist>
-
-    <datalist id="activitySuggestions">
-        <option value="香港學界體育聯會 (The Hong Kong Schools Sports Federation)">
-        <option value="香港學界體育聯會屯門區中學分會 (HKSSF Tuen Mun Secondary Schools Area Committee)">
-        <option value="香港足球總會 (The Hong Kong Football Association)">
-        <option value="香港籃球總會 (The Hong Kong Basketball Association)">
-        <option value="香港田徑總會 (Hong Kong China Athletics Association)">
-        <option value="香港學校音樂及朗誦協會 (Hong Kong Schools Music and Speech Association)">
-        <option value="香港聯校音樂協會 (Hong Kong Joint School Music Association)">
-        <option value="東華三院總部 (Tung Wah Group of Hospitals)">
-        <option value="東華三院全港賣旗日大會 (TWGHs Flag Day Annual Charity Volunteer)">
-        <option value="尤德爵士紀念基金理事會 (Sir Edward Youde Memorial Fund Council)">
-        <option value="微軟香港有限公司 (Microsoft Hong Kong Limited)">
-        <option value="騰訊控股有限公司 (Tencent Holdings Limited)">
-        <option value="香港電腦教育學會 (The Hong Kong Association for Computer Education)">
-    </datalist>
-
     <div class="header">
         <h1>東華三院大學獎學金 — 線上填報系統</h1>
         <p>TWGHs University Scholarships Portal — Online Application System</p>
@@ -188,25 +160,25 @@
                     </div>
                     <h4 style="color: var(--primary-color); margin: 0 0 10px 0;">選修科目與原始等級 / Electives</h4>
                     <div class="form-grid">
-                        <!-- 🎯 鋼鐵對齊：將 12 門校本科目（PHY, BIO, HIS, BAFS, CHEM, ECON, GEOG, CHIS, VA, ICT, M2）完美塞入 value，完全去中文 -->
+                        <!-- 🎯 精準綁定學校開辦的 12 科大寫代碼 -->
                         <div class="form-group">
                             <select id="elecSubject1">
                                 <option value="">選修科一 / Elective 1...</option>
-                                <option value="PHY">PHY</option><option value="BIO">BIO</option><option value="HIS">HIS</option><option value="BAFS">BAFS</option><option value="CHEM">CHEM</option><option value="ECON">ECON</option><option value="GEOG">GEOG</option><option value="CHIS">CHIS</option><option value="VA">VA</option><option value="ICT">ICT</option><option value="M1">M1</option><option value="M2">M2</option>
+                                <option value="PHY">PHY</option><option value="BIO">BIO</option><option value="HIS">HIS</option><option value="BAFS">BAFS</option><option value="CHEM">CHEM</option><option value="ECON">ECON</option><option value="GEOG">GEOG</option><option value="CHIS">CHIS</option><option value="VA">VA</option><option value="ICT">ICT</option><option value="M2">M2</option>
                             </select>
                             <input type="number" id="elecScore1" min="1" max="7" placeholder="分數 / Level" style="margin-top:5px;">
                         </div>
                         <div class="form-group">
                             <select id="elecSubject2">
                                 <option value="">選修科二 / Elective 2...</option>
-                                <option value="PHY">PHY</option><option value="BIO">BIO</option><option value="HIS">HIS</option><option value="BAFS">BAFS</option><option value="CHEM">CHEM</option><option value="ECON">ECON</option><option value="GEOG">GEOG</option><option value="CHIS">CHIS</option><option value="VA">VA</option><option value="ICT">ICT</option><option value="M1">M1</option><option value="M2">M2</option>
+                                <option value="PHY">PHY</option><option value="BIO">BIO</option><option value="HIS">HIS</option><option value="BAFS">BAFS</option><option value="CHEM">CHEM</option><option value="ECON">ECON</option><option value="GEOG">GEOG</option><option value="CHIS">CHIS</option><option value="VA">VA</option><option value="ICT">ICT</option><option value="M2">M2</option>
                             </select>
                             <input type="number" id="elecScore2" min="1" max="7" placeholder="分數 / Level" style="margin-top:5px;">
                         </div>
                         <div class="form-group">
                             <select id="elecSubject3">
                                 <option value="">選修科三 (選填) / Elective 3...</option>
-                                <option value="PHY">PHY</option><option value="BIO">BIO</option><option value="HIS">HIS</option><option value="BAFS">BAFS</option><option value="CHEM">CHEM</option><option value="ECON">ECON</option><option value="GEOG">GEOG</option><option value="CHIS">CHIS</option><option value="VA">VA</option><option value="ICT">ICT</option><option value="M1">M1</option><option value="M2">M2</option>
+                                <option value="PHY">PHY</option><option value="BIO">BIO</option><option value="HIS">HIS</option><option value="BAFS">BAFS</option><option value="CHEM">CHEM</option><option value="ECON">ECON</option><option value="GEOG">GEOG</option><option value="CHIS">CHIS</option><option value="VA">VA</option><option value="ICT">ICT</option><option value="M2">M2</option>
                             </select>
                             <input type="number" id="elecScore3" min="1" max="7" placeholder="分數 / Level" style="margin-top:5px;">
                         </div>
@@ -224,7 +196,7 @@
             </div>
 
             <div id="family" class="tab-content"><div class="card"><div class="card-title">同住家庭成員經濟與學歷背景 / Household Members Particulars</div><table id="familyTable"><thead><tr><th>英文姓名<br>Full Name</th><th>關係<br>Relationship</th><th>性別<br>Gender</th><th>年齡<br>Age</th><th>最高學歷<br>Education</th><th>現職<br>Occupation (Eng)</th><th>平均月收<br>Monthly Income</th><th>操作</th></tr></thead><tbody></tbody></table><div class="add-row-container"><button type="button" class="btn btn-outline" onclick="addFamilyRow()">＋ 新增其他成員 / Add Household Member</button></div></div></div>
-            <div id="education" class="tab-content"><div class="card"><div class="card-title">最近 3 年全級排名 / Rank Performance</div><div class="form-grid"><div class="form-group"><label>重中四全級排名 / S4 Rank</label><input type="text" id="rankS4" placeholder="Ranked 3rd"></div><div class="form-group"><label>中五全級排名 / S5 Rank</label><input type="text" id="rankS5" placeholder="Ranked 2nd"></div><div class="form-group"><label>中六模擬試排名 / S6 Rank</label><input type="text" id="rankS6" placeholder="Ranked 12th"></div></div></div><div class="card"><div class="card-title">以往學歷背景 / Section 7: Educational Background</div><table id="educationTable"><thead><tr><th class="col-wide">學校名稱 School Name (In English)</th><th>開始年份<br>From (Year)</th><th>結束年份<br>To (Year)</th><th>最高就讀班級<br>Highest Form</th><th>操作</th></tr></thead><tbody><tr><td><input type="text" class="edu-school" value="TWGHs Sun Hoi Directors' College" readonly style="background:#f8fafc; font-weight:bold;"></td><td><input type="number" class="edu-from" placeholder="2020"></td><td><input type="number" class="edu-to" placeholder="2026"></td><td><input type="text" class="edu-level" value="Form 6" readonly style="background:#f8fafc; text-align:center;"></td><td><span style="font-size:11px; color:var(--text-muted);">核心母校</span></td></tr></tbody></table><div class="add-row-container"><button type="button" class="btn btn-outline" onclick="addEducationRow()">＋ 新增以往就讀學校 / Add Previous School</button></div></div></div>
+            <div id="education" class="tab-content"><div class="card"><div class="card-title">最近 3 年全級排名 / Rank Performance</div><div class="form-grid"><div class="form-group"><label>中四全級排名 / S4 Rank</label><input type="text" id="rankS4" placeholder="Ranked 3rd"></div><div class="form-group"><label>中五全級排名 / S5 Rank</label><input type="text" id="rankS5" placeholder="Ranked 2nd"></div><div class="form-group"><label>中六模擬試排名 / S6 Rank</label><input type="text" id="rankS6" placeholder="Ranked 12th"></div></div></div><div class="card"><div class="card-title">以往學歷背景 / Section 7: Educational Background</div><table id="educationTable"><thead><tr><th class="col-wide">學校名稱 School Name (In English)</th><th>開始年份<br>From (Year)</th><th>結束年份<br>To (Year)</th><th>最高就職班級<br>Highest Form</th><th>操作</th></tr></thead><tbody><tr><td><input type="text" class="edu-school" value="TWGHs Sun Hoi Directors' College" readonly style="background:#f8fafc; font-weight:bold;"></td><td><input type="number" class="edu-from" placeholder="2020"></td><td><input type="number" class="edu-to" placeholder="2026"></td><td><input type="text" class="edu-level" value="Form 6" readonly style="background:#f8fafc; text-align:center;"></td><td><span style="font-size:11px; color:var(--text-muted);">核心母校</span></td></tr></tbody></table><div class="add-row-container"><button type="button" class="btn btn-outline" onclick="addEducationRow()">＋ 新增以往就讀學校 / Add Previous School</button></div></div></div>
             
             <div id="activities" class="tab-content"><div class="card"><div class="card-title">過往校內外活動、服務經歷 / Section 8: Activities & Services</div><table id="activitiesTable"><thead><tr><th class="col-wide">主辦機構 / 學校<br>Institution / School</th><th class="col-wide">活動經歷名稱<br>Activity / Service Name</th><th class="col-mid">擔任職位<br>Position Held</th><th class="col-mid">參與年度<br>Academic Year</th><th style="width:10%">操作</th></tr></thead><tbody></tbody></table><div class="add-row-container"><button type="button" class="btn btn-outline" onclick="addActivityRow({}, true)">＋ 新增經歷 / Add Experience</button></div></div></div>
             
@@ -264,12 +236,25 @@
         function autoTitleCase(el) { if (el && el.value) el.value = el.value.toString().toLowerCase().replace(/\b[a-z]/g, function(letter) { return letter.toUpperCase(); }).trim(); }
         function logToConsole(msg) { document.getElementById("consoleLog").innerText = msg; }
         
-        function setSelectValue(id, val) {
-            if (!val) return; const selectEl = document.getElementById(id); if (!selectEl) return;
-            let cleanVal = val.toString().trim().toUpperCase().replace(/[\s\-\_\/]+/g, '');
-            for (let i = 0; i < selectEl.options.length; i++) { if (selectEl.options[i].value.toString().trim().toUpperCase().replace(/[\s\-\_\/]+/g, '').includes(cleanVal)) { selectEl.selectedIndex = i; return; } }
+        // 🎯 核心防錯：智能容錯解析器（自動相容大腦內「PHY (5)」或「CHEM」的格式，精準切分並自動打勾載入）
+        function parseAndSetElective(selectId, scoreId, rawVal) {
+            if (!rawVal) return;
+            let subject = rawVal.toString().trim(); let score = "";
+            if (subject.includes("(") && subject.includes(")")) {
+                let parts = subject.split("(");
+                subject = parts[0].trim();
+                score = parts[1].replace(")", "").trim();
+            }
+            const selectEl = document.getElementById(selectId);
+            if (selectEl) {
+                for (let i = 0; i < selectEl.options.length; i++) {
+                    if (selectEl.options[i].value.toUpperCase() === subject.toUpperCase()) {
+                        selectEl.selectedIndex = i; break;
+                    }
+                }
+            }
+            if (score) { document.getElementById(scoreId).value = score; }
         }
-        function bindSuggestionToInput(inputEl, listId) { inputEl.setAttribute("list", listId); inputEl.addEventListener("change", function() { if (this.value.includes(" (") && this.value.includes(")")) { let m = this.value.match(/\(([^)]+)\)/); if (m && m[1]) { this.value = m[1].trim(); } } }); }
 
         function secureLoadOldData() {
             const nameCh = document.getElementById('secureName').value.trim(); const hkidVerify = document.getElementById('secureHkid').value.trim().toUpperCase(); const classNo = document.getElementById('secureNo').value.trim(); const appLast3 = document.getElementById('secureAppLast3').value.trim();
@@ -281,12 +266,22 @@
                     logToConsole("▶ [✓ SUCCESS] 檔案已成功解鎖並完整載入。");
                     document.getElementById('currentAppId').value = data.appId; document.getElementById('numInput').value = classNo; document.getElementById('hkidVerifyInput').value = hkidVerify; document.getElementById('studentClass').value = data.studentClass;
                     document.getElementById('nameEn').value = data.nameEn; document.getElementById('nameCh').value = data.nameCh; document.getElementById('hkid').value = data.hkid; document.getElementById('dob').value = data.dob; document.getElementById('placeOfBirth').value = data.placeOfBirth; document.getElementById('mobile').value = data.mobile; document.getElementById('email').value = data.email; document.getElementById('wechat').value = data.wechat; document.getElementById('address').value = data.address; document.getElementById('housingType').value = data.housingType; document.getElementById('guardianName').value = data.guardianName; document.getElementById('guardianMobile').value = data.guardianMobile;
-                    setSelectValue('uniName', data.uniName); document.getElementById('progName').value = data.progName; document.getElementById('jupasCode').value = data.jupasCode; document.getElementById('duration').value = data.duration;
-                    document.getElementById('dseChi').value = data.dseChi || ""; document.getElementById('dseEng').value = data.dseEng || ""; document.getElementById('dseMath').value = data.dseMath || ""; setSelectValue('dseCs', data.dseCs || "");
                     
-                    if (data.dseE1) { const parts = data.dseE1.split('('); setSelectValue('elecSubject1', parts[0]); if(parts[1]) document.getElementById('elecScore1').value = parts[1].replace(')', '').trim(); }
-                    if (data.dseE2) { const parts = data.dseE2.split('('); setSelectValue('elecSubject2', parts[0]); if(parts[1]) document.getElementById('elecScore2').value = parts[1].replace(')', '').trim(); }
-                    if (data.dseE3) { const parts = data.dseE3.split('('); setSelectValue('elecSubject3', parts[0]); if(parts[1]) document.getElementById('elecScore3').value = parts[1].replace(')', '').trim(); }
+                    // 核心主科與取錄校系
+                    for (let i = 0; i < document.getElementById('uniName').options.length; i++) {
+                        if (data.uniName && document.getElementById('uniName').options[i].value.includes(data.uniName.split('(')[0].trim())) { document.getElementById('uniName').selectedIndex = i; break; }
+                    }
+                    document.getElementById('progName').value = data.progName; document.getElementById('jupasCode').value = data.jupasCode; document.getElementById('duration').value = data.duration;
+                    document.getElementById('dseChi').value = data.dseChi || ""; document.getElementById('dseEng').value = data.dseEng || ""; document.getElementById('dseMath').value = data.dseMath || "";
+                    
+                    for (let i = 0; i < document.getElementById('dseCs').options.length; i++) {
+                        if (data.dseCs && document.getElementById('dseCs').options[i].value.substring(0,1) === data.dseCs.substring(0,1)) { document.getElementById('dseCs').selectedIndex = i; break; }
+                    }
+                    
+                    // 🎯 鋼鐵對齊：使用智能拆解載入器自動導入 3 科選修
+                    parseAndSetElective('elecSubject1', 'elecScore1', data.dseE1);
+                    parseAndSetElective('elecSubject2', 'elecScore2', data.dseE2);
+                    parseAndSetElective('elecSubject3', 'elecScore3', data.dseE3);
 
                     document.getElementById('cssa').value = data.cssa; document.getElementById('cssaAmount').value = data.cssaAmount; document.getElementById('schFinance').value = data.schFinance;
                     document.getElementById('rankS4').value = data.rankS4; document.getElementById('rankS5').value = data.rankS5; document.getElementById('rankS6').value = data.rankS6;
@@ -327,7 +322,11 @@
                     if (data.dseChi) document.getElementById('dseChi').value = data.dseChi;
                     if (data.dseEng) document.getElementById('dseEng').value = data.dseEng;
                     if (data.dseMath) document.getElementById('dseMath').value = data.dseMath;
-                    if (data.dseCs) setSelectValue('dseCs', data.dseCs);
+                    if (data.dseCs) {
+                        for(let i=0; i<document.getElementById('dseCs').options.length; i++) {
+                            if(document.getElementById('dseCs').options[i].value.substring(0,1) === data.dseCs.substring(0,1)) { document.getElementById('dseCs').selectedIndex = i; break; }
+                        }
+                    }
                     alert("🎉 實名校對通過！已載入您的學籍底稿。");
                 } else { logToConsole("▶ [❌ DENIED] 學籍庫比對失敗。"); alert("❌ 驗證不匹配！班別學號或身份證錯誤。"); }
             }).catch(e => { logToConsole("▶ [❌ 連線失敗] 大腦拒絕回應: " + e.toString()); });
